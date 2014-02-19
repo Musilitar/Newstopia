@@ -6,3 +6,5 @@ if a != c:
     print("Oef, het zal lukken!")
 else:
     print("Ai, onbegonnen werk!")
+
+print("Haha")
