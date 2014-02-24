@@ -34,4 +34,10 @@ def newArticle(request):
             return HttpResponseRedirect(reverse('articles:index'))
     else:
         form = ArticleForm()
-    render_to_response('articles/create.html',{'form':form},context_instance=RequestContext(request))
+    render_to_response('articles/index.html',{'form':form},context_instance=RequestContext(request))
+
+
+def getArticle(request):
+    if request.method == 'POST':
+        a = Article.objects.get(pk=1)
+        f = ArticleForm(request.POST, instance=a)
