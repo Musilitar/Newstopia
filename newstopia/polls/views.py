@@ -6,22 +6,22 @@ from polls.models import Choice, Poll
 
 
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
+    template_name = 'articles/index.html'
     context_object_name = 'latest_poll_list'
 
     def get_queryset(self):
-        """Return the last five published polls."""
+        """Return the last five published articles."""
         return Poll.objects.order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DetailView):
     model = Poll
-    template_name = 'polls/detail.html'
+    template_name = 'articles/detail.html'
 
 
 class ResultsView(generic.DetailView):
     model = Poll
-    template_name = 'polls/results.html'
+    template_name = 'articles/results.html'
 
 
 def vote(request, poll_id):
@@ -29,8 +29,8 @@ def vote(request, poll_id):
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'polls/detail.html', {'poll': p, 'error_message': "No selection"})
+        return render(request, 'articles/detail.html', {'poll': p, 'error_message': "No selection"})
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+        return HttpResponseRedirect(reverse('articles:results', args=(p.id,)))
