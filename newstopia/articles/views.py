@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published articles."""
-        return Article.objects.order_by('-pub_date')[:5]
+        return Article.objects.order_by('-pub_date')[:20]
 
 
 class DetailView(generic.DetailView):
@@ -24,6 +24,7 @@ class DetailView(generic.DetailView):
 class NewView(generic.CreateView):
     model = Article
     template_name = 'articles/create.html'
+    success_url = '/articles/'
 
 
 def newArticle(request):
@@ -31,13 +32,13 @@ def newArticle(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save()
-            return HttpResponseRedirect(reverse('articles:index'))
+            return HttpResponseRedirect('/articles/')
     else:
         form = ArticleForm()
-    render_to_response('articles/index.html',{'form':form},context_instance=RequestContext(request))
+    return render_to_response('articles/index.html', {'form': form},)
 
 
-def getArticle(request):
+def getArticle(request, article_id):
     if request.method == 'POST':
-        a = Article.objects.get(pk=1)
+        a = Article.objects.get(pk=article_id)
         f = ArticleForm(request.POST, instance=a)
