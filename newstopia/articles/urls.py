@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        url(r'^$', views.IndexView.as_view(), name='index'),
                        url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-                       url(r'^newArticle', views.NewView.as_view(), name='new'),
+                       url(r'^new', views.NewView.as_view(), name='new'),
                        )
 
 

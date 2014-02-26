@@ -27,7 +27,7 @@ class NewView(generic.CreateView):
     success_url = '/articles/'
 
 
-def newArticle(request):
+def new(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
         if form.is_valid():
@@ -38,7 +38,7 @@ def newArticle(request):
     return render_to_response('articles/index.html', {'form': form},)
 
 
-def getArticle(request, article_id):
+def get(request, article_id):
     if request.method == 'POST':
         a = Article.objects.get(pk=article_id)
         f = ArticleForm(request.POST, instance=a)
