@@ -43,10 +43,12 @@ def get(request, article_id):
         a = Article.objects.get(pk=article_id)
         f = ArticleForm(request.POST, instance=a)
 
+
 class EditView(generic.UpdateView):
     model = Article
     template_name = 'articles/edit.html'
-    success_url = 'articles/'
+    success_url = '/articles/'
+
 
 def edit(request):
     if request.method == 'POST':
