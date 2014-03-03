@@ -6,4 +6,4 @@
 
 <h5>{{ article.pub_date }}</h5>
 
-<a href="{% url 'articles:edit' %}">Edit</a>
+<a href="{% url 'articles:edit' article.id %}">Edit</a>
