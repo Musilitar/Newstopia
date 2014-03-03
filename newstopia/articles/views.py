@@ -42,3 +42,18 @@ def get(request, article_id):
     if request.method == 'POST':
         a = Article.objects.get(pk=article_id)
         f = ArticleForm(request.POST, instance=a)
+
+class EditView(generic.CreateView):
+    model = Article
+    template_name = 'articles/edit.html'
+    success_url = 'articles/'
+
+def edit(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            return HttpResponseRedirect('/articles/' + article.pk)
+    else:
+        form = ArticleForm()
+    return render_to_response('articles/index.html', {'form': form},)#later naar artikel
