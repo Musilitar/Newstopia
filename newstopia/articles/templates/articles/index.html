@@ -1,6 +1,6 @@
-{% if latest_articles %}
+{% if all_articles %}
     <ul>
-    {% for article in latest_articles %}
+    {% for article in all_articles %}
         <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
     {% endfor %}
     </ul>

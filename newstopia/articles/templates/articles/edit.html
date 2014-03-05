@@ -1,13 +1,5 @@
 <form action="" method="post" accept-charset="utf-8">
      {% csrf_token %}
-     <!--<p><label>Title:</label>
-     <input type="text" value="{{ article.title }}">
-     </p>
-     <p>
-     <label>Body:</label>
-     <input type="text" value="{{ article.body }}">
-     </p>
-     <p><input type="submit" value="Save"></p>-->
     {{ form.as_p }}
     <input type="submit" value="Save">
 </form>
