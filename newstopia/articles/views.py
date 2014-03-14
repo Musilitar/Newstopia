@@ -1,4 +1,7 @@
 from django.views import generic
+from django.views.generic import UpdateView, CreateView
+from django.http import HttpResponse
+from django.views.generic.list import ListView
 from django.core.urlresolvers import reverse
 from articles.models import Article, ArticleForm
 
@@ -27,5 +30,4 @@ class EditView(generic.UpdateView):
     fields = ['title', 'body']
     template_name = 'articles/edit.html'
     success_url = '../'
-
 
