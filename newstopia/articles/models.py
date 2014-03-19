@@ -3,7 +3,6 @@ from django.db import models
 from django.forms import ModelForm
 from django.utils import timezone
 
-
 class Article(models.Model):
     def __str__(self):
         return self.title
@@ -16,9 +15,3 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.CharField(max_length=9999)
-
-
-class ArticleForm(ModelForm):
-    class Meta:
-        model = Article
-        exclude = ['pub_date']
