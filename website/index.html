@@ -1,14 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>NewsTopia</title>
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="scripts.js"></script>
-</head>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>NewsTopia</title>
+ <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+ <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+   	<script src="scripts.js"></script>-->
+ <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+<div class="article"> artikel </div>
+<div id="date"> datum: </div>
+<form>
+<input type="text" placeholder="Search" name="firstname">
+</form>
+<img id="logo" alt="logo" src="./img/logo.png" />
+<div id="welcome"> Welcome, </div>
+<i class="fa fa-question"></i> fa-question
 
-<body>
+
+ <script language="javascript">
+ var months = ['January','February','March','April','May','June','July',
+'August','September','October','November','December'];       
+var tomorrow = new Date();
+tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
+document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
+ </script>
 </body>
 </html>
