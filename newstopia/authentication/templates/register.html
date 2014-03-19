@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}EHBHotel{% endblock %}</title>
+</head>
+
+<body>
+    <div id="content">
+        {% block content %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% if form.errors %}<p>Please correct the following fiels: {{ form.errors }}</p>{% endif %}
+                <div id="register_div">
+                    <table>
+                        <tr>
+                            <td><label for="username" {% if form.username.errors %} class="error" {% endif %} >Username: </label></td>
+                            <td>{{ form.username }}</td>
+                            {% if form.username.errors %}<td>{{ form.username.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="password" {% if form.password.errors %} class="error" {% endif %} >Password: </label></td>
+                            <td>{{ form.password }}</td>
+                            {% if form.password.errors %}<td>{{ form.password.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="password1" {% if form.password1.errors %} class="error" {% endif %} >Verify Password: </label></td>
+                            <td>{{ form.password1 }}</td>
+                            {% if form.password1.errors %}<td>{{ form.password1.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="email" {% if form.email.errors %} class="error" {% endif %} >Email: </label></td>
+                            <td>{{ form.email }}</td>
+                            {% if form.email.errors %}<td>{{ form.email.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="first_name" {% if form.first_name.errors %} class="error" {% endif %} >First name: </label></td>
+                            <td>{{ form.first_name }}</td>
+                            {% if form.first_name.errors %}<td>{{ form.first_name.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="last_name" {% if form.last_name.errors %} class="error" {% endif %} >Last name: </label></td>
+                            <td>{{ form.last_name }}</td>
+                            {% if form.last_name.errors %}<td>{{ form.last_name.errors }}</td>{% endif %}
+                        </tr>
+                        <tr>
+                            <td><label for="birthday">Birthday: </label></td>
+                            <td>{{ form.birthday }}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="special_request">Special Request: </label></td>
+                            <td>{{ form.special_request }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Register User" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>

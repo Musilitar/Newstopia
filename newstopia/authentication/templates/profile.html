@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile {{ user.username }}</title>
+</head>
+<body>
+    <div id="content">
+        <h2>Welcome, {{ user.username }}. Thanks for logging in!</h2>
+        <table>
+            <tr>
+                <td>Firstname:</td>
+                <td>{{ user.first_name }}</td>
+            </tr>
+             <tr>
+                <td>Lastname:</td>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            <tr>
+                <td><a href="/logout">Logout</a> </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

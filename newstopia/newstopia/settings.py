@@ -84,4 +84,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'articles.Users'
+AUTH_USER_MODEL = 'authentication.Contributor'
