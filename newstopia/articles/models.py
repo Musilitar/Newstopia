@@ -16,9 +16,3 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.CharField(max_length=9999)
-
-
-class ArticleForm(ModelForm):
-    class Meta:
-        model = Article
-        exclude = ['pub_date']
