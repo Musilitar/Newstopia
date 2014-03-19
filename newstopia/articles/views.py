@@ -4,8 +4,7 @@ from datetime import datetime
 
 def index(request):
     articles = Article.objects.all().order_by('-pub_date')
-    response = render(request, 'articles/index.html', {'articles': articles})
-    return response
+    return render(request, 'articles/index.html', {'articles': articles})
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)

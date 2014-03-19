@@ -1,5 +1,9 @@
-<form action="new" method="post" accept-charset="utf-8">
-     {% csrf_token %}
-     {{form.as_p}}
-     <p><input type="submit" value="Save"></p>
+<form method="post" action="">
+    {% csrf_token %}
+    Title: <input type="text" name="title"><br>
+    Body: <textarea rows="5" cols="50" name="body"></textarea><br>
+    <input type="submit">
+    {% if not valid %}
+        <b>form not valid, fill in both fields</b>
+    {% endif %}
 </form>
