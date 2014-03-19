@@ -21,7 +21,7 @@ def registration(request):
         return render(request, 'authentication/register.html')
 
 
-def login(request):
+def acclogin(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/account/')
     if request.method == 'POST':
@@ -44,6 +44,6 @@ def profile(request):
         return HttpResponseRedirect('/account/login/')
 
 
-def logout(request):
+def acclogout(request):
     logout(request)
-    return HttpResponseRedirect('/contributor/login/')
+    return HttpResponseRedirect('/account/login/')

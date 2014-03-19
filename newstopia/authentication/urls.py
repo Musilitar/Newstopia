@@ -5,8 +5,8 @@ from authentication import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', views.profile, name='index'),
-                       url(r'^login/$', views.login, name='detail'),
-                       url(r'^register/$', views.registration, name='edit'),
-                       url(r'^logout/$', views.logout, name='create'),
+                       url(r'^$', views.profile, name='profile'),
+                       url(r'^login/$', views.acclogin, name='login'),
+                       url(r'^register/$', views.registration, name='register'),
+                       url(r'^logout/$', views.acclogout, name='logout'),
                        )
