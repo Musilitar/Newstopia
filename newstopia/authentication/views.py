@@ -1,10 +1,8 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from customers.forms import RegistrationForm
-from customers.forms import LoginForm
 from authentication.models import Contributor
 
 
@@ -12,49 +10,38 @@ from authentication.models import Contributor
 
 def registration(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/contributor/')
+        return HttpResponseRedirect('authentication/profile.html')
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = Contributor.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            return HttpResponseRedirect('/contributor/')
-        else:
-            return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
+        user = Contributor(email=request.POST['username'])
+        user.set_password(request.POST['password'])
+        user.save()
+        return HttpResponseRedirect('/account/')
 
     else:
-        form = RegistrationForm()
-        context = {'form': form}
-        return render_to_response('register.html', context, context_instance=RequestContext(request))
+        return render(request, 'authentication/register.html')
 
 
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/contributor/')
+        return HttpResponseRedirect('/account/')
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            contributor = authenticate(username=username, password=password)
-            if contributor is not None:
-                login(request, contributor)
-                return HttpResponseRedirect('/contributor/')
-            else:
-                return HttpResponseRedirect('/contributor/login/')
+        username = request.POST['username']
+        password = request.POST['password']
+        contributor = authenticate(username=username, password=password)
+        if contributor is not None:
+            login(request, contributor)
+            return HttpResponseRedirect('/account/')
         else:
-            return render_to_response('login.html', {'form': form}, context_instance=RequestContext(request))
-
+            return HttpResponseRedirect('/account/login/')
     else:
-        form = LoginForm()
-        context = {'form': form}
-        return render_to_response('login.html', context, context_instance=RequestContext(request))
+        return render(request, 'authentication/login.html')
 
 
 def profile(request):
     if request.user.is_authenticated():
-        return render_to_response('profile.html', None, context_instance=RequestContext(request))
+        return render_to_response('authentication/profile.html', None, context_instance=RequestContext(request))
     else:
-        return HttpResponseRedirect('/contributor/login/')
+        return HttpResponseRedirect('/account/login/')
 
 
 def logout(request):
