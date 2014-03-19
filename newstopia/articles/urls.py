@@ -5,10 +5,10 @@ from articles import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', views.IndexView.as_view(), name='index'),
-                       url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-                       url(r'^new', views.NewView.as_view(), name='new'),
-                       url(r'^(?P<pk>\d+)/edit/$', views.EditView.as_view(), name='edit'),
+                       url(r'^$', views.index, name='index'),
+                       url(r'^(?P<pk>\d+)/$', views.detail, name='detail'),
+                       url(r'^(?P<pk>\d+)/edit/$', views.edit, name='edit'),
+                       url(r'^add/$', views.create, name='create'),
                        )
 
 

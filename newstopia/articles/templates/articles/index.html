@@ -1,10 +1,8 @@
-{% if all_articles %}
-    <ul>
-    {% for article in all_articles %}
-        <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No articles are available.</p>
-{% endif %}
-<a href="{% url 'articles:new' %}">New article</a>
+<h1>Articles</h1>
+        <a href="{% url 'articles:create' %}">New Article</a>
+{% for article in articles %}
+        <p>
+            <h3><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h3>
+            <p>{{ article.body|truncatechars:50 }}</p>{{article.pub_date}}
+        </p>
+{% endfor %}

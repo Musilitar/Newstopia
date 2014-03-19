@@ -1,9 +1,3 @@
-<h1>{{ article.title }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<h3>{{ article.body }}</h3>
-
-<h5>{{ article.pub_date }}</h5>
-
-<a href="{% url 'articles:edit' article.id %}">Edit</a>
+<h1>{{article.title}}</h1>
+    <p>{{article.body}}</p>
+    <a href="{% url 'articles:edit' article.pk%}">edit</a>
