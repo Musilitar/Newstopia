@@ -1,33 +1,35 @@
-from django.views import generic
-from django.views.generic import UpdateView, CreateView
-from django.http import HttpResponse
-from django.views.generic.list import ListView
-from django.core.urlresolvers import reverse
-from articles.models import Article, ArticleForm
+from django.shortcuts import render, render_to_response
+from articles.models import Article
+from datetime import datetime
 
+def index(request):
+    articles = Article.objects.all().order_by('-pub_date')
+    response = render(request, 'articles/index.html', {'articles': articles})
+    return response
 
-class IndexView(generic.ListView):
-    template_name = 'articles/index.html'
-    context_object_name = 'all_articles'
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    return render(request, 'articles/detail.html', {'article': article})
 
-    def get_queryset(self):
-        return Article.objects.order_by('-pub_date')
+def edit(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.method == 'POST' :
+        article.body = request.POST['body']
+        article.save()
+        return render_to_response('articles/detail.html', {'article':article})
+    else:
+        return render(request, 'articles/edit.html', {'article': article})
 
-
-class DetailView(generic.DetailView):
-    model = Article
-    template_name = 'articles/detail.html'
-
-
-class NewView(generic.CreateView):
-    model = Article
-    template_name = 'articles/create.html'
-    success_url = '/articles/'
-
-
-class EditView(generic.UpdateView):
-    model = Article
-    fields = ['title', 'body']
-    template_name = 'articles/edit.html'
-    success_url = '../'
-
+def create(request):
+    valid = True
+    if request.method == 'POST' :
+        if request.POST['title'] == "":
+            valid = False
+        if request.POST['body'] == "":
+            valid = False
+    if request.method == 'POST' and valid:
+        article = Article(title=request.POST['title'], body=request.POST['body'], pub_date=datetime.now())
+        article.save()
+        return  render_to_response('articles/detail.html', {'article':article})
+    else:
+        return render(request, 'articles/create.html', {'valid':valid})
