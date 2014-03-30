@@ -1,8 +1,8 @@
 <h1>{{ article.title }}</h1>
+        Version: {{article.version}} <br>
         <form action="" method="post">
-            {{article.version}}
             {% csrf_token %}
             <!--<input type="text" name="body" value="{{article.body}}">-->
-            <textarea rows="5" cols="50" name="body">{{article.body}}</textarea>
+            <textarea rows="5" cols="50" name="body">{{article.body}}</textarea><br>
             <input type="submit" value="Bewaar">
         </form>
