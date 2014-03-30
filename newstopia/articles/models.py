@@ -1,7 +1,8 @@
 import datetime
 from django.db import models
-from django.forms import ModelForm
 from django.utils import timezone
+
+# IN COMMENTAAR HOPELIJK NIEUWE MANIER VAN WERKEN MET ARTIKELS
 
 class Article(models.Model):
     def __str__(self):
@@ -15,3 +16,13 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.CharField(max_length=9999)
+    #version = models.ForeignKey(ArticleVersion.pk)
+
+"""class ArticleVersion(models.Model):
+    def __str__(self):
+        return self.changed_text
+
+    article_id = models.ForeignKey(Article.pk)
+    changed_text = models.CharField(max_length=9999)
+    rating = models.IntegerField(default=0)
+    base = models.BooleanField(default=False)"""
