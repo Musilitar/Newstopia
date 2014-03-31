@@ -1,0 +1,8 @@
+<form method="post" action="">
+    {% csrf_token %}
+    Name: <input type="text" name="name"><br>
+    <input type="submit" value="Save">
+    {% if not valid %}
+        <b>Form not valid, fill in the field</b>
+    {% endif %}
+</form>

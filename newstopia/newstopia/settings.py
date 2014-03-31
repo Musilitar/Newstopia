@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'articles',
     'authentication',
+    'tags'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,6 @@
+<h1>{{ tag.name }}</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            Name: <input type="text" name="name" value="{{tag.name}}"><br>
+            <input type="submit" value="Save">
+        </form>
