@@ -1,14 +1,21 @@
 from django.shortcuts import render, render_to_response
-from articles.models import Article, ArticleVersion
+from articles.models import Article, Paragraph
 from datetime import datetime
 
 def index(request):
     articles = Article.objects.all().order_by('-pub_date')
+    paragraphs = Paragraph.objects.all()
     for article in articles:
-        if article.version != 1:
-            article_version = ArticleVersion.objects.get(pk=article.version)
-            article.body = article_version.changed_text
-    return render(request, 'articles/index.html', {'articles': articles})
+        paragraphs = Paragraph.objects.all().filter(article_id=article.pk)
+        highest_rated = Paragraph()
+        highest_rated2 = Paragraph()
+        for paragraph in paragraphs:
+            if paragraph.rating >= highest_rated.rating:
+                highest_rated = paragraph
+            elif paragraph.rating >= highest_rated2.rating:
+                highest_rated2 = paragraph
+        paragraphs = {highest_rated, highest_rated2}
+    return render(request, 'articles/index.html', {'articles': articles, 'paragraphs': paragraphs})
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
@@ -19,12 +26,11 @@ def detail(request, pk):
 def edit(request, pk):
     article = Article.objects.get(pk=pk)
     if request.method == 'POST':
-        article_version = ArticleVersion(article=article, changed_text=request.POST['body'])
-        article_version.save()
+        paragraph = Paragraph(article=article, text=request.POST['body'])
+        paragraph.save()
         article.version += 1
         article.pub_date = datetime.now()
         article.save()
-        article.body = article_version.changed_text
         return render_to_response('articles/detail.html', {'article':article})
     else:
         if article.version != 1:
@@ -40,10 +46,10 @@ def create(request):
         if request.POST['body'] == "":
             valid = False
     if request.method == 'POST' and valid:
-        article = Article(title=request.POST['title'], body=request.POST['body'], pub_date=datetime.now())
+        article = Article(title=request.POST['title'], pub_date=datetime.now())
         article.save()
-        article_version = ArticleVersion(article=article, changed_text=request.POST['body'])
-        article_version.save()
+        paragraph = Paragraph(article=article, text=request.POST['body'])
+        paragraph.save()
         return  render_to_response('articles/detail.html', {'article':article})
     else:
         return render(request, 'articles/create.html', {'valid':valid})

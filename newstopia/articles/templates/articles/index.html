@@ -3,6 +3,8 @@
 {% for article in articles %}
         <p>
             <h3><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h3>
-            <p>{{ article.body|truncatechars:50 }}</p>{{article.pub_date}}
+            <p>{% for paragraph in paragraphs %}
+                {{  }}
+            </p>{{article.pub_date}}
         </p>
 {% endfor %}
