@@ -1,10 +1,11 @@
 <h1>Articles</h1>
         <a href="{% url 'articles:create' %}">New Article</a>
-{% for article in articles %}
+{% for var in artpars %}
         <p>
-            <h3><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h3>
-            <p>{% for paragraph in paragraphs %}
-                {{  }}
-            </p>{{article.pub_date}}
+            <h3><a href="{% url 'articles:detail' var.article.pk %}">{{ var.article.title }}</a></h3>
+            <p>{% for paragraph in var.paragraphs %}
+                {{ paragraph.text}} <br>
+                {% endfor %}
+            </p>{{var.article.pub_date}}
         </p>
 {% endfor %}

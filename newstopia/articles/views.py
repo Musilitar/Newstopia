@@ -4,18 +4,16 @@ from datetime import datetime
 
 def index(request):
     articles = Article.objects.all().order_by('-pub_date')
-    paragraphs = Paragraph.objects.all()
+    artpars = []
+    class Artpar:
+        article = Article()
+        paragraphs = []
     for article in articles:
-        paragraphs = Paragraph.objects.all().filter(article_id=article.pk)
-        highest_rated = Paragraph()
-        highest_rated2 = Paragraph()
-        for paragraph in paragraphs:
-            if paragraph.rating >= highest_rated.rating:
-                highest_rated = paragraph
-            elif paragraph.rating >= highest_rated2.rating:
-                highest_rated2 = paragraph
-        paragraphs = {highest_rated, highest_rated2}
-    return render(request, 'articles/index.html', {'articles': articles, 'paragraphs': paragraphs})
+        artpar = Artpar()
+        artpar.article = article
+        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('rating')[0:2]
+        artpars.append(artpar)
+    return render(request, 'articles/index.html', {'artpars': artpars})
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
@@ -57,6 +55,6 @@ def create(request):
         article.save()
         paragraph = Paragraph(article=article, text=request.POST['body'])
         paragraph.save()
-        return  render_to_response('articles/detail.html', {'article':article})
+        return render_to_response('articles/detail.html', {'article':article})
     else:
         return render(request, 'articles/create.html', {'valid':valid})
