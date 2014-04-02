@@ -13,13 +13,12 @@ class Article(models.Model):
     was_published_recently.short_description = 'Published recently?'
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    body = models.CharField(max_length=9999)
     version = models.IntegerField(default=1)
 
-class ArticleVersion(models.Model):
+class Paragraph(models.Model):
     def __str__(self):
-        return self.changed_text
+        return self.text
 
     article = models.ForeignKey(Article)
-    changed_text = models.CharField(max_length=9999)
+    text = models.CharField(max_length=9999)
     rating = models.IntegerField(default=0)
