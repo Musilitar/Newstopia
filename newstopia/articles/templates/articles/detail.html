@@ -1,3 +1,9 @@
 <h1>{{article.title}}</h1>
-    <p>{{article.body}}</p>
-    <a href="{% url 'articles:edit' article.pk%}">edit</a>
+       {% for p in paragraphs %}
+        <p>{{p.text}}</p>
+        {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="new_paragraph">Write a new paragraph.</textarea>
+            <input type="submit" value="New Paragraph">
+        </form>
