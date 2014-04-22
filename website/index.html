@@ -1,31 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
- <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>NewsTopia</title>
- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
- <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NewsTopia</title>
+    <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
    	<script src="scripts.js"></script>-->
- <link rel="stylesheet" type="text/css" href="style.css">
- </head>
- <body>
-<div class="article"> artikel </div>
-<div id="date"> datum: </div>
-<form>
-<input type="text" placeholder="Search" name="firstname">
-</form>
-<img id="logo" alt="logo" src="./img/logo.png" />
-<div id="welcome"> Welcome, </div>
-<i class="fa fa-question"></i> fa-question
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script language="javascript">
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December'
+        ];
+        var tomorrow = new Date();
+        tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24));
+        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear();
+    </script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
 
-
- <script language="javascript">
- var months = ['January','February','March','April','May','June','July',
-'August','September','October','November','December'];       
-var tomorrow = new Date();
-tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
-document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " + tomorrow.getFullYear();
- </script>
+<body>
+    <container>
+        <nav>
+            <div id="navLeft">
+                <div id="date">datum:</div>
+                <form id="search">
+                    <input type="text" placeholder="Search" name="firstname">
+                </form>
+            </div>
+            <img id="logo" alt="logo" src="./img/logo.png" />
+            <div id="navRight">
+                <div id="welcome">Welcome,</div>
+                <div id="menu">
+                    <i class="fa fa-question"></i>fa-question
+                </div>
+            </div>
+        </nav>
+        <div id="articleContainer">
+            <div class="articleSmall">artikel 01</div>
+            <div class="articleBig">artikel 02</div>
+            <div class="articleSmall">artikel 03</div>
+            <div class="articleBig">artikel 04</div>
+            <div class="articleBig">artikel 05</div>
+            <div class="articleBig">artikel 06</div>
+            <div class="articleSmall">artikel 07</div>
+            <div class="articleSmall">artikel 08</div>
+        </div>
+    </container>
 </body>
+
 </html>
