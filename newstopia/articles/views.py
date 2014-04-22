@@ -1,4 +1,5 @@
 from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 from articles.models import Article, Paragraph
 from datetime import datetime
 
@@ -11,7 +12,7 @@ def index(request):
     for article in articles:
         artpar = Artpar()
         artpar.article = article
-        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('rating')[0:2]
+        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('-rating')[0:2]
         artpars.append(artpar)
     return render(request, 'articles/index.html', {'artpars': artpars})
 
@@ -19,10 +20,19 @@ def detail(request, pk):
     article = Article.objects.get(pk=pk)
     paragraphs = Paragraph.objects.filter(article=pk)
     if request.method == 'POST':
-        p = Paragraph(text=request.POST['new_paragraph'], article=article, rating=0)
-        p.save()
+        if 'score' in request.POST:
+            paragraph = Paragraph.objects.get(pk=request.POST['paragraph'])
+            if request.POST['score'] == 'good':
+                paragraph.rating += 1
+                paragraph.save()
+            elif request.POST['score'] == 'bad':
+                paragraph.rating -= 1
+                paragraph.save()
+        else:
+            p = Paragraph(text=request.POST['new_paragraph'], article=article, rating=0)
+            p.save()
         return render_to_response('articles/detail.html', {'article': article,
-                                                            'paragraphs': paragraphs})
+                                                            'paragraphs': paragraphs}, context_instance=RequestContext(request))
     else:
         return render(request, 'articles/detail.html', {'article': article,
                                                     'paragraphs': paragraphs})

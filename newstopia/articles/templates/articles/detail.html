@@ -1,6 +1,13 @@
 <h1>{{article.title}}</h1>
        {% for p in paragraphs %}
         <p>{{p.text}}</p>
+        Score: {{p.rating}}
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" name="score" value="good" alt="Good">
+            <input type="submit" name="score" value="bad" alt="Bad">
+            <input type="hidden" name="paragraph" value="{{p.pk}}">
+        </form>
         {% endfor %}
         <form method="post">
             {% csrf_token %}
