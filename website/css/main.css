@@ -216,6 +216,24 @@ header {
     margin: 30px;
 }
 
+#search input[type="text"] {
+    background: url(<i class="fa fa-camera-retro fa-lg"></i>) no-repeat 10px 6px #fcfcfc;
+    border: 1px solid #d1d1d1;
+    width: 200px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }
+
+#search input[type="text"]:focus {
+    width: 200px;
+    }
+    
 #welcome {
     display: block;
     margin: 30px;
@@ -225,6 +243,15 @@ header {
 #menu {
     display: block;
     margin: 30px;
+}
+
+#menu > i {
+    margin-left: 15px;
+    
+}
+
+#about {
+    zoom: 120%;
 }
 
 #tags {
@@ -241,6 +268,7 @@ header {
     margin: 15px;
     padding: 30px;
     border-radius: 5px;
+    box-shadow: 7px 7px 5px #888888;
 }
 
 .articleSmall {

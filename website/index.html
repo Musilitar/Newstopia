@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>NewsTopia</title>
     
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     
     <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -18,7 +18,7 @@
         ];
         var tomorrow = new Date();
         tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24));
-        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear();
+        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " +               tomorrow.getFullYear();
     </script>
 </head>
 
@@ -28,14 +28,17 @@
             <div id="navLeft">
                 <div id="date">datum:</div>
                 <form id="search">
-                    <input type="text" placeholder="Search" name="firstname">
+                    <input type="text" placeholder="" name="firstname">
                 </form>
             </div>
             <img id="logo" alt="logo" src="./img/logo.png" />
             <div id="navRight">
                 <div id="welcome">Welcome,</div>
                 <div id="menu">
-                    <i class="fa fa-camera-retro"></i> fa-camera-retro
+                    <i id="about" class="fa fa-question fa-2x"></i>
+                    <i class="fa fa-archive fa-2x"></i>
+                    <i class="fa fa-pencil fa-2x"></i>
+                    <i class="fa fa-user fa-2x"></i>
                 </div>
             </div>
         </header>
