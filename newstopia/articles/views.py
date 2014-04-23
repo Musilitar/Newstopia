@@ -18,7 +18,7 @@ def index(request):
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
-    paragraphs = Paragraph.objects.filter(article=pk)
+    paragraphs = Paragraph.objects.filter(article=pk).order_by('-rating')
     if request.method == 'POST':
         if 'score' in request.POST:
             paragraph = Paragraph.objects.get(pk=request.POST['paragraph'])
