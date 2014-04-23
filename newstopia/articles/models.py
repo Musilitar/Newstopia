@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from authentication.models import Contributor
 
 class Article(models.Model):
     def __str__(self):
@@ -22,3 +23,7 @@ class Paragraph(models.Model):
     article = models.ForeignKey(Article)
     text = models.CharField(max_length=9999)
     rating = models.IntegerField(default=0)
+
+class UserParagraph(models.Model):
+    user = models.ForeignKey(Contributor)
+    paragraph = models.ForeignKey(Paragraph)
