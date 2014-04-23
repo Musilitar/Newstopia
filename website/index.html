@@ -11,7 +11,7 @@
     <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
    	<script src="scripts.js"></script>-->
-    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script language="javascript">
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
             'August', 'September', 'October', 'November', 'December'
@@ -46,14 +46,14 @@
             
         </div>
         <div id="articleContainer">
-            <div class="articleSmall">artikel 01</div>
-            <div class="articleBig">artikel 02</div>
-            <div class="articleSmall">artikel 03</div>
-            <div class="articleBig">artikel 04</div>
-            <div class="articleBig">artikel 05</div>
-            <div class="articleBig">artikel 06</div>
-            <div class="articleSmall">artikel 07</div>
-            <div class="articleSmall">artikel 08</div>
+        {% for var in artpar %}
+            <div class="articleSmall">
+                {{ var.article.title }}
+                {% for paragraph in var.paragraphs %}
+                    {{ parapgraph.text }}
+                {% endfor %}
+            </div>
+        {% endfor %}
         </div>
         <div id="disclaimer">
             No right at all, do whatever the fuck you want.
