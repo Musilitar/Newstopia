@@ -14,7 +14,7 @@ def index(request):
         artpar.article = article
         artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('-rating')[0:2]
         artpars.append(artpar)
-    return render(request, 'articles/index.html', {'artpars': artpars})
+    return render_to_response('articles/index.html', {'artpars': artpars}, context_instance=RequestContext(request))
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
@@ -36,22 +36,6 @@ def detail(request, pk):
     else:
         return render(request, 'articles/detail.html', {'article': article,
                                                     'paragraphs': paragraphs})
-
-"""def edit(request, pk):
-    article = Article.objects.get(pk=pk)
-    if request.method == 'POST':
-        article_version = ArticleVersion(article=article, changed_text=request.POST['body'])
-        article_version.save()
-        article.version += 1
-        article.pub_date = datetime.now()
-        article.save()
-        article.body = article_version.changed_text
-        return render_to_response('articles/detail.html', {'article':article})
-    else:
-        if article.version != 1:
-            article_version = ArticleVersion.objects.get(pk=article.version)
-            article.body = article_version.changed_text
-        return render(request, 'articles/edit.html', {'article': article})"""
 
 def create(request):
     valid = True

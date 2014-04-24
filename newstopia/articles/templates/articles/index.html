@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>NewsTopia</title>
     
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
     
     <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -28,14 +28,21 @@
             <div id="navLeft">
                 <div id="date">datum:</div>
                 <form id="search">
-                    <input type="text" placeholder="Search" name="firstname">
+                    <input type="text" placeholder="" name="firstname">
                 </form>
             </div>
             <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png" />
             <div id="navRight">
-                <div id="welcome">Welcome,</div>
+                {% if user.is_authenticated %}
+                <div id="welcome">Welcome, {{user.email}}</div>
+                {% else %}
+                <div id="welcome">Welcome, guest</div>
+                {% endif %}
                 <div id="menu">
-                    <i class="fa fa-camera-retro"></i> fa-camera-retro
+                    <i id="about" class="fa fa-question fa-2x"></i>
+                    <i class="fa fa-archive fa-2x"></i>
+                    <a href="{% url 'articles:create' %}"><i class="fa fa-pencil fa-2x"></i></a>
+                    <a href="{% url 'account:profile' %}"><i class="fa fa-user fa-2x"></i></a>
                 </div>
             </div>
         </header>
@@ -47,11 +54,9 @@
             <div class="articleSmall">
                 <h3>{{ var.article.title }}</h3>
                 <br>
-                <p>
                 {% for paragraph in var.paragraphs %}
-                    {{ paragraph.text }}<br>
+                <p>{{ paragraph.text }}</p>
                 {% endfor %}
-                </p>
             </div>
         {% endfor %}
         </div>
