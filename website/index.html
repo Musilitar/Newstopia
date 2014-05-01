@@ -11,14 +11,14 @@
     <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
    	<script src="scripts.js"></script>-->
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <script language="javascript">
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
             'August', 'September', 'October', 'November', 'December'
         ];
         var tomorrow = new Date();
         tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24));
-        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " +               tomorrow.getFullYear();
+        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear();
     </script>
 </head>
 

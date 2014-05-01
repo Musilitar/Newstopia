@@ -234,10 +234,11 @@ header {
     width: 200px;
     }
     
-#welcome {
+.welcome {
     display: block;
     margin: 30px;
-    font-size: 18px;
+    font-size: 16px;
+    padding-top: 14px;
 }
 
 #menu {
@@ -245,20 +246,27 @@ header {
     margin: 30px;
 }
 
-#menu > i {
+#menu a {
     margin-left: 15px;
-    
 }
 
-#about {
-    zoom: 120%;
+#menu a:link, #menu a:visited, #menu a:hover, #menu a:active {
+    color: #002424;
+}
+
+#menuArchive {
+    zoom: 85%;
+}
+
+#menuPencil {
+    zoom: 90%;
 }
 
 #tags {
     height: 50px;
 }
 
-#articleContainer {
+.masonry {
     
 }
 

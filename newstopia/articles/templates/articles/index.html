@@ -1,69 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>NewsTopia</title>
-    
+
     <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
-    
-    <!--	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-   	<script src="scripts.js"></script>-->
-    <script type="text/javascript" src="{{STATIC_URL}}js/main.js"></script>
-    <script language="javascript">
-        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-            'August', 'September', 'October', 'November', 'December'
-        ];
-        var tomorrow = new Date();
-        tomorrow.setTime(tomorrow.getTime() + (1000 * 3600 * 24));
-        document.getElementById("date").innerHTML = months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + tomorrow.getFullYear();
-    </script>
+
+    <script src="{{STATIC_URL}}js/main.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="{{STATIC_URL}}bower_components/classie/classie.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/eventie/eventie.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/doc-ready/doc-ready.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/get-style-property/get-style-property.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/eventEmitter/EventEmitter.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/imagesloaded/imagesloaded.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/jquery-bridget/jquery.bridget.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/get-size/get-size.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/matches-selector/matches-selector.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/outlayer/item.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/outlayer/outlayer.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bower_components/masonry/masonry.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}js/controller.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}js/pages/events.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}js/pages/faq.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}js/pages/index.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}js/pages/methods.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <container>
-        <header>
-            <div id="navLeft">
-                <div id="date">datum:</div>
-                <form id="search">
-                    <input type="text" placeholder="" name="firstname">
-                </form>
+<container>
+    <header>
+        <div id="navLeft">
+            <div id="date">datum:</div>
+            <form id="search">
+                <input type="text" placeholder="" name="firstname">
+            </form>
+        </div>
+        <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png"/>
+
+        <div id="navRight">
+            {% if user.is_authenticated %}
+            <div class="welcome">Welcome, {{user.email}}</div>
+            {% else %}
+            <div class="welcome">Welcome, guest</div>
+            {% endif %}
+            <div id="menu">
+                <a href="{% url 'articles:create' %}"><i id="menuPencil" class="fa fa-pencil fa-2x"></i></a>
+                <a href=#><i id="menuArchive" class="fa fa-archive fa-2x"></i></a>
+                <a href=#><i class="fa fa-question fa-2x"></i></a>
+                <a href="{% url 'account:profile' %}"><i class="fa fa-user fa-2x"></i></a>
             </div>
-            <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png" />
-            <div id="navRight">
-                {% if user.is_authenticated %}
-                <div id="welcome">Welcome, {{user.email}}</div>
-                {% else %}
-                <div id="welcome">Welcome, guest</div>
-                {% endif %}
-                <div id="menu">
-                    <i id="about" class="fa fa-question fa-2x"></i>
-                    <i class="fa fa-archive fa-2x"></i>
-                    <a href="{% url 'articles:create' %}"><i class="fa fa-pencil fa-2x"></i></a>
-                    <a href="{% url 'account:profile' %}"><i class="fa fa-user fa-2x"></i></a>
+        </div>
+    </header>
+    <div id="tags">
+
+    </div>
+    <div class="masonry">
+        {% for var in artpars %}
+        <div class="articleSmall">
+            <div class="item">
+                <div class="item-content">
+                    <h3>{{ var.article.title }}</h3>
+                    <br>
+                    {% for paragraph in var.paragraphs %}
+                    <p>{{ paragraph.text }}</p>
+                    {% endfor %}
                 </div>
             </div>
-        </header>
-        <div id="tags">
-            
         </div>
-        <div id="articleContainer">
-        {% for var in artpars %}
-            <div class="articleSmall">
-                <h3>{{ var.article.title }}</h3>
-                <br>
-                {% for paragraph in var.paragraphs %}
-                <p>{{ paragraph.text }}</p>
-                {% endfor %}
-            </div>
         {% endfor %}
-        </div>
-        <div id="disclaimer">
-            No right at all, do whatever the fuck you want.
-        </div>
-    </container>
+    </div>
+    <div id="disclaimer">
+        No right at all, do whatever the fuck you want.
+    </div>
+</container>
 </body>
 
 </html>

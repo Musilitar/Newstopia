@@ -1,13 +1,12 @@
 // JavaScript Document
 
-<script type="text/javascript">
+function setDate() {
+    var months = [
+    'Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli',
+    'Augustus', 'September', 'Oktober', 'November', 'December'
+    ];
+    var tomorrow = new Date();
+    document.getElementById('date').innerHTML = tomorrow.getDate() + " " + months[tomorrow.getMonth()] + " " + tomorrow.getFullYear();
+}
 
-   	var months = ['January','February','March','April','May','June','July',
-	'August','September','October','November','December'];       
-	var tomorrow = new Date();
-
-	tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
-	document.getElementById("spanDate").innerHTML =
-		months[tomorrow.getMonth()] + " " + tomorrow.getDate()+ ", " +tomorrow.getFullYear();
-
-</script>
+window.onload = setDate;
