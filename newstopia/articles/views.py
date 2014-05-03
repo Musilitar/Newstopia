@@ -3,6 +3,10 @@ from django.template import RequestContext
 from articles.models import Article, Paragraph
 from datetime import datetime
 
+"""
+testcommit
+"""
+
 def index(request):
     articles = Article.objects.all().order_by('-pub_date')
     artpars = []
