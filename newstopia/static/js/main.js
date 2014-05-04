@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   var container = document.querySelector('.masonry');
   var msnry = new Masonry( container, {
-    columnWidth: 60
+    columnWidth: 90
   });
 
   eventie.bind( container, 'click', function( event ) {
