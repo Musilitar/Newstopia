@@ -267,26 +267,24 @@ header {
 }
 
 .masonry {
-    
+    max-width: 1080px;
 }
 
-.articleSmall, .articleBig {
+.item {
     float: left;
     background-color: #f9f6ef;
     margin: 15px;
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: 7px 7px 5px #888888;
-}
-
-.articleSmall {
     width: 180px;
     height: 300px;
 }
 
-.articleBig {
-    width: 450px;
-    height: 300px;
+.item.is-expanded{
+  width: 300px;
+  height: 300px;
+  z-index: 2;
 }
 
 #disclaimer {
