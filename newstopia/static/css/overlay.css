@@ -17,53 +17,10 @@
 	top: 20px;
 	overflow: hidden;
 	border: none;
-	background: url(../img/cross.png) no-repeat center center;
 	text-indent: 200%;
-	color: transparent;
+	color: black;
 	outline: none;
 	z-index: 100;
-}
-
-/* Menu style */
-.overlay nav {
-	text-align: center;
-	position: relative;
-	top: 50%;
-	height: 60%;
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
-}
-
-.overlay ul {
-	list-style: none;
-	padding: 0;
-	margin: 0 auto;
-	display: inline-block;
-	height: 100%;
-	position: relative;
-}
-
-.overlay ul li {
-	display: block;
-	height: 20%;
-	height: calc(100% / 5);
-	min-height: 54px;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-
-.overlay ul li a {
-	font-size: 54px;
-	font-weight: 300;
-	display: block;
-	color: #fff;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
-}
-
-.overlay ul li a:hover,
-.overlay ul li a:focus {
-	color: #f0f0f0;
 }
 
 /* Effects */
@@ -74,7 +31,8 @@ html, body {
 .container {
 	overflow-x: hidden;
 	-webkit-transition: -webkit-transform 0.5s;
-	transition: transform 0.5s;	
+	transition: transform 0.5s;
+    transition-duration: 1.5s;
 }
 
 .container.overlay-open {
@@ -94,6 +52,7 @@ html, body {
 	background: rgba(0,0,0,0.6);
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
 	transition: opacity 0.5s, visibility 0s 0.5s;
+    transition-duration: 1.5s;
 }
 
 .container.overlay-open::after {
@@ -101,10 +60,11 @@ html, body {
 	opacity: 1;
 	-webkit-transition: opacity 0.5s;
 	transition: opacity 0.5s;
+    transition-duration: 1.5s;
 }
 
 .overlay-contentpush {
-	background: rgba(153,204,51,1);
+	background: #568a8f;
 	visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -112,6 +72,7 @@ html, body {
 	transform: translateX(-100%);
 	-webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
 	transition: transform 0.5s, visibility 0s 0.5s;
+    transition-duration: 1.5s;
 }
 
 .overlay-contentpush.open {
@@ -120,14 +81,5 @@ html, body {
 	transform: translateX(0%);
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
-}
-
-@media screen and (max-height: 30.5em) {
-	.overlay nav {
-		height: 70%;
-		font-size: 34px;
-	}
-	.overlay ul li {
-		min-height: 34px;
-	}
+    transition-duration: 1.5s;
 }

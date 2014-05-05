@@ -17,63 +17,48 @@
 </head>
 
 <body>
-
+<!--
+{% if user.is_authenticated %}
+<div class="welcome">Welcome, {{user.email}}</div>
+{% else %}
+<div class="welcome">Welcome, guest</div>
+{% endif %}
+-->
 <div class="container">
-    <header>
-        <div id="navLeft">
-            <div id="date">datum:</div>
-            <form id="search">
-                <input type="text" placeholder="" name="firstname">
-            </form>
-        </div>
-        <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png"/>
-
-        <div id="navRight">
-            {% if user.is_authenticated %}
-            <div class="welcome">Welcome, {{user.email}}</div>
-            {% else %}
-            <div class="welcome">Welcome, guest</div>
-            {% endif %}
-            <div id="menu">
-                <a href="{% url 'articles:create' %}"><i id="menuPencil" class="fa fa-pencil fa-2x"></i></a>
+    <div id="staticContent">
+        <header>
+            <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png"/>
+            <nav>
+                <a href=#><i id="menuSearch" class="fa fa-search fa-2x"></i></a>
+                <a href="{% url 'articles:create' %}"><i id="menuNewArticle" class="fa fa-pencil fa-2x"></i></a>
                 <a href=#><i id="menuArchive" class="fa fa-archive fa-2x"></i></a>
                 <a href=#><i id="trigger-overlay" class="fa fa-question fa-2x"></i></a>
-                <a href="{% url 'account:profile' %}"><i class="fa fa-user fa-2x"></i></a>
-            </div>
+                <a href="{% url 'account:profile' %}"><i id="menuProfile" class="fa fa-user fa-2x"></i></a>
+            </nav>
+        </header>
+        <div id="tags">
         </div>
-    </header>
-    <div id="tags">
     </div>
-
-    <div class="masonry">
-        {% for var in artpars %}
-        <div class="item">
-            <div class="item-content">
-                <h3>{{ var.article.title }}</h3>
-                <br>
-                {% for paragraph in var.paragraphs %}
-                <p>{{ paragraph.text }}</p>
-                {% endfor %}
+    <div id="movingContent">
+        <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
+            {% for var in artpars %}
+            <div class="item">
+                <div class="item-content">
+                    <h3>{{ var.article.title }}</h3>
+                    <br>
+                    {% for paragraph in var.paragraphs %}
+                    <p>{{ paragraph.text }}</p>
+                    {% endfor %}
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    <div id="disclaimer">
-        No right at all, do whatever the fuck you want.
     </div>
 </div>
 <div class="overlay overlay-contentpush">
 
     <i class="overlay-close" class="fa fa-times"></i>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Work</a></li>
-            <li><a href="#">Clients</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+
 </div>
 
 <!--Overlay scripts (also uses classie)-->
