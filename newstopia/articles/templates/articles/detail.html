@@ -13,26 +13,28 @@
 <body>
 <div id="detail">
     <h1>{{article.title}}</h1>
-    <div id="paragraph">
-        {% for p in paragraphs %}
-        <p>{{p.text}}</p>
-    </div>
-    <div id="rating">
-        {{p.rating}}
-        <br>
-        <form method="post">
-            {% csrf_token %}
-            <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
+    {% for p in paragraphs %}
+    <div id="content">
+        <div id="paragraph">
+            <p>{{p.text}}</p>
+        </div>
+        <div id="rating">
+            <i class="fa fa-heart"></i> {{p.rating}}
             <br>
-            <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
-            <input type="hidden" name="paragraph" value="{{p.pk}}">
-        </form>
+            <form method="post">
+                {% csrf_token %}
+                <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
+                <br>
+                <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
+                <input type="hidden" name="paragraph" value="{{p.pk}}">
+            </form>
+        </div>
+        <div class="clearfix"></div>
     </div>
-    <div class="clearfix"></div>
     {% endfor %}
-    <form method="post">
+    <form id="new_paragraph" method="post">
         {% csrf_token %}
-        <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph."></textarea>
+        <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5" cols="35"></textarea>
         <br>
         <input type="submit" value="New Paragraph">
     </form>

@@ -173,6 +173,12 @@ body {
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
+textarea {
+    resize: none;
+    height: auto;
+    width: auto;
+}
+
 .rating {
     padding: 0;
     border: none;
@@ -183,16 +189,40 @@ body {
     outline: none;
 }
 
-#rating {
-    position: relative;
-    float: left;
+#detail {
+    width: 20%;
+}
+
+h1 {
+    width: 60%;
+    margin: auto;
+}
+
+#new_paragraph {
+    width: 85%;
+    margin: auto;
+}
+
+input[type=submit] {
+    display:block;
+    margin:0 auto;
+}
+
+#content {
+    width: 100%;
 }
 
 #paragraph {
     position: relative;
     float: left;
+    width: 80%;
+}
+
+#rating {
+    position: relative;
+    float: right;
 }
 
 .clearfix {
-    clear:both;
+    clear: both;
 }
