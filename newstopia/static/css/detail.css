@@ -194,18 +194,17 @@ textarea {
 }
 
 h1 {
-    width: 60%;
-    margin: auto;
+    text-align: center;
 }
 
 #new_paragraph {
-    width: 85%;
+    display: block;
     margin: auto;
 }
 
 input[type=submit] {
-    display:block;
-    margin:0 auto;
+    display: block;
+    margin: 0 auto;
 }
 
 #content {
