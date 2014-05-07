@@ -191,14 +191,11 @@ textarea {
 
 #detail {
     width: 20%;
-}
-
-h1 {
     text-align: center;
 }
 
 #new_paragraph {
-    display: block;
+    display: 0 block;
     margin: auto;
 }
 
