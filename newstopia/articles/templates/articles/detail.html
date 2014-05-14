@@ -12,14 +12,14 @@
 
 <body>
 <div id="detail">
-    <h1>{{article.title}}</h1>
-    {% for p in paragraphs %}
+    <h1>{{articleData.article.title}}</h1>
+    {% for paragraph in articleData.paragraphs %}
     <div id="content">
         <div id="paragraph">
-            <p>{{p.text}}</p>
+            <p>{{paragraph.paragraph.text}}</p>
         </div>
         <div id="rating">
-            <i class="fa fa-heart"></i> {{p.rating}}
+            <i class="fa fa-heart"></i> {{paragraph.paragraph.rating}}
             <br>
             <form method="post">
                 {% csrf_token %}
