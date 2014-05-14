@@ -9,33 +9,36 @@
     <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/detail.css">
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/detail.js"></script>
 </head>
 
 <body>
 <div id="detail">
     <h1>{{articleData.article.title}}</h1>
-    {% for paragraph in articleData.paragraphs %}
-    <div id="content">
-        <div id="paragraph">
-            <p>{{paragraph.paragraph.text}}</p>
+    <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
+        {% for paragraph in articleData.paragraphs %}
+        <div id="content" class="item">
+            <div class="item-content">
+                <div id="paragraph">
+                    <p>{{paragraph.paragraph.text}}</p>
+                </div>
+                <div id="rating">
+                    <i class="fa fa-heart"></i> {{paragraph.paragraph.rating}}
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
+                        <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
+                        <input type="hidden" name="paragraph" value="{{p.pk}}">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
-        <div id="rating">
-            <i class="fa fa-heart"></i> {{paragraph.paragraph.rating}}
-            <br>
-            <form method="post">
-                {% csrf_token %}
-                <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
-                <br>
-                <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
-                <input type="hidden" name="paragraph" value="{{p.pk}}">
-            </form>
-        </div>
-        <div class="clearfix"></div>
     </div>
     {% endfor %}
-    <form id="new_paragraph" method="post">
+    <form id="formparagraph" method="post">
         {% csrf_token %}
         <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5" cols="35"></textarea>
         <br>

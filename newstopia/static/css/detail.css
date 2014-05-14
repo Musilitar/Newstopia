@@ -222,16 +222,6 @@ overflow:hidden;
     text-align: center;
 }
 
-#new_paragraph {
-    display: 0 block;
-    margin: auto;
-}
-
-input[type=submit] {
-    display: block;
-    margin: 0 auto;
-}
-
 #content {
     width: 100%;
 }

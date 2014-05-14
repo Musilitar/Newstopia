@@ -29,7 +29,7 @@ def index(request):
                                       article=a)
         except ObjectDoesNotExist:
             articleData.hasLiked = False
-        paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+        paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')
         for p in paragraphs:
             paragraphData = Paragraphdata(paragraph = p,
                                           isAuthor = p.author == request.user.email,
