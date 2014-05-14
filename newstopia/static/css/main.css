@@ -7,46 +7,76 @@ font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 .container {
 left:5%;
 width:90%;
-position:absolute;
-text-align:center;
+margin: 0 auto;
 }
 
 #staticContent {
-width: 90%;
-position: fixed;
+width: 100%;
+position: relative;
 z-index:50;
 background-color: #b4e8cc;
-}
-
-header {
-margin-left:15%;
-width:60%;
-height: 70px;
-margin-top: 10px;
+margin-left: auto;
+margin-right: auto;
 }
 
 #logo {
-position: relative;
-float: left;
-width: 175px;
-height:70px;
+display: block;
+width: 432px;
+margin: 0 auto;
 }
 
 nav {
-position: relative;
-float: right;
-width: 40%;
-height: 35%;
-top:35%;
-text-align:right;
+width: 450px;
+height: 30px;
+margin: 25px;
+margin-left: auto;
+margin-right: auto;
 }
 
-nav a {
-margin-left: 15px;
+nav .menu-btn {
+float:left;
+margin:0px;
 }
 
-nav a:link, nav a:visited, nav a:hover, nav a:active {
+.menu-btn a:link, .menu-btn a:visited, .menu-btn a:hover, .menu-btn a:active {
 color: #002424;
+}
+
+.menu-btn a{
+  text-decoration:none;
+  text-align: center;
+  display:block; /* important */
+}
+
+.menu-btn, .first-link{
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+
+.menu-btn{
+  height: 32px;
+  overflow: hidden;
+  width: 90px;
+  color: #002424;
+  margin-top:5px;
+}
+
+.menu-btn:hover{
+}
+
+.menu-btn a:hover{
+  text-decoration: none;
+}
+
+.first-link{
+}
+
+.menu-btn:hover .first-link{
+  margin-top: -30px;
 }
 
 #menuArchive, #menuSearch {
@@ -59,10 +89,6 @@ zoom: 90%;
 
 #menuProfile {
 zoom: 95%
-}
-
-#tags {
-height: 50px;
 }
 
 #movingContent {

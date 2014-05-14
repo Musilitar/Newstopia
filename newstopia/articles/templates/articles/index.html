@@ -11,9 +11,10 @@
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/main.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
 </head>
 
 <body>
@@ -25,21 +26,54 @@
 {% endif %}
 -->
 <div class="container">
-    <div id="staticContent">
-        <header>
-            <img id="logo" alt="logo" src="{{STATIC_URL}}img/logo.png"/>
-            <nav>
-                <a href=#><i id="menuSearch" class="fa fa-search fa-2x"></i></a>
-                <a href="{% url 'articles:create' %}"><i id="menuNewArticle" class="fa fa-pencil fa-2x"></i></a>
-                <a href=#><i id="menuArchive" class="fa fa-archive fa-2x"></i></a>
-                <a href=#><i id="trigger-overlay" class="fa fa-question fa-2x"></i></a>
-                <a href="{% url 'account:profile' %}"><i id="menuProfile" class="fa fa-user fa-2x"></i></a>
-            </nav>
-        </header>
-        <div id="tags">
-        </div>
+    <div id="logo">
+        <img alt="logo" src="{{STATIC_URL}}img/logo-Newstopia.png"/>
     </div>
-    <div id="movingContent">
+    <div id="staticContent">
+        <nav>
+            <div class="menu-btn">
+                <a class="first-link" href="">
+                    <i id="menuSearch" class="fa fa-search fa-2x"></i>
+                </a>
+                <a id="menuTxtSearch" href="">
+                    search
+                </a>
+            </div>
+            <div class="menu-btn">
+                <a class="first-link" href="{% url 'articles:create' %}">
+                    <i id="menuNewArticle" class="fa fa-pencil fa-2x"></i>
+                </a>
+                <a id="menuTxtArticle" href="{% url 'articles:create' %}">
+                    new article
+                </a>
+            </div>
+            <div class="menu-btn">
+                <a class="first-link" href="">
+                    <i id="menuArchive" class="fa fa-archive fa-2x"></i>
+                </a>
+                <a id="menuTxtArchive" href="">
+                    archive
+                </a>
+            </div>
+            <div class="menu-btn">
+                <a class="first-link" href="">
+                    <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
+                </a>
+                <a id="menuTxtAbout" href="">
+                    about
+                </a>
+            </div>
+            <div class="menu-btn">
+                <a class="first-link" href="{% url 'account:profile' %}">
+                    <i id="menuProfile" class="fa fa-user fa-2x"></i>
+                </a>
+                <a id="menuTxtProfile" href="{% url 'account:profile' %}">
+                    log-in
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div>
         <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
             {% for var in artpars %}
             <div class="item">
