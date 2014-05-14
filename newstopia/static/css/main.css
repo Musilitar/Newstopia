@@ -93,6 +93,18 @@ height: 690px;
 z-index: 2;
 }
 
+.paragraphRest {
+    display: none;
+}
+
+.paragraphRest.is-shown {
+    display: inline;
+}
+
+.paragraphRest.is-not-shown {
+    display: none;
+}
+
 #disclaimer {
 width:80%;
 margin: 0 auto;

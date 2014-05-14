@@ -15,7 +15,12 @@ $(document).ready(function() {
     }
     var itemElem = target.parentNode;
     classie.toggleClass( itemElem, 'is-expanded' );
-
+    var paragraphElem = document.getElementsByClassName('paragraphRest');
+    for(var i = 0; i < paragraphElem.length; i++) {
+        if(jQuery(paragraphElem[i]).parents().hasClass('is-expanded')) {
+            classie.toggleClass( paragraphElem[i], 'is-shown' );
+        }
+    }
     msnry.layout();
   });
 

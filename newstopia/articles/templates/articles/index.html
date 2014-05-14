@@ -47,7 +47,11 @@
                     <h3>{{ var.article.title }}</h3>
                     <br>
                     {% for paragraph in var.paragraphs %}
-                    <p>{{ paragraph.text }}</p>
+                        {% if forloop.counter == 1 or forloop.counter == 2 %}
+                        <p class="paragraphFirst">{{ paragraph.text }}</p>
+                        {% else %}
+                        <p class="paragraphRest">{{ paragraph.text }}</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -12,7 +12,7 @@ def index(request):
     for article in articles:
         artpar = Artpar()
         artpar.article = article
-        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('-rating')[0:2]
+        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('-rating')
         artpars.append(artpar)
     return render_to_response('articles/index.html', {'artpars': artpars}, context_instance=RequestContext(request))
 
