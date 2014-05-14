@@ -12,7 +12,7 @@ def registration(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('authentication/profile.html')
     if request.method == 'POST':
-        user = Contributor(email=request.POST['username'])
+        user = Contributor(email=request.POST['username'], points=0)
         user.set_password(request.POST['password'])
         user.save()
         return HttpResponseRedirect('/account/')

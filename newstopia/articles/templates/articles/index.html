@@ -75,17 +75,13 @@
     </div>
     <div>
         <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
-            {% for var in artpars %}
+            {% for article in articlesData %}
             <div class="item">
                 <div class="item-content">
-                    <h3>{{ var.article.title }}</h3>
+                    <h3>{{ article.article.title }}</h3>
                     <br>
-                    {% for paragraph in var.paragraphs %}
-                        {% if forloop.counter == 1 or forloop.counter == 2 %}
-                        <p class="paragraphFirst">{{ paragraph.text }}</p>
-                        {% else %}
-                        <p class="paragraphRest">{{ paragraph.text }}</p>
-                        {% endif %}
+                    {% for paragraph in article.paragraphs %}
+                    <p>{{ paragraph.paragraph.text }}</p>
                     {% endfor %}
                 </div>
             </div>

@@ -16,6 +16,8 @@ class Article(models.Model):
     pub_date = models.DateTimeField('date published')
     version = models.IntegerField(default=1)
 
+    author = models.ForeignKey(Contributor)
+
 class Paragraph(models.Model):
     def __str__(self):
         return self.text
@@ -23,7 +25,22 @@ class Paragraph(models.Model):
     article = models.ForeignKey(Article)
     text = models.CharField(max_length=9999)
     rating = models.IntegerField(default=0)
+    author = models.ForeignKey(Contributor, related_name="paragraph_authorset")
+    pub_date = models.DateTimeField('date published')
 
-class UserParagraph(models.Model):
-    user = models.ForeignKey(Contributor)
-    paragraph = models.ForeignKey(Paragraph)
+class Paragraph_Likes(models.Model):
+    user = models.ForeignKey(Contributor, related_name="paragraph_likes_userset")
+    paragraph = models.ForeignKey(Paragraph, related_name="paragraph_likes_paragraphset")
+
+class Article_Likes(models.Model):
+    user = models.ForeignKey(Contributor, related_name="article_likes_userset")
+    article = models.ForeignKey(Article, related_name="article_likes_articleset")
+
+class Tags(models.Model):
+    name = models.CharField(max_length=128)
+
+class Article_Tags(models.Model):
+    article = models.ForeignKey(Article)
+    tag = models.ForeignKey(Tags)
+    value = models.IntegerField(default=0)
+
