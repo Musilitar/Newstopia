@@ -31,46 +31,58 @@
     </div>
     <div id="staticContent">
         <nav>
-            <div class="menu-btn">
-                <a class="first-link" href="">
-                    <i id="menuSearch" class="fa fa-search fa-2x"></i>
-                </a>
-                <a id="menuTxtSearch" href="">
-                    search
-                </a>
-            </div>
-            <div class="menu-btn">
-                <a class="first-link" href="{% url 'articles:create' %}">
-                    <i id="menuNewArticle" class="fa fa-pencil fa-2x"></i>
-                </a>
-                <a id="menuTxtArticle" href="{% url 'articles:create' %}">
-                    new article
-                </a>
-            </div>
-            <div class="menu-btn">
-                <a class="first-link" href="">
-                    <i id="menuArchive" class="fa fa-archive fa-2x"></i>
-                </a>
-                <a id="menuTxtArchive" href="">
-                    archive
-                </a>
-            </div>
-            <div class="menu-btn">
-                <a class="first-link" href="">
-                    <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
-                </a>
-                <a id="menuTxtAbout" href="">
-                    about
-                </a>
-            </div>
-            <div class="menu-btn">
-                <a class="first-link" href="{% url 'account:profile' %}">
-                    <i id="menuProfile" class="fa fa-user fa-2x"></i>
-                </a>
-                <a id="menuTxtProfile" href="{% url 'account:profile' %}">
-                    log-in
-                </a>
-            </div>
+                <div class="menuSplits">
+                    <div class="menu-btn">
+                        <a class="first-link" href="">
+                            <i id="menuHome" class="fa fa-home fa-2x"></i>
+                        </a>
+                        <a href="">
+                            home
+                        </a>
+                    </div>
+                    <div class="menu-btn">
+                        <a class="first-link" href="">
+                            <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
+                        </a>
+                        <a href="">
+                            about
+                        </a>
+                    </div>
+                    <div class="menu-btn">
+                        <a class="first-link" href="">
+                            <i id="menuSearch" class="fa fa-search fa-2x"></i>
+                        </a>
+                        <a href="">
+                            search
+                        </a>
+                    </div>
+                </div>
+                <div class="menuSplits">
+                    <div class="menu-btn">
+                        <a class="first-link" href="">
+                            <i id="menuArchive" class="fa fa-archive fa-2x"></i>
+                        </a>
+                        <a href="">
+                            archive
+                        </a>
+                    </div>
+                    <div class="menu-btn">
+                        <a class="first-link" href="{% url 'articles:create' %}">
+                            <i id="menuNewArticle" class="fa fa-pencil fa-2x"></i>
+                        </a>
+                        <a href="{% url 'articles:create' %}">
+                            new article
+                        </a>
+                    </div>
+                    <div class="menu-btn">
+                        <a class="first-link" href="{% url 'account:profile' %}">
+                            <i id="menuProfile" class="fa fa-user fa-2x"></i>
+                        </a>
+                        <a href="{% url 'account:profile' %}">
+                            log-in
+                        </a>
+                    </div>
+                </div>
         </nav>
     </div>
     <div>
