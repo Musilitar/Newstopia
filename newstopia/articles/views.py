@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from articles.models import Article, Paragraph
+from articles.models import Article, Paragraph, Article_Likes, Paragraph_Likes, Tags, Article_Tags
 from datetime import datetime
 
 """
@@ -8,38 +8,77 @@ testcommit
 """
 
 def index(request):
+    class Articledata(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(kwargs)
+
+    class Paragraphdata(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(kwargs)
+
     articles = Article.objects.all().order_by('-pub_date')
-    artpars = []
-    class Artpar:
-        article = Article()
-        paragraphs = []
-    for article in articles:
-        artpar = Artpar()
-        artpar.article = article
-        artpar.paragraphs = Paragraph.objects.filter(article=article.pk).order_by('-rating')[0:2]
-        artpars.append(artpar)
-    return render_to_response('articles/index.html', {'artpars': artpars}, context_instance=RequestContext(request))
+    articlesData = []
+    for a in articles:
+        articleData = Articledata(article = a,
+                isAuthor = a.author == request.user.email,
+                hasLiked = True,
+                paragraphs = [])
+        try:
+            Article_Likes.objects.get(user=request.user.email,
+                                      article=a)
+        except Article_Likes.Doesnotexist:
+            articleData.hasLiked = False
+        paragraphs = Paragraph.objects.all(article=a.pk).order_by('-rating')[0:5]
+        for p in paragraphs:
+            paragraphData = Paragraphdata(paragraph = p,
+                                          isAuthor = p.author == request.user.email,
+                                          hasLiked = True)
+            try:
+                Paragraph_Likes.objects.get(user=request.user.email,
+                                            paragraph=p)
+            except Article_Likes.Doesnotexist:
+                paragraphData.hasLiked = False
+
+            articleData.paragraphs.append(paragraphData)
+        articlesData.append(articleData)
+    tags = Tags.objecs.all().order_by('name')
+    return render_to_response('articles/index.html', {'user': request.user, 'articlesData': articlesData, 'tags':tags}, context_instance=RequestContext(request))
 
 def detail(request, pk):
+    class Articledata(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(kwargs)
+
+    class Paragraphdata(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(kwargs)
     article = Article.objects.get(pk=pk)
-    paragraphs = Paragraph.objects.filter(article=pk).order_by('-rating')
-    if request.method == 'POST':
-        if 'score' in request.POST:
-            paragraph = Paragraph.objects.get(pk=request.POST['paragraph'])
-            if request.POST['score'] == 'good':
-                paragraph.rating += 1
-                paragraph.save()
-            elif request.POST['score'] == 'bad':
-                paragraph.rating -= 1
-                paragraph.save()
-        else:
-            p = Paragraph(text=request.POST['new_paragraph'], article=article, rating=0)
-            p.save()
-        return render_to_response('articles/detail.html', {'article': article,
-                                                            'paragraphs': paragraphs}, context_instance=RequestContext(request))
-    else:
-        return render(request, 'articles/detail.html', {'article': article,
-                                                    'paragraphs': paragraphs})
+    articleData = Articledata(article = article,
+            isAuthor = article.author == request.user.email,
+            hasLiked = True,
+            paragraphs = [])
+    try:
+        Article_Likes.objects.get(user=request.user.email,
+                                  article=article)
+    except Article_Likes.Doesnotexist:
+        articleData.hasLiked = False
+    paragraphs = Paragraph.objects.all(article=article.pk).order_by('-rating')
+    for p in paragraphs:
+        paragraphData = Paragraphdata(paragraph = p,
+                                      isAuthor = p.author == request.user.email,
+                                      hasLiked = True)
+        try:
+            Paragraph_Likes.objects.get(user=request.user.email,
+                                        paragraph=p)
+        except Article_Likes.Doesnotexist:
+            paragraphData.hasLiked = False
+
+        articleData.paragraphs.append(paragraphData)
+
+    tags = Tags.objecs.all().order_by('name')
+
+    render(request, 'articles/detail.html', {'articleData': articleData,
+                                                    'tags': tags})
 
 def create(request):
     valid = True
