@@ -19,31 +19,37 @@ def index(request):
 
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
+
     for a in articles:
         articleData = Articledata(article = a,
                 isAuthor = a.author == request.user,
                 hasLiked = True,
                 paragraphs = [])
-        try:
-            Article_Likes.objects.get(user=request.user.email,
-                                      article=a)
-        except ObjectDoesNotExist:
-            articleData.hasLiked = False
-        paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')
+        #Test for authentication, if not disregard likes
+        if request.user.is_authenticated():
+            try:
+                Article_Likes.objects.get(user=request.user.email,
+                                          article=a)
+            except ObjectDoesNotExist:
+                articleData.hasLiked = False
+        paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
         for p in paragraphs:
             paragraphData = Paragraphdata(paragraph = p,
                                           isAuthor = p.author == request.user.email,
                                           hasLiked = True)
-            try:
-                Paragraph_Likes.objects.get(user=request.user.email,
-                                            paragraph=p)
-            except ObjectDoesNotExist:
-                paragraphData.hasLiked = False
+
+            #Test for authentication, if not disregard likes
+            if request.user.is_authenticated():
+                try:
+                    Paragraph_Likes.objects.get(user=request.user.email,
+                                                paragraph=p)
+                except ObjectDoesNotExist:
+                    paragraphData.hasLiked = False
 
             articleData.paragraphs.append(paragraphData)
         articlesData.append(articleData)
     tags = Tags.objects.all().order_by('name')
-    return render(request, 'articles/index.html', {'user': request.user, 'articlesData': articlesData, 'tags':tags})
+    return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData, 'tags':tags})
 
 def detail(request, pk):
     class Articledata(object):
