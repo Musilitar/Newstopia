@@ -1,16 +1,44 @@
-<h1>{{article.title}}</h1>
-       {% for p in paragraphs %}
-        <p>{{p.text}}</p>
-        Score: {{p.rating}}
-        <form method="post">
-            {% csrf_token %}
-            <input type="submit" name="score" value="good" alt="Good">
-            <input type="submit" name="score" value="bad" alt="Bad">
-            <input type="hidden" name="paragraph" value="{{p.pk}}">
-        </form>
-        {% endfor %}
-        <form method="post">
-            {% csrf_token %}
-            <textarea name="new_paragraph">Write a new paragraph.</textarea>
-            <input type="submit" value="New Paragraph">
-        </form>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Newstopia</title>
+
+    <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/detail.css">
+</head>
+
+<body>
+<div id="detail">
+    <h1>{{article.title}}</h1>
+    {% for p in paragraphs %}
+    <div id="content">
+        <div id="paragraph">
+            <p>{{p.text}}</p>
+        </div>
+        <div id="rating">
+            <i class="fa fa-heart"></i> {{p.rating}}
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
+                <br>
+                <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
+                <input type="hidden" name="paragraph" value="{{p.pk}}">
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    {% endfor %}
+    <form id="new_paragraph" method="post">
+        {% csrf_token %}
+        <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5" cols="35"></textarea>
+        <br>
+        <input type="submit" value="New Paragraph">
+    </form>
+</div>
+</body>
+
+</html>
