@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var container = document.querySelector('.masonry');
   var msnry = new Masonry( container, {
-    columnWidth: 90
+    columnWidth: 180
   });
 
 });

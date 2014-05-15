@@ -20,9 +20,12 @@ def index(request):
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
 
+    #if request.method == 'GET':
+    #    articles = articles.filter(title__search=request.GET['searchString'])
+
     for a in articles:
         articleData = Articledata(article = a,
-                isAuthor = a.author == request.user,
+                isAuthor = request.user.is_authenticated() and a.author == request.user,
                 hasLiked = True,
                 paragraphs = [])
         #Test for authentication, if not disregard likes
@@ -35,7 +38,7 @@ def index(request):
         paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
         for p in paragraphs:
             paragraphData = Paragraphdata(paragraph = p,
-                                          isAuthor = p.author == request.user.email,
+                                          isAuthor = request.user.is_authenticated() and p.author == request.user.email,
                                           hasLiked = True)
 
             #Test for authentication, if not disregard likes
