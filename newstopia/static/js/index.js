@@ -1,11 +1,9 @@
 // JavaScript Document
 
-$(document).ready(function() {
-
-  var container = document.querySelector('.masonry');
-  var msnry = new Masonry( container, {
-    columnWidth: 90
-  });
+    var container = document.querySelector('.masonry');
+    var msnry = new Masonry(container, {
+        columnWidth: 90
+    });
 
   eventie.bind( container, 'click', function( event ) {
     // don't proceed if item content was not clicked on
@@ -23,5 +21,4 @@ $(document).ready(function() {
     }
     msnry.layout();
   });
-
 });

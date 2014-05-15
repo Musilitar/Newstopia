@@ -93,12 +93,11 @@
         </nav>
     </div>
     <div>
-        <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
+        <div class="masonry js-masonry"  data-masonry-options='{ "isFitWidth": true }'>
             {% for article in articlesData %}
             <div class="item">
                 <div class="item-content">
                     <h3>{{ article.article.title }}</h3>
-                    <br>
                     {% for paragraph in article.paragraphs %}
                     {% if forloop.counter == 1 or forloop.counter == 2 %}
                     <p>{{ paragraph.paragraph.text }}</p>
@@ -106,6 +105,21 @@
                     <p class="paragraphRest">{{ paragraph.paragraph.text }}</p>
                     {% endif %}
                     {% endfor %}
+                    <div class="articleButtonContainer">
+                        <div class="articleButtons">
+                            <div class="articleRating">000</div>
+                            <a class="btnUp" href="#">
+                                <i class="fa fa-thumbs-up"></i></a>
+                            <a class="btnDown" href="#">
+                                <i class="fa fa-thumbs-down"></i></a>
+                            <a class="btnShare" href="#">
+                                <i class="fa fa-share-alt"></i> share</a>
+                            <a class="btnArticle" href="#">
+                                <i class="fa fa-cog"></i> detail</a>
+                            <a class="btnRead" href="#">
+                                <i class="fa fa-angle-down"></i> read more</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
