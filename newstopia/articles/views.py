@@ -162,3 +162,6 @@ def create(request):
                                                     'tags': tags}, context_instance=RequestContext(request))
     else:
         return render(request, 'articles/create.html', {'valid':valid})
+
+def about(request):
+    return render(request, 'articles/about.html')
