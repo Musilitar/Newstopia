@@ -1,5 +1,7 @@
 // JavaScript Document
 
+        $(document).ready(function() {
+
     var container = document.querySelector('.masonry');
     var msnry = new Masonry(container, {
         columnWidth: 90
@@ -20,5 +22,5 @@
         jQuery(target).children('.paragraphRest').css("display", "none");
     }
     msnry.layout();
-  });
 });
+        });
