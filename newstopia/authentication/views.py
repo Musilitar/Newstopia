@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from authentication.models import Contributor
+from articles.models import Paragraph, Paragraph_Likes
 
 
 # Create your views here.
@@ -39,7 +40,17 @@ def acclogin(request):
 
 def profile(request):
     if request.user.is_authenticated():
-        return render_to_response('authentication/profile.html', None, context_instance=RequestContext(request))
+        paragraphs = Paragraph.objects.filter(author=request.user.email)
+        counterParagraphs = 0
+        for p in paragraphs:
+            counterParagraphs += 1
+        likes = Paragraph_Likes.objects.all()
+        counterParagraphLikes = 0
+        for l in likes:
+            for p in paragraphs:
+                if l.paragraph == p:
+                    counterParagraphLikes += 1
+        return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')
 
