@@ -6,15 +6,18 @@ $(document).ready(function () {
         columnWidth: 90
     });
 
-    $('.btnRead').click(function(event){
+    eventie.bind(container, 'click', function (event) {
+        // don't proceed if item content was not clicked on
         var target = event.target;
-        var itemElem = target.parentNode.parentNode.parentNode.parentNode;
+        if (!classie.has(target, 'btnRead')) {
+            return;
+        }
+        var itemElem = target.parentNode;
         classie.toggleClass(itemElem, 'is-expanded');
-
-        if (jQuery(target).parent().parent().parent().children('.paragraphRest').css('display') == 'none') {
-            jQuery(target).parent().parent().parent().children('.paragraphRest').css('display', 'inline');
+        if (jQuery(target).children('.paragraphRest').css('display') == 'none') {
+            jQuery(target).children('.paragraphRest').css('display', 'inline');
         } else {
-            jQuery(target).parent().parent().parent().children('.paragraphRest').css("display", "none");
+            jQuery(target).children('.paragraphRest').css("display", "none");
         }
         msnry.layout();
     });

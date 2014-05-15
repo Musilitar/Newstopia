@@ -17,6 +17,18 @@
 </head>
 
 <body>
+{% if not authenticated %}
+<div id="staticLoginBar">
+    <form name="login" method="post" action="/account/login/">
+        {% csrf_token %}
+        user: <input type="text" name="username">
+        password: <input type="text" name="password">
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% else %}
+<p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+{% endif %}
 <div id="staticSearchBar">
     <form name="search">
         <input type="text" name="searchString">

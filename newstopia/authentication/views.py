@@ -23,16 +23,16 @@ def registration(request):
 
 def acclogin(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/account/')
+        return HttpResponseRedirect('/articles/')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         contributor = authenticate(username=username, password=password)
         if contributor is not None:
             login(request, contributor)
-            return HttpResponseRedirect('/account/')
+            return HttpResponseRedirect('/articles/')
         else:
-            return HttpResponseRedirect('/account/login/')
+            return HttpResponseRedirect('/articles/')
     else:
         return render(request, 'authentication/login.html')
 
@@ -46,4 +46,4 @@ def profile(request):
 
 def acclogout(request):
     logout(request)
-    return HttpResponseRedirect('/account/login/')
+    return HttpResponseRedirect('/articles/')

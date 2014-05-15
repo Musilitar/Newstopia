@@ -28,17 +28,21 @@
 <div id="staticSearchBar">
     <form name="search">
         <input type="text" name="searchString">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Search">
     </form>
 </div>
-
+{% if not authenticated %}
 <div id="staticLoginBar">
-    <form name="search">
-        user: <input type="text" name="userString">
-        password: <input type="text" name="pwString">
-        <input type="submit" value="Submit">
+    <form name="login" method="post" action="/account/login/">
+        {% csrf_token %}
+        user: <input type="text" name="username">
+        password: <input type="text" name="password">
+        <input type="submit" value="Login">
     </form>
 </div>
+{% else %}
+<p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+{% endif %}
 <div class="container">
     <div id="logo">
         <img alt="logo" src="{{STATIC_URL}}img/logo-Newstopia.png"/>
@@ -89,10 +93,10 @@
                     </a>
                 </div>
                 <div class="menu-btn">
-                    <a class="first-link" href="{% url 'account:profile' %}">
+                    <a class="first-link" href="">
                         <i id="menuProfile" class="fa fa-user fa-2x"></i>
                     </a>
-                    <a href="{% url 'account:profile' %}">
+                    <a href="">
                         log-in
                     </a>
                 </div>
@@ -125,8 +129,8 @@
                                 <i class="fa fa-share-alt"></i> share</a>
                             <a class="btnDetail" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
-                            <div class="btnRead">
-                                <i class="fa fa-angle-down"></i> expand</div>
+                            <a class="btnRead" href="#">
+                                <i class="fa fa-angle-down"></i> read more</a>
                         </div>
                     </div>
                 </div>
