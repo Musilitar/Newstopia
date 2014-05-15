@@ -8,40 +8,114 @@
 
     <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/detail.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 
+    <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/detail.js"></script>
 </head>
 
 <body>
-<div id="detail">
-    <h1>{{articleData.article.title}}</h1>
-        {% for paragraph in articleData.paragraphs %}
-        <div id="content">
-                <div id="paragraph">
-                    <p>{{paragraph.paragraph.text}}</p>
-                </div>
-                <div id="rating">
-                    <i class="fa fa-heart"></i> {{paragraph.paragraph.rating}}
-                    <br>
-                    <form method="post">
-                        {% csrf_token %}
-                        <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
-                        <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
-                        <input type="hidden" name="paragraph" value="{{p.pk}}">
-                    </form>
-                </div>
-                <div class="clearfix"></div>
-        </div>
-    {% endfor %}
-    <form id="formparagraph" method="post">
-        {% csrf_token %}
-        <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5" cols="35"></textarea>
-        <br>
-        <input type="submit" value="New Paragraph">
+<div id="staticSearchBar">
+    <form name="search">
+        <input type="text" name="searchString">
+        <input type="submit" value="Submit">
     </form>
 </div>
+<div class="container">
+    <div id="logo">
+        <img alt="logo" src="{{STATIC_URL}}img/logo-Newstopia.png"/>
+    </div>
+    <div id="staticNav">
+        <nav>
+            <div class="menuSplits">
+                <div class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="menuHome" class="fa fa-home fa-2x"></i>
+                    </a>
+                    <a href="{% url 'articles:index' %}">
+                        home
+                    </a>
+                </div>
+                <div class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
+                    </a>
+                    <a href="">
+                        about
+                    </a>
+                </div>
+                <div id="menuSearch" class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="searchIcon" class="fa fa-search fa-2x"></i>
+                    </a>
+                    <a href="">
+                        search
+                    </a>
+                </div>
+            </div>
+            <div class="menuSplits">
+                <div class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="menuArchive" class="fa fa-archive fa-2x"></i>
+                    </a>
+                    <a href="">
+                        archive
+                    </a>
+                </div>
+                <div class="menu-btn">
+                    <a class="first-link" href="{% url 'articles:create' %}">
+                        <i id="menuNewArticle" class="fa fa-pencil fa-2x"></i>
+                    </a>
+                    <a href="{% url 'articles:create' %}">
+                        new article
+                    </a>
+                </div>
+                <div class="menu-btn">
+                    <a class="first-link" href="{% url 'account:profile' %}">
+                        <i id="menuProfile" class="fa fa-user fa-2x"></i>
+                    </a>
+                    <a href="{% url 'account:profile' %}">
+                        log-in
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
 
+    <div id="detail">
+        <h1>{{articleData.article.title}}</h1>
+            {% for paragraph in articleData.paragraphs %}
+            <div id="content">
+                    <div id="paragraph">
+                        <p>{{paragraph.paragraph.text}}</p>
+                    </div>
+                    <div id="rating">
+                        <i class="fa fa-heart"></i> {{paragraph.paragraph.rating}}
+                        <br>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="rating" type="submit" name="score" value="good"><i class="fa fa-plus fa-2x"></i></button>
+                            <button class="rating" type="submit" name="score" value="bad"><i class="fa fa-minus fa-2x"></i></button>
+                            <input type="hidden" name="paragraph" value="{{p.pk}}">
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+            </div>
+        {% endfor %}
+        {% if authenticated%}
+        <form class="formparagraph" method="post">
+            {% csrf_token %}
+            <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5" cols="35"></textarea>
+            <br>
+            <input type="submit" value="New Paragraph">
+        </form>
+        {% else %}
+        <p class="formparagraph">Please log in to post paragraphs</p>
+        {% endif %}
+    </div>
+</div>
 <!--masonry scripts-->
 <script type="text/javascript" src="{{STATIC_URL}}js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/classie.js"></script>

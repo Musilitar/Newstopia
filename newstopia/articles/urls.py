@@ -13,5 +13,3 @@ urlpatterns = patterns('',
                        url(r'^add/$', views.create, name='create'),
                        ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
-
-

@@ -178,7 +178,8 @@ h1 {
     font-size: 30px;
 }
 
-#formparagraph {
+.formparagraph {
+    padding: 2px;
     width: 100%;
     margin: 0 auto;
     text-align: center;
