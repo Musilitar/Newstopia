@@ -192,10 +192,6 @@ zoom: 90%;
 zoom: 95%
 }
 
-#movingContent {
-margin-top: 80px;
-}
-
 .masonry {
 margin: 0 auto;
 margin-top:40px;
@@ -254,7 +250,6 @@ margin:3px;
 border:1px solid #002424;
 border-radius:3px;
 text-decoration:none;
-font-size: 12px;
 }
 
 .btnShare:link, .btnRead:link, .btnRating:link, .btnDetail:link, .btnUp:link, .btnDown:link,
@@ -269,14 +264,23 @@ background-color:rgba(0, 36, 36, 0.1);
 }
 
 .articleScore {
-width:35px;
-margin-right:5px;
+width:30px;
+margin-right:10px;
 margin-top:1px;
+margin-left:-1px;
 float:left;
 text-align:right;
 }
 
-.btnUp, .btnDown {
+.btnUp,  {
 margin:5px;
 }
 
+.btnDown {
+margin:5px;
+}
+
+.btnShare i, .btnRead i, .btnDetail i{
+margin-left:4px;
+margin-right:1px;
+}
