@@ -214,32 +214,46 @@ display: inline;
 display: none;
 }
 
-.btnShare, .btnRead, .btnRating, .btnDetail{
-display: block;
-padding:5px;
-height:20px;
-margin-top:5px;
-border:1px solid #002424;
-border-radius:3px;
+.articleButtonContainer{
+position: absolute;
+bottom: 0;
+margin:0 auto;
+margin-bottom:5px;
 }
 
-.btnShare:link, .btnRead:link, .btnRating:link, .btnDetail:link,
-.btnShare:visited, .btnRead:visited, .btnRating:visited, .btnDetail:visited,
-.btnShare:active, .btnRead:active, .btnRating:active, .btnDetail:active {
+.btnShare, .btnRead, .btnRating, .btnDetail{
+display: block;
+float:left;
+padding:3px;
+width:90px;
+height:20px;
+margin:3px;
+border:1px solid #002424;
+border-radius:3px;
+text-decoration:none;
+font-size: 12px;
+}
+
+.btnShare:link, .btnRead:link, .btnRating:link, .btnDetail:link, .btnUp:link, .btnDown:link,
+.btnShare:visited, .btnRead:visited, .btnRating:visited, .btnDetail:visited, .btnUp:visited, .btnDown:visited,
+.btnShare:active, .btnRead:active, .btnRating:active, .btnDetail:active, .btnUp:active, .btnDown:active {
 color: #002424;
 }
 
 .btnShare:hover, .btnRead:hover, .btnRating:hover, .btnDetail:hover {
 color: #002424;
-background-color:#568a8f
+background-color:rgba(0, 36, 36, 0.1);
 }
 
-.btnShare, .btnRead {
-width:90px;
-float:right;
-}
-
-.btnDetail, .btnRating{
-width:90px;
+.articleScore {
+width:35px;
+margin-right:5px;
+margin-top:1px;
 float:left;
+text-align:right;
 }
+
+.btnUp, .btnDown {
+margin:5px;
+}
+
