@@ -121,13 +121,13 @@ display:block; /* important */
 }
 
 .menu-btn, .first-link{
--webkit-transition: 0.3s;
--moz-transition: 0.3s;
--ms-transition: 0.3s;
--o-transition: 0.3s;
-transition: 0.3s;
-transition-delay: 0.1s;
--webkit-transition-delay: 0.2s; /* Safari */
+-webkit-transition: 0.2s;
+-moz-transition: 0.2s;
+-ms-transition: 0.2s;
+-o-transition: 0.2s;
+transition: 0.2s;
+transition-delay: 0.0s;
+-webkit-transition-delay: 0.0s; /* Safari */
 }
 
 .menu-btn{
