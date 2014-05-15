@@ -13,17 +13,25 @@
 }
 
 #createFormDiv {
-    text-align: right;
+    text-align: left;
     width: 580px;
+    margin: 0 auto;
+    /*margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;*/
 }
 
 #createFormDiv p {
     padding: 0px;
-    margin: 0px;
+    margin: 4px;
    /*margin-right: 10px;*/
 }
 
-/*#createFormDiv input, textarea {
-    width: auto;
-    margin: auto;
-}*/
+#createFormDiv textarea, input {
+    resize: none;
+}
+/*
+button{
+    width: 20px;
+}
+*/
