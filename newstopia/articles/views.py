@@ -63,46 +63,50 @@ def detail(request, pk):
         def __init__(self, **kwargs):
             self.__dict__.update(kwargs)
 
-    if request.method == 'POST':
-        if request.POST['new_paragraph']:
-            p = Paragraph(article=Article.objects.get(pk=pk),
-                          text=request.POST['new_paragraph'],
-                          rating=0,
-                          author=request.user,
-                          pub_date=datetime.now())
-            p.save()
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            if request.POST['new_paragraph']:
+                p = Paragraph(article=Article.objects.get(pk=pk),
+                              text=request.POST['new_paragraph'],
+                              rating=0,
+                              author=request.user,
+                              pub_date=datetime.now())
+                p.save()
 
 
     article = Article.objects.get(pk=pk)
     articleData = Articledata(article = article,
-            isAuthor = article.author == request.user.email,
+            isAuthor = request.user.is_authenticated() and article.author == request.user.email,
             hasLiked = True,
             paragraphs = [])
-    try:
-        Article_Likes.objects.get(user=request.user.email,
-                                  article=article)
-    except ObjectDoesNotExist:
-        articleData.hasLiked = False
+
+    if request.user.is_authenticated():
+        try:
+            Article_Likes.objects.get(user=request.user.email,
+                                      article=article)
+        except ObjectDoesNotExist:
+            articleData.hasLiked = False
     paragraphs = Paragraph.objects.filter(article=article).order_by('-rating')
     for p in paragraphs:
         paragraphData = Paragraphdata(paragraph = p,
-                                      isAuthor = p.author == request.user.email,
+                                      isAuthor = request.user.is_authenticated() and p.author == request.user.email,
                                       hasLiked = True)
-        try:
-            Paragraph_Likes.objects.get(user=request.user.email,
-                                        paragraph=p)
-        except ObjectDoesNotExist:
-            paragraphData.hasLiked = False
+        if request.user.is_authenticated():
+            try:
+                Paragraph_Likes.objects.get(user=request.user.email,
+                                            paragraph=p)
+            except ObjectDoesNotExist:
+                paragraphData.hasLiked = False
 
         articleData.paragraphs.append(paragraphData)
 
     tags = Tags.objects.all().order_by('name')
-    if request.method == 'GET':
+    if request.method == 'GET' or not request.user.is_authenticated():
         return render(request, 'articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags})
+                                                    'tags': tags, 'authenticated': request.user.is_authenticated()})
     elif request.method == 'POST':
         return render_to_response('articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags}, context_instance=RequestContext(request))
+                                                    'tags': tags, 'authenticated': request.user.is_authenticated()}, context_instance=RequestContext(request))
 
 
 def create(request):
