@@ -121,7 +121,7 @@ display:block; /* important */
 -ms-transition: 0.3s;
 -o-transition: 0.3s;
 transition: 0.3s;
-transition-delay: 0.2s;
+transition-delay: 0.1s;
 -webkit-transition-delay: 0.2s; /* Safari */
 }
 

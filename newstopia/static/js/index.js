@@ -24,37 +24,5 @@ classie.toggleClass( paragraphElem[i], 'is-shown' );
 
 msnry.layout();
 
-
-$(function () {
-    $.srSmoothscroll();
 });
-
-$("#staticSearchBar")
-.stickOnScroll({
-topOffset: 0,
-setParentOnStick:   true,
-setWidthOnStick:    true
-});
-$("#staticNav")
-.stickOnScroll({
-topOffset:          0,
-bottomOffset:       0,
-setParentOnStick:   true,
-setWidthOnStick:    true
-});
-});
-
-$('#menuSearch').on('click', function(e) {
-//voorkom refresh
-e.preventDefault()
-$('.container').toggleClass('clicked');
-$('#staticSearchBar').toggleClass('clicked');
-//if nog juist zetten maar deze methode gebruiken
-if($(window).scrollTop() + $(window).height() > $('#staticNav').offset().top){
-$('#staticNav').toggleClass('clicked');
-}
-});
-
-
-
 });
