@@ -11,5 +11,6 @@ urlpatterns = patterns('',
                        url(r'^$', views.index, name='index'),
                        url(r'^(?P<pk>\d+)/$', views.detail, name='detail'),
                        url(r'^add/$', views.create, name='create'),
+                       url(r'^about/$', views.create, name='about'),
                        ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
