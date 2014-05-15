@@ -16,10 +16,8 @@
 <body>
 <div id="detail">
     <h1>{{articleData.article.title}}</h1>
-    <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
         {% for paragraph in articleData.paragraphs %}
-        <div id="content" class="item">
-            <div class="item-content">
+        <div id="content">
                 <div id="paragraph">
                     <p>{{paragraph.paragraph.text}}</p>
                 </div>
@@ -34,9 +32,7 @@
                     </form>
                 </div>
                 <div class="clearfix"></div>
-            </div>
         </div>
-    </div>
     {% endfor %}
     <form id="formparagraph" method="post">
         {% csrf_token %}
