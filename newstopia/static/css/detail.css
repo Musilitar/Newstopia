@@ -167,6 +167,10 @@ select {
 OUR CODE
 */
 
+@media screen and (max-width: 580px) {
+
+}
+
 body {
     background-color: #b4e8cc;
     color: #002424;
@@ -200,43 +204,22 @@ textarea {
     width: auto;
 }
 
-.masonry {
-margin: 0 auto;
-}
-
-.item {
-float: left;
-background-color: #f9f6ef;
-margin: 15px;
-padding: 30px;
-border-radius: 3px;
-width: 180px;
-height: 300px;
-overflow:hidden;
-}
-
-/*
 #detail {
     width: 80%;
     margin: 0 auto;
-    text-align: center;
 }
 
 #content {
-    width: 100%;
-}
-
-#paragraph {
-    position: relative;
-    float: left;
-    width: 80%;
-}
-
-#rating {
-    position: relative;
-    float: right;
+    width: 50%;
+    background-color: #f9f6ef;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 3px;
+    width: 480px;
+    height: auto;
+    overflow: hidden;
 }
 
 .clearfix {
     clear: both;
-} */
+}
