@@ -200,30 +200,19 @@ textarea {
     width: auto;
 }
 
-.masonry {
-margin: 0 auto;
-}
-
-.item {
-float: left;
-background-color: #f9f6ef;
-margin: 15px;
-padding: 30px;
-border-radius: 3px;
-width: 180px;
-height: 300px;
-overflow:hidden;
-}
-
-/*
 #detail {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
+    width: 100%;
 }
 
 #content {
-    width: 100%;
+    width: 80%;
+    margin: 15px auto;
+    background-color: #f9f6ef;
+    padding: 30px;
+    border-radius: 3px;
+    width: 580px;
+    height: auto;
+    overflow: hidden;
 }
 
 #paragraph {
@@ -239,4 +228,4 @@ overflow:hidden;
 
 .clearfix {
     clear: both;
-} */
+}
