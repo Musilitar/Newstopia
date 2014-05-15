@@ -12,7 +12,7 @@ $(document).ready(function () {
         classie.toggleClass(itemElem, 'is-expanded');
 
         if (jQuery(target).parent().parent().parent().children('.paragraphRest').css('display') == 'none') {
-            jQuery(target).parent().parent().parent().children('.paragraphRest').css('display', 'inline');
+            jQuery(target).parent().parent().parent().children('.paragraphRest').css('display', 'block');
         } else {
             jQuery(target).parent().parent().parent().children('.paragraphRest').css("display", "none");
         }
