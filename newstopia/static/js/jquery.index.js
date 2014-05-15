@@ -14,6 +14,20 @@ $(document).ready(function () {
         }
     });
 
+    $('#menuProfile').on('click', function (e) {
+        //voorkom refresh
+        e.preventDefault()
+        $('.container').toggleClass('clicked');
+        $('#staticLoginBar').toggleClass('clicked');
+
+        //padding enkel toevoegen bij scrollen
+        var distance = $('#staticLoginBar').offset().top,
+            $window = $(window);
+        if ($window.scrollTop() >= distance) {
+            $('#staticNav').toggleClass('clicked');
+        }
+    });
+
     $("#staticSearchBar")
         .stickOnScroll({
             topOffset: 0,

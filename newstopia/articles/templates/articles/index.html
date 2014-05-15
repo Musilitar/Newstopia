@@ -115,7 +115,7 @@
                     <div class="articleButtonContainer">
                         <div class="articleButtons">
                             <div class="btnRating">
-                                <div class="articleRating">000</div>
+                                <div class="articleScore">000</div>
                                 <a class="btnUp" href="#">
                                     <i class="fa fa-thumbs-up"></i></a>
                                 <a class="btnDown" href="#">
@@ -125,8 +125,8 @@
                                 <i class="fa fa-share-alt"></i> share</a>
                             <a class="btnDetail" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
-                            <a class="btnRead" href="#">
-                                <i class="fa fa-angle-down"></i> read more</a>
+                            <div class="btnRead">
+                                <i class="fa fa-angle-down"></i> expand</div>
                         </div>
                     </div>
                 </div>
