@@ -6,11 +6,25 @@ $(document).ready(function () {
         $('.container').toggleClass('clicked');
         $('#staticSearchBar').toggleClass('clicked');
 
-        //if nog juist zetten maar deze methode gebruiken
+        //checken of het menu bovenaan staat
         var distance = $('#staticNav').offset().top,
             $window = $(window);
         if ($window.scrollTop() >= distance) {
             $('#staticNav').toggleClass('clicked');
+        }
+    });
+
+    $('#menuProfile').on('click', function (e) {
+        //voorkom refresh
+        e.preventDefault()
+        $('.container').toggleClass('clicked');
+        $('#staticLoginBar').toggleClass('clicked');
+
+        //checken of het menu bovenaan staat
+        var distance = $('#staticNav').offset().top,
+            $window = $(window);
+        if ($window.scrollTop() >= distance) {
+            $('#staticLoginBar').toggleClass('clicked');
         }
     });
 

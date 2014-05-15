@@ -71,8 +71,8 @@ color:white;
 display: block;
 -webkit-transition: opacity 0.8s ease-out;
 -webkit-transition: height 0.3s ease-out;
-opacity: 1;
-height: 40px;
+opacity: 0;
+height: 0px;
 overflow: hidden;
 }
 
@@ -82,7 +82,7 @@ height: 40px;
 }
 
 #staticLoginBar form {
-width: 480px;
+width: 580px;
 margin: 0 auto;
 }
 
