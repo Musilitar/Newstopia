@@ -8,11 +8,9 @@ $('#staticSearchBar').toggleClass('clicked');
 
 //if nog juist zetten maar deze methode gebruiken
 var distance = $('#staticNav').offset().top, $window = $(window);
-$window.scroll(function() {
 if ( $window.scrollTop() >= distance ) {
     $('#staticNav').toggleClass('clicked');
 }
-});
 //if($(window).scrollTop() + $(window).height() > $('#staticNav').offset().top){
 });
 

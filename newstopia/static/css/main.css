@@ -8,6 +8,7 @@ width: 9px;
 
 ::-webkit-scrollbar-track {
 border-radius: 10px;
+background-color:rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -58,6 +59,10 @@ opacity: 1;
 height: 40px;
 }
 
+#staticSearchBar form {
+width: 480px;
+margin: 0 auto;
+}
 
 #staticNav {
 width: 100%;
