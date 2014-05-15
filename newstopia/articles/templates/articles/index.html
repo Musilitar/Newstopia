@@ -41,7 +41,9 @@
     </form>
 </div>
 {% else %}
-<p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+<div id="staticLoginBar">
+    <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+</div>
 {% endif %}
 <div class="container">
     <div id="logo">
@@ -92,9 +94,9 @@
                         new article
                     </a>
                 </div>
-                <div class="menu-btn">
+                <div id="menuProfile" class="menu-btn">
                     <a class="first-link" href="">
-                        <i id="menuProfile" class="fa fa-user fa-2x"></i>
+                        <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
                     </a>
                     <a href="">
                         log-in
@@ -129,6 +131,7 @@
                                 <i class="fa fa-share-alt"></i> share</a>
                             <a class="btnDetail" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
+
                             <div class="btnRead">
                                 <i class="fa fa-angle-down"></i> read more
                             </div>
