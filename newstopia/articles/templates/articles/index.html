@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/modernizr.custom.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
@@ -93,7 +92,7 @@
         </nav>
     </div>
     <div>
-        <div class="masonry js-masonry"  data-masonry-options='{ "isFitWidth": true }'>
+        <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
             {% for article in articlesData %}
             <div class="item">
                 <div class="item-content">
@@ -107,14 +106,16 @@
                     {% endfor %}
                     <div class="articleButtonContainer">
                         <div class="articleButtons">
-                            <div class="articleRating">000</div>
-                            <a class="btnUp" href="#">
-                                <i class="fa fa-thumbs-up"></i></a>
-                            <a class="btnDown" href="#">
-                                <i class="fa fa-thumbs-down"></i></a>
+                            <div class="btnRating">
+                                <div class="articleRating">000</div>
+                                <a class="btnUp" href="#">
+                                    <i class="fa fa-thumbs-up"></i></a>
+                                <a class="btnDown" href="#">
+                                    <i class="fa fa-thumbs-down"></i></a>
+                            </div>
                             <a class="btnShare" href="#">
                                 <i class="fa fa-share-alt"></i> share</a>
-                            <a class="btnArticle" href="#">
+                            <a class="btnDetail" href="#">
                                 <i class="fa fa-cog"></i> detail</a>
                             <a class="btnRead" href="#">
                                 <i class="fa fa-angle-down"></i> read more</a>

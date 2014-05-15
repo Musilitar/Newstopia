@@ -214,28 +214,32 @@ display: inline;
 display: none;
 }
 
-.item-content a, .articleRating{
+.btnShare, .btnRead, .btnRating, .btnDetail{
 display: block;
 padding:5px;
 height:20px;
 margin-top:5px;
+border:1px solid #002424;
+border-radius:3px;
 }
 
-.btnUp, .btnDown, .articleRating{
-width:10%;
-float:left;
+.btnShare:link, .btnRead:link, .btnRating:link, .btnDetail:link,
+.btnShare:visited, .btnRead:visited, .btnRating:visited, .btnDetail:visited,
+.btnShare:active, .btnRead:active, .btnRating:active, .btnDetail:active {
+color: #002424;
+}
+
+.btnShare:hover, .btnRead:hover, .btnRating:hover, .btnDetail:hover {
+color: #002424;
+background-color:#568a8f
 }
 
 .btnShare, .btnRead {
-border:1px solid #002424;
-border-radius:3px;
 width:90px;
 float:right;
 }
 
-.btnArticle{
-border:1px solid #002424;
-border-radius:3px;
+.btnDetail, .btnRating{
 width:90px;
 float:left;
 }
