@@ -6,11 +6,11 @@
 <body>
     <div id="content">
         <h2>Welcome, {{ user.email }}. Thanks for logging in!</h2>
-        <table>
-            <tr>
-                <td><a href="{% url 'account:logout' %}">Logout</a> </td>
-            </tr>
-        </table>
+        <p>Points: {{ user.points }}</p>
+        <p>Number of paragraphs written: {{ numberOfParagraphs }}</p>
+        <p>Number of likes your paragraphs received: {{ numberOfParagraphLikes }}</p>
+        <p>Last login: {{ user.last_login }}</p>
+        <a href="{% url 'account:logout' %}">Logout</a>
     </div>
 </body>
 </html>
