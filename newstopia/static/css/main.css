@@ -334,6 +334,16 @@ text-align: justify
 font-size: 24px;
 }
 
+        #aboutSocial {
+        width:149px;
+        margin:0 auto;
+        margin-top:80px;
+        }
+
+        #aboutSocial i {
+        margin: 10px;
+        }
+
 @media screen and (max-width: 580px){
 #aboutText {
 width: auto;
