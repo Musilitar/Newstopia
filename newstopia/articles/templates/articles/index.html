@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -37,10 +37,16 @@
 <div id="staticLoginBar" class="staticBar">
     <form name="login" method="post" action="/account/login/">
         {% csrf_token %}
-        <input id="emailInput" class="input" type="text" name="username" placeholder="email">
-        <input id="passwordInput" class="input" type="text" name="password" placeholder="password">
-        <input type="submit" value="Login">
-
+        <div id="emailInput">
+            <i class="fa fa-child"></i>
+            <input class="input" type="text" name="username" placeholder="email">
+        </div>
+        <div id="passwordInput">
+            <i class="fa fa-lock"></i>
+            <input class="input" type="text" name="password" placeholder="password">
+        </div>
+        <a class="btn" href="">
+            <i class="fa fa-user"></i>Login</a>
         <a href="#">(I'm new here)</a>
     </form>
 </div>
@@ -128,18 +134,19 @@
                     {% endfor %}
                     <div class="articleButtonContainer">
                         <div class="articleButtons">
-                            <div class="btnRating">
+                            <div class="btn">
                                 <a class="btnUp" href="#">
                                     <i class="fa fa-thumbs-up"></i></a>
+
                                 <div class="articleScore">000</div>
                                 <a class="btnDown" href="#">
                                     <i class="fa fa-thumbs-down"></i></a>
                             </div>
-                            <a class="btnShare" href="#">
+                            <a class="btn" href="#">
                                 <i class="fa fa-share-alt"></i> share</a>
-                            <a class="btnDetail" href="{% url 'articles:detail' article.article.pk %}">
+                            <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
-                            <div class="btnRead">
+                            <div id="btnRead" class="btn">
                                 <i class="fa fa-angle-down"></i> more
                             </div>
                         </div>

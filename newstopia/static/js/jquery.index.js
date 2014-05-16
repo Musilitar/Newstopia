@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#menuProfile').on('click', function (e) {
         //voorkom refresh
         e.preventDefault()
-        $('.container').toggleClass('clicked');
+        $('.container').toggleClass('clickedProfile');
         $('#staticLoginBar').toggleClass('clicked');
 
         //checken of het menu bovenaan staat
