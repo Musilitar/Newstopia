@@ -28,7 +28,6 @@ width:90%;
 margin: 0 auto;
 margin-top:20px;
 overflow:hidden;
-
 -webkit-transition: 0.3s;
 -moz-transition: 0.3s;
 -ms-transition: 0.3s;
@@ -40,7 +39,7 @@ transition: 0.3s;
 margin-top:60px;
 }
 
-#staticSearchBar {
+.staticBar {
 width: 100%;
 position: absolute;
 z-index:6;
@@ -53,12 +52,24 @@ height: 0;
 overflow: hidden;
 }
 
+.input {
+padding : 2px;
+border : 2px;
+heigth:20px;
+background-color: #f9f6ef;
+}
+
 #staticSearchBar.clicked {
 opacity: 1;
 height: 40px;
 }
 
-#staticSearchBar form {
+#staticLoginBar.clicked {
+opacity: 1;
+height: 40px;
+}
+
+#staticLoginBar form, #staticSearchBar form {
 width:417px;
 height:26px;
 margin: 0 auto;
@@ -70,13 +81,16 @@ color: #568a8f;
 font-size:16px;
 }
 
-input {
-padding : 2px;
-border : 2px;
-heigth:20px;
-.hover : blue;
+#searchInput {
 width : 370px;
-background-color: #f9f6ef;
+}
+
+#emailInput {
+width:150px;
+}
+
+#passwordInput {
+width:150px;
 }
 
 textarea:focus, input:focus{
@@ -90,16 +104,6 @@ color:#568a8f;
 }
 
 #staticLoginBar {
-width: 100%;
-position: absolute;
-z-index:6;
-color:white;
-display: block;
--webkit-transition: opacity 0.8s ease-out;
--webkit-transition: height 0.3s ease-out;
-opacity: 0;
-height: 0px;
-overflow: hidden;
 }
 
 #staticLoginBar.clicked {
@@ -334,15 +338,20 @@ text-align: justify
 font-size: 24px;
 }
 
-        #aboutSocial {
-        width:149px;
-        margin:0 auto;
-        margin-top:80px;
-        }
+#aboutSocial {
+width:149px;
+margin:0 auto;
+margin-top:80px;
+margin-bottom:120px;
+}
 
-        #aboutSocial i {
-        margin: 10px;
-        }
+#aboutSocial i {
+margin: 10px;
+}
+
+#aboutSocial i:hover {
+color:#568a8f;
+}
 
 @media screen and (max-width: 580px){
 #aboutText {

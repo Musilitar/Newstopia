@@ -26,19 +26,21 @@
 <div class="welcome">Welcome, guest</div>
 {% endif %}
 -->
-<div id="staticSearchBar">
+<div id="staticSearchBar" class="staticBar">
     <form name="search">
         <a href=""><i id="searchCommit" class="fa fa-search"></i></a>
-        <input class="singleLineInput" type="text" name="searchString" placeholder="search">
+        <input id="searchInput" class="input" type="text" name="searchString" placeholder="search">
     </form>
 </div>
 {% if not authenticated %}
-<div id="staticLoginBar">
+<div id="staticLoginBar" class="staticBar">
     <form name="login" method="post" action="/account/login/">
         {% csrf_token %}
-        user: <input type="text" name="username">
-        password: <input type="text" name="password">
+        <input id="emailInput" class="input" type="text" name="username" placeholder="email">
+        <input id="passwordInput" class="input" type="text" name="password" placeholder="password">
         <input type="submit" value="Login">
+
+        <a href="#">(I'm new here)</a>
     </form>
 </div>
 {% else %}
