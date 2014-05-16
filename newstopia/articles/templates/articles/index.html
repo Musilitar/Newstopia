@@ -4,6 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Newstopia</title>
 
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
@@ -25,19 +26,21 @@
 <div class="welcome">Welcome, guest</div>
 {% endif %}
 -->
-<div id="staticSearchBar">
+<div id="staticSearchBar" class="staticBar">
     <form name="search">
-        <input type="text" name="searchString">
-        <input type="submit" value="Search">
+        <a href=""><i id="searchCommit" class="fa fa-search"></i></a>
+        <input id="searchInput" class="input" type="text" name="searchString" placeholder="search">
     </form>
 </div>
 {% if not authenticated %}
-<div id="staticLoginBar">
+<div id="staticLoginBar" class="staticBar">
     <form name="login" method="post" action="/account/login/">
         {% csrf_token %}
-        user: <input type="text" name="username">
-        password: <input type="text" name="password">
+        <input id="emailInput" class="input" type="text" name="username" placeholder="email">
+        <input id="passwordInput" class="input" type="text" name="password" placeholder="password">
         <input type="submit" value="Login">
+
+        <a href="#">(I'm new here)</a>
     </form>
 </div>
 {% else %}
@@ -64,7 +67,7 @@
                     <a class="first-link" href="{% url 'articles:about' %}">
                         <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
                     </a>
-                    <a href="">
+                    <a href="{% url 'articles:about' %}">
                         about
                     </a>
                 </div>
@@ -99,7 +102,11 @@
                         <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
                     </a>
                     <a href="">
+                        {% if not authenticated %}
                         log-in
+                        {% else %}
+                        profile
+                        {% endif %}
                     </a>
                 </div>
             </div>
@@ -121,9 +128,9 @@
                     <div class="articleButtonContainer">
                         <div class="articleButtons">
                             <div class="btnRating">
-                                <div class="articleScore">000</div>
                                 <a class="btnUp" href="#">
                                     <i class="fa fa-thumbs-up"></i></a>
+                                <div class="articleScore">000</div>
                                 <a class="btnDown" href="#">
                                     <i class="fa fa-thumbs-down"></i></a>
                             </div>
@@ -131,9 +138,8 @@
                                 <i class="fa fa-share-alt"></i> share</a>
                             <a class="btnDetail" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
-
                             <div class="btnRead">
-                                <i class="fa fa-angle-down"></i> read more
+                                <i class="fa fa-angle-down"></i> more
                             </div>
                         </div>
                     </div>
