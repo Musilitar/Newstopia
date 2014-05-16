@@ -19,9 +19,52 @@ def index(request):
 
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
+    searchFound = []
 
     #if request.method == 'GET':
     #    articles = articles.filter(title__search=request.GET['searchString'])
+
+    if request.method == 'POST':
+        if request.POST['searchString']:
+            search = request.POST['searchString']
+            searchFound = []
+            articlesData = []
+            for a in articles:
+                articleData = Articledata(article = a,
+                                          isAuthor = request.user.is_authenticated() and a.author == request.user,
+                                          hasLiked = True,
+                                          paragraphs = [])
+                #Test for authentication, if not disregard likes
+                if request.user.is_authenticated():
+                    try:
+                        Article_Likes.objects.get(user=request.user.email,
+                                                  article=a)
+                    except ObjectDoesNotExist:
+                        articleData.hasLiked = False
+                paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+                for p in paragraphs:
+                    paragraphData = Paragraphdata(paragraph=p,
+                                                  isAuthor=request.user.is_authenticated() and p.author == request.user.email,
+                                                  hasLiked=True)
+
+                    #Test for authentication, if not disregard likes
+                    if request.user.is_authenticated():
+                        try:
+                            Paragraph_Likes.objects.get(user=request.user.email,
+                                                        paragraph=p)
+                        except ObjectDoesNotExist:
+                            paragraphData.hasLiked = False
+
+                    articleData.paragraphs.append(paragraphData)
+                articlesData.append(articleData)
+            for a in articlesData:
+                if search in a.article.title:
+                    if a not in searchFound:
+                        searchFound.append(a)
+                for p in a.paragraphs:
+                    if search in p.paragraph.text:
+                        if a not in searchFound:
+                            searchFound.append(a)
 
     for a in articles:
         articleData = Articledata(article = a,
@@ -52,6 +95,8 @@ def index(request):
             articleData.paragraphs.append(paragraphData)
         articlesData.append(articleData)
     tags = Tags.objects.all().order_by('name')
+    if searchFound:
+                articlesData = searchFound
     return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData, 'tags':tags})
 
 def detail(request, pk):

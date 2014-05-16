@@ -27,7 +27,8 @@
 {% endif %}
 -->
 <div id="staticSearchBar" class="staticBar">
-    <form name="search">
+    <form name="search" method="post">
+        {% csrf_token %}
         <a href=""><i id="searchCommit" class="fa fa-search"></i></a>
         <input id="searchInput" class="input" type="text" name="searchString" placeholder="search">
     </form>
