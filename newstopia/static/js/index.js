@@ -2,9 +2,12 @@
 $(document).ready(function () {
 
     var container = document.querySelector('.masonry');
-    var msnry = new Masonry(container, {
+    if(container){
+        var msnry = new Masonry(container, {
         columnWidth: 90
-    });
+        });
+    }
+
 
     $('.btnRead').click(function(event){
         var target = event.target;

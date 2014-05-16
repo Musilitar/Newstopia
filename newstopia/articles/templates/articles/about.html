@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Newstopia</title>
 
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
@@ -15,6 +18,29 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
 </head>
 <body>
+<div id="staticSearchBar" class="staticBar">
+    <form name="search" method="post">
+        {% csrf_token %}
+        <a href=""><i id="searchCommit" class="fa fa-search"></i></a>
+        <input id="searchInput" class="input" type="text" name="searchString" placeholder="search">
+    </form>
+</div>
+{% if not authenticated %}
+<div id="staticLoginBar" class="staticBar">
+    <form name="login" method="post" action="/account/login/">
+        {% csrf_token %}
+        <input id="emailInput" class="input" type="text" name="username" placeholder="email">
+        <input id="passwordInput" class="input" type="text" name="password" placeholder="password">
+        <input type="submit" value="Login">
+
+        <a href="#">(I'm new here)</a>
+    </form>
+</div>
+{% else %}
+<div id="staticLoginBar" class="staticBar">
+    <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+</div>
+{% endif %}
 <div class="container">
     <div id="logo">
         <img alt="logo" src="{{STATIC_URL}}img/Logo-Newstopia.png"/>
@@ -31,10 +57,10 @@
                     </a>
                 </div>
                 <div class="menu-btn">
-                    <a class="first-link" href="">
+                    <a class="first-link" href="{% url 'articles:about' %}">
                         <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
                     </a>
-                    <a href="">
+                    <a href="{% url 'articles:about' %}">
                         about
                     </a>
                 </div>
@@ -69,7 +95,11 @@
                         <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
                     </a>
                     <a href="">
+                        {% if not authenticated %}
                         log-in
+                        {% else %}
+                        profile
+                        {% endif %}
                     </a>
                 </div>
             </div>
@@ -109,5 +139,8 @@
         </div>
     </div>
 </div>
+<!--masonry scripts-->
+<script type="text/javascript" src="{{STATIC_URL}}js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/classie.js"></script>
 </body>
 </html>
