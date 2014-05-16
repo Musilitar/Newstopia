@@ -1,0 +1,70 @@
+.masonry {
+margin: 0 auto;
+margin-top:40px;
+margin-bottom:150px;
+}
+
+.item{
+float: left;
+background-color: #f9f6ef;
+margin: 15px;
+padding: 15px;
+border-radius: 3px;
+width: 210px;
+height: 330px;
+overflow:hidden;
+font-size:14px;
+box-shadow: 0px 0px 8px #888888;
+}
+
+.item-content {
+padding:0px;
+margin:0px;
+text-align: justify
+}
+
+.item.is-expanded{
+width: 480px;
+height: 690px;
+z-index: 2;
+}
+
+.paragraphRest {
+display: none;
+}
+
+.paragraphRest.is-shown {
+display: inline;
+}
+
+.paragraphRest.is-not-shown {
+display: none;
+}
+
+.articleButtonContainer{
+position: absolute;
+bottom: 0;
+margin-bottom:5px;
+width:90%;
+left:50%;
+margin-left:-43%;
+}
+
+.btn .articleScore {
+width:28px;
+float:left;
+text-align:center;
+}
+
+.btn .btnUp , .btn .btnDown {
+width:28px;
+margin-left:2px;
+float:left;
+color:#568a8f;
+}
+
+.btn .btnUp:hover, .btn .btnDown:hover {
+color:#002828;
+}
+
+

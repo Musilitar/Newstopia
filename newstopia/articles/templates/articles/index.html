@@ -8,9 +8,9 @@
     <title>Newstopia</title>
 
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/overlay.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/index.css">
 
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
@@ -19,13 +19,6 @@
 </head>
 
 <body>
-<!--
-{% if user.is_authenticated %}
-<div class="welcome">Welcome, {{user.email}}</div>
-{% else %}
-<div class="welcome">Welcome, guest</div>
-{% endif %}
--->
 <div id="staticSearchBar" class="staticBar">
     <form name="search" method="post">
         {% csrf_token %}
@@ -146,6 +139,7 @@
                                 <i class="fa fa-share-alt"></i> share</a>
                             <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail</a>
+
                             <div id="btnRead" class="btn">
                                 <i class="fa fa-angle-down"></i> more
                             </div>

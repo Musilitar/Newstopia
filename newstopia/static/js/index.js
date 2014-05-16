@@ -7,7 +7,6 @@ $(document).ready(function () {
     });
 
     $(btnRead).click(function(event){
-        alert("klik");
         var target = event.target;
         var itemElem = target.parentNode.parentNode.parentNode.parentNode;
         classie.toggleClass(itemElem, 'is-expanded');
