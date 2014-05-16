@@ -8,7 +8,13 @@
         <h2>Welcome, {{ user.email }}. Thanks for logging in!</h2>
         <p>Points: {{ user.points }}</p>
         <p>Number of paragraphs written: {{ numberOfParagraphs }}</p>
+        <p>Average number of paragraphs written: {{ averageParagraphs }}</p>
         <p>Number of likes your paragraphs received: {{ numberOfParagraphLikes }}</p>
+        <p>Average number of likes paragraphs received: {{ averageParagraphLikes }}</p>
+        <p>Number of articles written: {{ numberOfArticles }}</p>
+        <p>Average number of articles written: {{ averageArticles }}</p>
+        <p>Number of likes you articles received: {{ numberOfArticleLikes }}</p>
+        <p>Average number of likes articles received: {{ averageArticleLikes }}</p>
         <p>Last login: {{ user.last_login }}</p>
         <a href="{% url 'account:logout' %}">Logout</a>
     </div>

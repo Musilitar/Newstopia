@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from authentication.models import Contributor
-from articles.models import Paragraph, Paragraph_Likes
+from articles.models import Paragraph, Paragraph_Likes, Article, Article_Likes
 
 
 # Create your views here.
@@ -44,13 +44,51 @@ def profile(request):
         counterParagraphs = 0
         for p in paragraphs:
             counterParagraphs += 1
-        likes = Paragraph_Likes.objects.all()
+        paragraphLikes = Paragraph_Likes.objects.all()
         counterParagraphLikes = 0
-        for l in likes:
+        for l in paragraphLikes:
             for p in paragraphs:
                 if l.paragraph == p:
                     counterParagraphLikes += 1
-        return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes}, context_instance=RequestContext(request))
+        articles = Article.objects.filter(author=request.user.email)
+        counterArticles = 0
+        for a in articles:
+            counterArticles += 1
+        articleLikes = Article_Likes.objects.all()
+        counterArticleLikes = 0
+        for l in articleLikes:
+            for a in articles:
+                if l.article == a:
+                    counterArticleLikes += 1
+
+        allParagraphs = Paragraph.objects.all()
+        counterAllParagraphs = 0
+        for a in allParagraphs:
+            counterAllParagraphs += 1
+        allUsers = Contributor.objects.all()
+        counterAllUsers = 0
+        for a in allUsers:
+            counterAllUsers += 1
+        averageParagraphs = 0
+        if(counterAllParagraphs != 0 and counterAllUsers != 0):
+            averageParagraphs = counterAllParagraphs / counterAllUsers
+        averageParagraphLikes = 0
+        if(counterParagraphLikes != 0 and counterAllParagraphs != 0):
+            averageParagraphLikes = counterAllParagraphs / counterParagraphLikes
+        allArticles = Article.objects.all()
+        counterAllArticles = 0
+        for a in allArticles:
+            counterAllArticles += 1
+        averageArticles = 0
+        if(counterAllArticles != 0 and counterAllUsers != 0):
+            averageArticles = counterAllArticles / counterAllUsers
+        averageArticleLikes = 0
+        if(counterArticleLikes != 0 and counterAllArticles != 0):
+            averageArticleLikes = counterAllArticles / counterArticleLikes
+        return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes,
+                                                                  'numberOfArticles': counterArticles, 'numberOfArticleLikes': counterArticleLikes,
+                                                                  'averageParagraphs': averageParagraphs, 'averageParagraphLikes': averageParagraphLikes,
+                                                                  'averageArticles': averageArticles, 'averageArticleLikes': averageArticleLikes}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')
 
