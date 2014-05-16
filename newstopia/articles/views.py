@@ -155,12 +155,18 @@ def detail(request, pk):
 
 
 def create(request):
-    valid = True
+    if not request.user.is_authenticated():
+        return render(request, 'articles/create.html', {'authenticated':request.user.is_authenticated()})
+
+
+    valid = False
+    if request.method == 'GET':
+        valid = True
     if request.method == 'POST':
-        if request.POST['title'] == "":
-            valid = False
-        if request.POST['body'] == "":
-            valid = False
+        if request.POST['title'] != "":
+            valid = True
+        if request.POST['body'] != "":
+            valid = True
     if request.method == 'POST' and valid:
 
         class Articledata(object):
@@ -204,9 +210,9 @@ def create(request):
 
 
         return render_to_response('articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags}, context_instance=RequestContext(request))
+                                                    'tags': tags, 'valid':valid, 'authenticated':request.user.is_authenticated()}, context_instance=RequestContext(request))
     else:
-        return render(request, 'articles/create.html', {'valid':valid})
+        return render(request, 'articles/create.html', {'valid':valid, 'authenticated':request.user.is_authenticated()})
 
 def about(request):
     return render(request, 'articles/about.html')

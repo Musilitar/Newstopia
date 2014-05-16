@@ -107,6 +107,7 @@
             </div>
         </nav>
     </div>
+    {% if authenticated %}
     <div id="createContainer">
         <div id="createDiv">
             <div id="createFormDiv">
@@ -125,6 +126,11 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div id="createContainer">
+        You must be logged in in order to to create articles.
+    </div>
+    {% endif %}
 </div>
 
 <!--masonry scripts-->
