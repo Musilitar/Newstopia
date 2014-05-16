@@ -36,12 +36,14 @@ transition: 0.3s;
 }
 
 .container.clicked {
-margin-top:40px;
+margin-top:80px;
 }
 
 .container.clickedProfile {
-margin-top:120px;
+margin-top:100px;
 }
+
+/*ABSOLUTE FIELDS*/
 
 .staticBar {
 width: 100%;
@@ -49,7 +51,7 @@ position: absolute;
 z-index:6;
 color:white;
 display: block;
-        top:0;
+top:0;
 -webkit-transition: opacity 0.8s ease-out;
 -webkit-transition: height 0.3s ease-out;
 opacity: 0;
@@ -60,7 +62,6 @@ overflow: hidden;
 .input {
 padding : 2px;
 border : 2px;
-heigth:20px;
 background-color: #f9f6ef;
 }
 
@@ -68,29 +69,30 @@ textarea:focus, input:focus{
 outline: 0;
 }
 
-#staticSearchBar.clicked {
-opacity: 1;
-height: 40px;
-}
-
-#staticLoginBar.clicked {
-opacity: 1;
-height: 120px;
+#staticSearchBar, #staticLoginBar {
+width: 100%;
 }
 
 #staticLoginBar form, #staticSearchBar form {
 width:417px;
-height:26px;
 margin: 0 auto;
-margin-top:6px;
+margin-top:10px;
 border-radius:3px;
 text-decoration:none;
 color: #568a8f;
 font-size:16px;
 }
 
+/*SEARCHBAR*/
+
+#staticSearchBar.clicked {
+opacity: 1;
+height: 50px;
+}
+
 #staticSearchBar form {
 background-color: #f9f6ef;
+height:36px;
 }
 
 #staticSearchBar form i {
@@ -101,34 +103,64 @@ color:#568a8f;
 
 #searchInput {
 width : 370px;
+height:24px;
+margin-top:4px;
 }
 
-#staticLoginBar {
-width: 100%;
-}
+/*LOGINBAR*/
 
 #staticLoginBar.clicked {
 opacity: 1;
-height: 80px;
+height: 120px;
 }
 
 #staticLoginBar form {
-width: 580px;
+width: 660px;
 margin: 0 auto;
+        margin-top:6px;
 }
 
-#staticLoginBar form #emailInput, #staticLoginBar form #passwordInput, #staticLoginBar form i, #staticLoginBar form input, #staticLoginBar form a {
+#staticLoginBar form i, #staticLoginBar form #emailInput, #staticLoginBar form #passwordInput,
+#staticLoginBar form .btn, #staticLoginBar form a {
 margin:5px;
 float:left;
 }
 
-#emailInput {
+#emailInput, #passwordInput {
 width:250px;
+height:36px;
+border-radius:3px;
+background-color: #f9f6ef;
 }
 
-#passwordInput {
-width:250px;
+#emailInput i, #passwordInput i {
+font-size:18px;
+padding:3px;
 }
+
+#emailInput input, #passwordInput input {
+width: 210px;
+margin-top:5px;
+margin-left:3px;
+}
+
+#staticLoginBar form .btn {
+        margin-top:5px;
+        padding-top:6px;
+width:120px;
+height:26px;
+}
+
+#staticLoginBar form .btn i {
+margin-right:15px;
+}
+
+#goToRegister {
+padding-left:5px;
+font-size:14px;
+}
+
+/*NAVIGATION*/
 
 #staticNav {
 width: 100%;
@@ -235,6 +267,9 @@ zoom: 90%;
 #menuProfile {
 zoom: 95%
 }
+
+
+/*GENERAL BUTTONS*/
 
 .btn{
 border:1px solid #568a8f;
