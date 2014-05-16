@@ -14,7 +14,7 @@ class Article(models.Model):
     was_published_recently.short_description = 'Published recently?'
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    version = models.IntegerField(default=1)
+    rating = models.IntegerField(default=0)
 
     author = models.ForeignKey(Contributor)
 
