@@ -58,11 +58,11 @@ def index(request):
                     articleData.paragraphs.append(paragraphData)
                 articlesData.append(articleData)
             for a in articlesData:
-                if search in a.article.title:
+                if search.lower() in a.article.title.lower():
                     if a not in searchFound:
                         searchFound.append(a)
                 for p in a.paragraphs:
-                    if search in p.paragraph.text:
+                    if search.lower() in p.paragraph.text.lower():
                         if a not in searchFound:
                             searchFound.append(a)
 
