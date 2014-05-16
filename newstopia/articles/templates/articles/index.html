@@ -44,7 +44,7 @@
     </form>
 </div>
 {% else %}
-<div id="staticLoginBar">
+<div id="staticLoginBar" class="staticBar">
     <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
 </div>
 {% endif %}
@@ -56,10 +56,10 @@
         <nav>
             <div class="menuSplits">
                 <div class="menu-btn">
-                    <a class="first-link" href="">
+                    <a class="first-link" href="{% url 'articles:index' %}">
                         <i id="menuHome" class="fa fa-home fa-2x"></i>
                     </a>
-                    <a href="">
+                    <a href="{% url 'articles:index' %}">
                         home
                     </a>
                 </div>
