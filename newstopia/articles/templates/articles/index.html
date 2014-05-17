@@ -117,7 +117,7 @@
             {% for article in articlesData %}
             <div class="item">
                 <div class="item-content">
-                    <h3>{{ article.article.title }}</h3>
+                    <b>{{ article.article.title }}</b>
                     {% for paragraph in article.paragraphs %}
                     {% if forloop.counter == 1 or forloop.counter == 2 %}
                     <p>{{ paragraph.paragraph.text }}</p>
@@ -140,7 +140,7 @@
                                 <i class="fa fa-cog"></i> detail</a>
 
                             <div id="btnRead" class="btn">
-                                <i class="fa fa-angle-down"></i> more
+                                <i class="fa fa-arrow-circle-down"></i> more
                             </div>
                         </div>
                     </div>
