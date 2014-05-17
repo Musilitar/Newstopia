@@ -130,14 +130,23 @@
                             <div class="btn">
                                 <a class="btnUp" href="#">
                                     <i class="fa fa-thumbs-up"></i></a>
+
                                 <div class="articleScore">000</div>
                                 <a class="btnDown" href="#">
                                     <i class="fa fa-thumbs-down"></i></a>
                             </div>
-                            <a class="btn" href="#">
-                                <i class="fa fa-share-alt"></i> share</a>
+
+                            <a id="btnShare" class="btn" href="#">
+                                <div id="shareContainer">
+                                    <i class="fa fa-share-alt"></i> share
+                                    <i id="fb" class="fa fa-facebook"></i>
+                                    <i id="tw" class="fa fa-twitter"></i>
+                                </div>
+                            </a>
+
                             <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
-                                <i class="fa fa-cog"></i> detail</a>
+                                <i class="fa fa-cog"></i> detail
+                            </a>
 
                             <div id="btnRead" class="btn">
                                 <i class="fa fa-arrow-circle-down"></i> more

@@ -36,5 +36,6 @@ $(document).ready(function () {
         }
 
         msnry.layout();
+        $(window).resize();
     });
 });
