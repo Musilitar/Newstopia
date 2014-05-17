@@ -8,8 +8,8 @@ $(document).ready(function () {
         });
     }
 
-    if($('#btnRead')){
-        $('#btnRead').click(function(event){
+    if($('.btnRead')){
+        $('.btnRead').click(function(event){
             var target = event.target;
             var itemElem = target.parentNode.parentNode.parentNode.parentNode;
             classie.toggleClass(itemElem, 'is-expanded');
