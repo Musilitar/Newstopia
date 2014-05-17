@@ -40,4 +40,10 @@ $(document).ready(function () {
         });
     }
 
+    //submit Login
+    $("#submitLogin").click(function (event) {
+        alert("login zou moeten");
+        $("form[name='login']").submit();
+    });
+
 });

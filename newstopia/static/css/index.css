@@ -92,26 +92,7 @@ color:#002828;
 margin-top:-30px;
 }
 
-
-.btn .articleScore {
-width:28px;
-float:left;
-text-align:center;
-cursor:default;
-}
-
-.btn .btnUp , .btn .btnDown {
-width:28px;
-margin-left:2px;
-float:left;
-color:#568a8f;
-}
-
-.btn .btnUp:hover, .btn .btnDown:hover {
-color:#002828;
-}
-
-.btnRead {
+#btnRead {
 cursor:pointer;
 }
 
