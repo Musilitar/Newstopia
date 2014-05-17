@@ -62,6 +62,7 @@ def index(request):
             for a in articlesData:
                 if search[0] == '#':
                     text = search.replace("#", "")
+                    text = text.replace(" ", "")
                     articleTags = Article_Tags.objects.filter(article=a.article)
                     for at in articleTags:
                         if at.tag.name == text:
