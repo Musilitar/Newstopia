@@ -145,13 +145,17 @@ def detail(request, pk):
 
         articleData.paragraphs.append(paragraphData)
 
-    tags = Tags.objects.all().order_by('name')
+    tags = Article_Tags.objects.filter(article=article)
+    tagData = ""
+    for a in tags:
+        tagData += "#" + a.tag.name + " "
+
     if request.method == 'GET' or not request.user.is_authenticated():
         return render(request, 'articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags, 'authenticated': request.user.is_authenticated()})
+                                                    'tagData': tagData, 'authenticated': request.user.is_authenticated()})
     elif request.method == 'POST':
         return render_to_response('articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags, 'authenticated': request.user.is_authenticated()}, context_instance=RequestContext(request))
+                                                    'tagData': tagData, 'authenticated': request.user.is_authenticated()}, context_instance=RequestContext(request))
 
 
 def create(request):
@@ -177,11 +181,32 @@ def create(request):
             def __init__(self, **kwargs):
                 self.__dict__.update(kwargs)
 
+        class Tagdata(object):
+            def __init__(self, **kwargs):
+                self.__dict__.update(kwargs)
+
 
         article = Article(title=request.POST['title'], pub_date=datetime.now(), author=request.user)
         article.save()
         paragraph = Paragraph(article=article, text=request.POST['body'], author=request.user, pub_date=datetime.now())
         paragraph.save()
+        tags = request.POST['tags']
+        tagData = ""
+        if tags:
+            tags = tags.replace(" ", "")
+            tags = tags.split(',')
+        for i in tags:
+            count = Tags.objects.filter(name=i).count()
+            if count == 0:
+                tag = Tags(name=i)
+                tag.save()
+                articleTag = Article_Tags(article=article, tag=Tags.objects.get(name=i))
+                articleTag.save()
+                tagData += "#" + i + " "
+            else:
+                articleTag = Article_Tags(article=article, tag=Tags.objects.get(name=i))
+                articleTag.save()
+                tagData += "#" + i + " "
 
         article = Article.objects.get(pk=article.pk)
         articleData = Articledata(article = article,
@@ -206,11 +231,9 @@ def create(request):
 
             articleData.paragraphs.append(paragraphData)
 
-        tags = Tags.objects.all().order_by('name')
-
 
         return render_to_response('articles/detail.html', {'articleData': articleData,
-                                                    'tags': tags, 'valid':valid, 'authenticated':request.user.is_authenticated()}, context_instance=RequestContext(request))
+                                                    'tagData': tagData, 'valid':valid, 'authenticated':request.user.is_authenticated()}, context_instance=RequestContext(request))
     else:
         return render(request, 'articles/create.html', {'valid':valid, 'authenticated':request.user.is_authenticated()})
 

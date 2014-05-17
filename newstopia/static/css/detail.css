@@ -100,6 +100,10 @@ h1 {
     font-size: 30px;
 }
 
+h3 {
+    text-align: center;
+}
+
 .formparagraph {
     padding: 2px;
     width: 100%;

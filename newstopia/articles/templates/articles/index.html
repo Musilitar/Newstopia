@@ -28,7 +28,7 @@
 </div>
 {% if not authenticated %}
 <div id="staticLoginBar" class="staticBar">
-    <form name="login" method="post" action="/account/login/">
+    <form name="login" method="post" action="{% url 'account:login' %">
         {% csrf_token %}
         <div id="emailInput">
             <i class="fa fa-child"></i>
@@ -36,7 +36,7 @@
         </div>
         <div id="passwordInput">
             <i class="fa fa-lock"></i>
-            <input class="input" type="text" name="password" placeholder="password">
+            <input class="input" type="password" name="password" placeholder="password">
         </div>
         <a class="btn" href="">
             <i class="fa fa-user"></i>login</a>
