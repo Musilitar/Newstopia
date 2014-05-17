@@ -38,7 +38,7 @@
             <i class="fa fa-lock"></i>
             <input class="input" type="password" name="password" placeholder="password">
         </div>
-        <a id="submitLogin" class="btn" href="">
+        <a id="submitLogin" class="btn">
             <i class="fa fa-user"></i>login</a>
         <a id="goToRegister" href="#">(I'm new here)</a>
     </form>
@@ -143,11 +143,9 @@
                                     <i id="tw" class="fa fa-twitter"></i>
                                 </div>
                             </a>
-
                             <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
                                 <i class="fa fa-cog"></i> detail
                             </a>
-
                             <div class="btn btnRead">
                                 <i class="fa fa-arrow-circle-down"></i> more
                             </div>

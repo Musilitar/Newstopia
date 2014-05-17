@@ -117,13 +117,18 @@
 
     <div id="detail">
         <div id="header">
-        <p><b>{{articleData.article.title}}</b> published on 00-xxx-0000</p>
+            <p>
+                <b>{{articleData.article.title}}</b>
+                <span id="publishDate">published on xxx-00th-0000</span>
+            </p>
         </div>
-        {% for tag in tagData %}
-        <h3>#{{ tag.tag.name }}</h3>
-        {% endfor %}
+        <div id="tags">
+            {% for tag in tagData %}
+            <a href="#"><span class="hashTag">#</span>{{ tag.tag.name }}</a>
+            {% endfor %}
+        </div>
         {% for paragraph in articleData.paragraphs %}
-        <div id="content">
+        <div class="content">
             <div class="paragraph">
                 <p>{{paragraph.paragraph.text}}</p>
             </div>
@@ -141,12 +146,13 @@
         </div>
         {% endfor %}
         {% if authenticated%}
-        <form class="formparagraph" method="post">
+        <form name="newParagraph" class="formparagraph" method="post">
             {% csrf_token %}
             <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5"
                       cols="35"></textarea>
-            <br>
-            <input type="submit" value="New Paragraph">
+            <div id="submitBtn" class="btn">
+                <i class="fa fa-paper-plane"></i> submit
+            </div>
         </form>
         {% else %}
         <p class="formparagraph">Please log in to post paragraphs</p>

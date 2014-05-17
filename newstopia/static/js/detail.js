@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-  var container = document.querySelector('.masonry');
-  if(container){
-      var msnry = new Masonry( container, {
-        columnWidth: 180
-      });
-  }
+//submit new paragraph
+$("#submitParagraph").click(function (event) {
+$("form[name='newParagraph']").submit();
+});
+
 });

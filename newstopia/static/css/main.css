@@ -59,7 +59,7 @@ height: 0;
 overflow: hidden;
 }
 
-.input {
+.input, textarea {
 padding : 2px;
 border : 2px;
 background-color: #f9f6ef;
@@ -168,6 +168,7 @@ position: relative;
 z-index:5;
 background-color: #b4e8cc;
 -webkit-transition: padding-top 0.3s ease-out;
+
 }
 
 #staticNav.clicked {

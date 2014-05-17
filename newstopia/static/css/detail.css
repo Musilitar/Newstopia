@@ -1,6 +1,6 @@
 #detail {
 margin: 40px auto 120px auto;
-width: 580px;
+width: 650px;
 height: auto;
 text-align: center;
 }
@@ -13,14 +13,41 @@ clear: both;
 }
 
 #header {
-border:1px solid #568a8f;
-border-radius:3px;
 }
 
-#detail p b {
-font-size:28px;
+#header p b {
+font-size:38px;
 font-weight:900;
 margin-right:8px;
+}
+
+#publishDate{
+display:block;
+}
+
+#tags{
+width:650px;
+margin:0 auto;
+text-align:center;
+margin-bottom:80px;
+}
+
+#tags a{
+float:left;
+margin-left:16px;
+font-size:18px;
+font-weight: 800;
+color:#002828;
+text-decoration:none;
+}
+
+.hashTag{
+color:#568a8f;
+margin-right:3px;
+}
+
+.content {
+margin-bottom:30px;
 }
 
 .paragraph {
@@ -29,10 +56,23 @@ text-align:justify;
 width:100%;
 }
 
-.paragraphRating {
-margin-left:240px;
+.formparagraph {
+margin-top:40px;
 }
 
-.formparagraph {
-margin-top:60px;
+textarea {
+padding:6px;
+height:150px;
+width:650px;
+resize:none;
+border-radius:5px;
+}
+
+.btn {
+margin-left:275px;
+margin-top:0px;
+}
+
+#submitBtn{
+margin-top:20px;
 }
