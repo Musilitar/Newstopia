@@ -158,9 +158,9 @@ def detail(request, pk):
         articleData.paragraphs.append(paragraphData)
 
     tags = Article_Tags.objects.filter(article=article)
-    tagData = ""
+    tagData = []
     for a in tags:
-        tagData += "#" + a.tag.name + " "
+        tagData.append(a)
 
     if request.method == 'GET' or not request.user.is_authenticated():
         return render(request, 'articles/detail.html', {'articleData': articleData,

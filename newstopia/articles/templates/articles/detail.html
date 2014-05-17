@@ -119,7 +119,9 @@
         <div id="header">
         <p><b>{{articleData.article.title}}</b> published on 00-xxx-0000</p>
         </div>
-        <h3>{{ tagData }}</h3>
+        {% for tag in tagData %}
+        <h3>#{{ tag.tag.name }}</h3>
+        {% endfor %}
         {% for paragraph in articleData.paragraphs %}
         <div id="content">
             <div class="paragraph">
