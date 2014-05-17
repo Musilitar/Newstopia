@@ -29,6 +29,7 @@ def index(request):
             search = request.POST['searchString']
             searchFound = []
             articlesData = []
+
             for a in articles:
                 articleData = Articledata(article = a,
                                           isAuthor = request.user.is_authenticated() and a.author == request.user,
@@ -57,7 +58,14 @@ def index(request):
 
                     articleData.paragraphs.append(paragraphData)
                 articlesData.append(articleData)
+
             for a in articlesData:
+                if search[0] == '#':
+                    text = search.replace("#", "")
+                    articleTags = Article_Tags.objects.filter(article=a.article)
+                    for at in articleTags:
+                        if at.tag.name == text:
+                            searchFound.append(a)
                 if search.lower() in a.article.title.lower():
                     if a not in searchFound:
                         searchFound.append(a)
@@ -65,6 +73,8 @@ def index(request):
                     if search.lower() in p.paragraph.text.lower():
                         if a not in searchFound:
                             searchFound.append(a)
+
+            articlesData = []
 
     for a in articles:
         articleData = Articledata(article = a,
@@ -94,10 +104,11 @@ def index(request):
 
             articleData.paragraphs.append(paragraphData)
         articlesData.append(articleData)
-    tags = Tags.objects.all().order_by('name')
+
     if searchFound:
                 articlesData = searchFound
-    return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData, 'tags':tags})
+
+    return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData, })
 
 def detail(request, pk):
     class Articledata(object):
