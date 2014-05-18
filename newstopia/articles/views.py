@@ -4,11 +4,6 @@ from articles.models import Article, Paragraph, Article_Likes, Paragraph_Likes, 
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-import pdb
-
-"""
-testcommit
-"""
 
 def index(request):
     class Articledata(object):
@@ -22,9 +17,6 @@ def index(request):
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
     searchFound = []
-
-    #if request.method == 'GET':
-    #    articles = articles.filter(title__search=request.GET['searchString'])
 
     if request.method == 'POST':
         if request.POST['searchString']:
@@ -83,7 +75,8 @@ def index(request):
         articleData = Articledata(article = a,
                 isAuthor = request.user.is_authenticated() and a.author == request.user,
                 hasLiked = True,
-                paragraphs = [])
+                paragraphs = [],
+                isBig = False)
         #Test for authentication, if not disregard likes
         if request.user.is_authenticated():
             try:
@@ -92,7 +85,9 @@ def index(request):
             except ObjectDoesNotExist:
                 articleData.hasLiked = False
         paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+        paragraphCount = 0
         for p in paragraphs:
+            paragraphCount += 1
             paragraphData = Paragraphdata(paragraph = p,
                                           isAuthor = request.user.is_authenticated() and p.author == request.user.email,
                                           hasLiked = True)
@@ -106,6 +101,8 @@ def index(request):
                     paragraphData.hasLiked = False
 
             articleData.paragraphs.append(paragraphData)
+        if paragraphCount > 3:
+            articleData.isBig = True
         articlesData.append(articleData)
 
     if searchFound:
@@ -195,17 +192,12 @@ def create(request):
             def __init__(self, **kwargs):
                 self.__dict__.update(kwargs)
 
-        class Tagdata(object):
-            def __init__(self, **kwargs):
-                self.__dict__.update(kwargs)
-
-
         article = Article(title=request.POST['title'], pub_date=datetime.now(), author=request.user)
         article.save()
         paragraph = Paragraph(article=article, text=request.POST['body'], author=request.user, pub_date=datetime.now())
         paragraph.save()
         tags = request.POST['tags']
-        tagData = ""
+        tagData = []
         if tags:
             tags = tags.replace(" ", "")
             tags = tags.split(',')
@@ -216,11 +208,11 @@ def create(request):
                 tag.save()
                 articleTag = Article_Tags(article=article, tag=Tags.objects.get(name=i))
                 articleTag.save()
-                tagData += "#" + i + " "
+                tagData.append(articleTag)
             else:
                 articleTag = Article_Tags(article=article, tag=Tags.objects.get(name=i))
                 articleTag.save()
-                tagData += "#" + i + " "
+                tagData.append(articleTag)
 
         article = Article.objects.get(pk=article.pk)
         articleData = Articledata(article = article,

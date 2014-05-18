@@ -116,11 +116,19 @@
     <div>
         <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
             {% for article in articlesData %}
+            {% if article.isBig %}
+            <div class="item-big">
+            {% else %}
             <div class="item">
+            {% endif %}
+                {% if article.isBig %}
+                <div class="item-content-big">
+                {% else %}
                 <div class="item-content">
+                {% endif %}
                     <b>{{ article.article.title }}</b>
                     {% for paragraph in article.paragraphs %}
-                    {% if forloop.counter == 1 or forloop.counter == 2 %}
+                    {% if forloop.counter == 1 or article.isBig %}
                     <p>{{ paragraph.paragraph.text }}</p>
                     {% else %}
                     <p class="paragraphRest">{{ paragraph.paragraph.text }}</p>
