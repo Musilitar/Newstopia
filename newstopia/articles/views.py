@@ -28,7 +28,8 @@ def index(request):
                 articleData = Articledata(article = a,
                                           isAuthor = request.user.is_authenticated() and a.author == request.user,
                                           hasLiked = True,
-                                          paragraphs = [])
+                                          paragraphs = [],
+                                          isBig = False)
                 #Test for authentication, if not disregard likes
                 if request.user.is_authenticated():
                     try:
@@ -37,7 +38,9 @@ def index(request):
                     except ObjectDoesNotExist:
                         articleData.hasLiked = False
                 paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+                paragraphCounter = 0
                 for p in paragraphs:
+                    paragraphCounter += 1
                     paragraphData = Paragraphdata(paragraph=p,
                                                   isAuthor=request.user.is_authenticated() and p.author == request.user.email,
                                                   hasLiked=True)
@@ -51,6 +54,8 @@ def index(request):
                             paragraphData.hasLiked = False
 
                     articleData.paragraphs.append(paragraphData)
+                if paragraphCounter > 3:
+                    articleData.isBig = True
                 articlesData.append(articleData)
 
             for a in articlesData:
