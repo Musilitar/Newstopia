@@ -16,6 +16,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/votes.js"></script>
 </head>
 
 <body>
@@ -128,12 +129,21 @@
                     <div class="articleButtonContainer">
                         <div class="articleButtons">
                             <div class="btn">
-                                <a class="btnUp" href="#">
-                                    <i class="fa fa-thumbs-up"></i></a>
-
-                                <div class="articleScore">000</div>
-                                <a class="btnDown" href="#">
-                                    <i class="fa fa-thumbs-down"></i></a>
+                                {% if authenticated %}
+                                {% if not article.hasLiked %}
+                                <div class="btnUp" href="#">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                <div class="articleScore">{{article.article.rating}}</div>
+                                {% if authenticated %}
+                                {% if not article.hasLiked %}
+                                <div class="btnDown" href="#">
+                                    <i class="fa fa-thumbs-down"></i>
+                                </div>
+                                {% endif %}
+                                {% endif %}
                             </div>
 
                             <a id="btnShare" class="btn" href="#">

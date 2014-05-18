@@ -3,6 +3,8 @@ from django.template import RequestContext
 from articles.models import Article, Paragraph, Article_Likes, Paragraph_Likes, Tags, Article_Tags
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
+import pdb
 
 """
 testcommit
@@ -109,7 +111,7 @@ def index(request):
     if searchFound:
                 articlesData = searchFound
 
-    return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData, })
+    return render(request, 'articles/index.html', {'authenticated': request.user.is_authenticated(), 'user': request.user, 'articlesData': articlesData})
 
 def detail(request, pk):
     class Articledata(object):
@@ -245,9 +247,65 @@ def create(request):
 
 
         return render_to_response('articles/detail.html', {'articleData': articleData,
-                                                    'tagData': tagData, 'valid':valid, 'authenticated':request.user.is_authenticated()}, context_instance=RequestContext(request))
+                                                    'tagData': tagData, 'valid':valid, 'authenticated':request.user.is_authenticated()},
+                                                    context_instance=RequestContext(request))
     else:
         return render(request, 'articles/create.html', {'valid':valid, 'authenticated':request.user.is_authenticated()})
 
 def about(request):
     return render(request, 'articles/about.html')
+
+def vote(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            id = request.POST['id']
+            type = request.POST['type']
+            difference = int(request.POST['difference'])
+            if type == "article":
+                vote = Article_Likes(user=request.user, article=Article.objects.get(pk=id))
+                article = Article.objects.get(pk=id)
+                if article:
+                    if difference > 0:
+                        vote.save()
+                        article.rating += 1
+                        article.save()
+                    else:
+                        vote.save()
+                        article.rating -= 1
+                        article.save()
+            elif type == "paragraph":
+                vote = Paragraph_Likes(user=request.user, paragraph=Paragraph.objects.get(pk=id))
+                paragraph = Paragraph.objects.get(pk=id)
+                if paragraph:
+                    if difference > 0:
+                        vote.save()
+                        paragraph.rating += 1
+                        paragraph.save()
+                    else:
+                        vote.save()
+                        paragraph.rating -= 1
+                        paragraph.save()
+    return HttpResponse("voted")
+"""
+def vote(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            id = request.POST['id']
+            type = request.POST['type']
+            difference = request.POST['difference']
+            if type == "article":
+                vote = Article_Likes(user=request.user, article=Article.objects.get(pk=id))
+                article = Article.objects.get(pk=id)
+                if article:
+                        vote.save()
+                        article.rating += 1
+                        article.save()
+            elif type == "paragraph":
+                vote = Paragraph_Likes(user=request.user, paragraph=Paragraph.objects.get(pk=id))
+                paragraph = Paragraph.objects.get(pk=id)
+                if paragraph:
+                        vote.save()
+                        paragraph.rating += 1
+                        paragraph.save()
+    return HttpResponse("voted")
+"""
