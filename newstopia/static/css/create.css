@@ -1,37 +1,32 @@
 #createContainer {
-    display: inline-block;
-    text-align: center;
-    width: 100%;
+margin: 70px auto 140px auto;
+width: 650px;
+height: auto;
+text-align: center;
 }
 
-#createDiv {
-    margin: auto;
-    text-align: center;
-    background-color: #f9f6ef;
-    width: 60%;
-    padding: 35px;
+textarea, #inputTitle {
+padding:6px;
+width:650px;
+border-radius:5px;
+margin-bottom: 30px;
 }
 
-#createFormDiv {
-    text-align: left;
-    width: 580px;
-    margin: 0 auto;
-    /*margin-left: 30%;
-    margin-right: 30%;
-    width: 40%;*/
+#inputParagraph {
+height:150px;
 }
 
-#createFormDiv p {
-    padding: 0px;
-    margin: 4px;
-   /*margin-right: 10px;*/
+#inputTags {
+height:50px;
 }
 
-#createFormDiv textarea, input {
-    resize: none;
+.btn {
+margin-left:275px;
+margin-top:10px;
+cursor:pointer;
 }
-/*
-button{
-    width: 20px;
+
+#submitBtn i {
+margin-right:5px;
+
 }
-*/

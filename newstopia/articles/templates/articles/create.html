@@ -7,7 +7,6 @@
     <title>Newstopia</title>
 
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/overlay.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/create.css">
@@ -29,13 +28,19 @@
 </div>
 {% if not authenticated %}
 <div id="staticLoginBar" class="staticBar">
-    <form name="login" method="post" action="/account/login/">
+    <form name="login" method="post" action="{% url 'account:login' %">
         {% csrf_token %}
-        <input id="emailInput" class="input" type="text" name="username" placeholder="email">
-        <input id="passwordInput" class="input" type="text" name="password" placeholder="password">
-        <input type="submit" value="Login">
-
-        <a href="#">(I'm new here)</a>
+        <div id="emailInput">
+            <i class="fa fa-child"></i>
+            <input class="input" type="text" name="username" placeholder="email">
+        </div>
+        <div id="passwordInput">
+            <i class="fa fa-lock"></i>
+            <input class="input" type="password" name="password" placeholder="password">
+        </div>
+        <a id="submitLogin" class="btn">
+            <i class="fa fa-user"></i>login</a>
+        <a id="goToRegister" href="#">(I'm new here)</a>
     </form>
 </div>
 {% else %}
@@ -45,7 +50,7 @@
 {% endif %}
 <div class="container">
     <div id="logo">
-        <img alt="logo" src="{{STATIC_URL}}img/logo-Newstopia.png"/>
+        <img alt="logo" src="{{STATIC_URL}}img/Logo-Newstopia.png"/>
     </div>
     <div id="staticNav">
         <nav>
@@ -109,30 +114,29 @@
     </div>
     {% if authenticated %}
     <div id="createContainer">
-        <div id="createDiv">
-            <div id="createFormDiv">
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <h2>New Article</h2>
-                    <p>Title</p>
-                    <input type="text" name="title"><br>
-                    <p>Body</p>
-                    <textarea rows="5" cols="40" name="body"></textarea><br>
-                    <p>Tags</p>
-                    <textarea rows="1" cols="40" name="tags" placeholder="Write tags seperated by commas"></textarea><br>
-                    <p><input type="submit"></p>
-                    {% if not valid %}
-                        <b>form not valid, fill in both fields</b>
-                    {% endif %}
-                </form>
-            </div>
+        <form name="newArticle" method="post" action="">
+            {% csrf_token %}
+            <input id="inputTitle" type="text" name="title" placeholder="write a title"><br>
+
+            <textarea id="inputParagraph" name="body" maxlength="400" placeholder="compose the first paragraph" rows="5"
+                      cols="35"></textarea>
+
+            <textarea id="inputTags" rows="1" cols="20" maxlength="116" name="tags"
+                      placeholder="give your article some tags (seperated by a comma)"></textarea><br>
+            {% if not valid %}
+            <b>form not valid, fill in both fields</b>
+            {% endif %}
+        </form>
+        <div id="submitBtn" class="btn">
+            <i class="fa fa-paper-plane"></i> submit
         </div>
     </div>
-    {% else %}
-    <div id="createContainer">
-        You must be logged in in order to to create articles.
-    </div>
-    {% endif %}
+</div>
+{% else %}
+<div id="createContainer">
+    You must be logged in in order to to create articles.
+</div>
+{% endif %}
 </div>
 
 <!--masonry scripts-->

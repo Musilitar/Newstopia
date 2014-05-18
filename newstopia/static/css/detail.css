@@ -1,5 +1,5 @@
 #detail {
-margin: 40px auto 120px auto;
+margin: 40px auto 140px auto;
 width: 650px;
 height: auto;
 text-align: center;
@@ -10,6 +10,7 @@ clear: both;
 }
 
 #detail {
+margin-top:60px;
 }
 
 #header {
@@ -26,14 +27,11 @@ display:block;
 }
 
 #tags{
-width:650px;
-margin:0 auto;
 text-align:center;
-margin-bottom:80px;
+margin-bottom:30px;
 }
 
 #tags a{
-float:left;
 margin-left:16px;
 font-size:18px;
 font-weight: 800;
@@ -64,15 +62,31 @@ textarea {
 padding:6px;
 height:150px;
 width:650px;
-resize:none;
 border-radius:5px;
 }
 
 .btn {
 margin-left:275px;
+border:0px solid #568a8f;
 margin-top:0px;
+
+}
+
+.btn:hover {
+background-color:rgba(86, 138, 143, 0);
 }
 
 #submitBtn{
+border:1px solid #568a8f;
 margin-top:20px;
+cursor:pointer;
+}
+
+#submitBtn:hover{
+background-color:rgba(86, 138, 143, 0.1);
+}
+
+#submitBtn i {
+margin-right:5px;
+
 }

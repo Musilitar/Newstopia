@@ -59,10 +59,11 @@ height: 0;
 overflow: hidden;
 }
 
-.input, textarea {
+input, textarea {
 padding : 2px;
 border : 2px;
 background-color: #f9f6ef;
+resize:none;
 }
 
 textarea:focus, input:focus{

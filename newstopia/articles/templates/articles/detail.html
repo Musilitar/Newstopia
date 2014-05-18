@@ -150,10 +150,10 @@
             {% csrf_token %}
             <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5"
                       cols="35"></textarea>
-            <div id="submitBtn" class="btn">
-                <i class="fa fa-paper-plane"></i> submit
-            </div>
         </form>
+        <div id="submitBtn" class="btn">
+            <i class="fa fa-paper-plane"></i> submit
+        </div>
         {% else %}
         <p class="formparagraph">Please log in to post paragraphs</p>
         {% endif %}
