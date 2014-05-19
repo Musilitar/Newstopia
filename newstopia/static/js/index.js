@@ -26,7 +26,7 @@ $(document).ready(function () {
                 jQuery(target).parent().parent().parent().css( 'height', '95%');
             } else {
                 if(jQuery(target).parent().parent().parent().hasClass('item-content-big')) {
-                    jQuery(target).parent().parent().parent().css( 'height', '95%')
+                    //jQuery(target).parent().parent().parent().css( 'height', '95%')
                 }
                 else {
                     jQuery(target).parent().parent().parent().css( 'height', '265px');

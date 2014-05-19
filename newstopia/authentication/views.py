@@ -11,13 +11,23 @@ from articles.models import Paragraph, Paragraph_Likes, Article, Article_Likes
 
 def registration(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('authentication/profile.html')
+        return HttpResponseRedirect('/articles/')
     if request.method == 'POST':
-        user = Contributor(email=request.POST['username'], points=0)
-        user.set_password(request.POST['password'])
-        user.save()
-        return HttpResponseRedirect('/account/')
+        userrequest = Contributor.objects.filter(email=request.POST['username'])
+        password = request.POST['password']
+        passwordagain = request.POST['passwordagain']
+        if passwordagain != password:
+            return render_to_response('authentication/register.html', {'error':"please check password"},
+                                                context_instance=RequestContext(request))
+        if not userrequest:
+            user = Contributor(email=request.POST['username'], points=0)
+            user.set_password(request.POST['password'])
+            user.save()
+            return render_to_response('authentication/register.html', {'message':"Your account has been registered."},
+                                                    context_instance=RequestContext(request))
 
+        return render_to_response('authentication/register.html', {'error':"email already in use"},
+                                                context_instance=RequestContext(request))
     else:
         return render(request, 'authentication/register.html')
 
