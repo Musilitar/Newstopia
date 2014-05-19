@@ -114,16 +114,16 @@
             <p>
             <h1>{{ user.email }}</h1>
             </p>
-            <!--Link naar logout-->
-            <a href="{% url 'account:logout' %}"></a>
+
             <p class="ratingTopics">
 
             <div id="writtenArticles" class="rating">
+            {% for i in starsArticles %}
+                <i class="fa fa-star"></i>
+            {% endfor %}
+            {% for i in starsArticlesN %}
                 <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
+            {% endfor %}
             </div>
             <h3>{{ numberOfArticles }} written articles</h3>
             </p>
@@ -131,33 +131,36 @@
             <p class="ratingTopics">
 
             <div  id="articleLikes" class="rating">
+            {% for i in starsArticleLikes %}
+                <i class="fa fa-star"></i>
+            {% endfor %}
+            {% for i in starsArticleLikesN %}
                 <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
+            {% endfor %}
             </div>
             <h3>{{ numberOfArticleLikes }} articles likes</h3>
             </p>
 
             <p id="writtenParagraphs" class="ratingTopics">
             <div class="rating">
+            {% for i in starsParagraphs %}
+                <i class="fa fa-star"></i>
+            {% endfor %}
+            {% for i in starsParagraphsN %}
                 <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
+            {% endfor %}
             </div>
             <h3>{{ numberOfParagraphs }} written paragraphs</h3>
             </p>
 
             <p id="paragraphLikes" class="ratingTopics">
             <div class="rating">
+            {% for i in starsParagraphLikes %}
+                <i class="fa fa-star"></i>
+            {% endfor %}
+            {% for i in starsParagraphLikesN %}
                 <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
+            {% endfor %}
             </div>
             <h3>{{ numberOfParagraphLikes }} paragraph likes</h3>
 

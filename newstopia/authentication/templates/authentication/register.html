@@ -8,12 +8,11 @@
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/create.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/register.css">
 
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/register.js"></script>
-    <!--<script type="text/javascript" src="{{STATIC_URL}}js/profile.js"></script>-->
 </head>
 <body>
 <div id="staticSearchBar" class="staticBar">
@@ -110,12 +109,12 @@
         </nav>
     </div>
     <div id="content">
-        <div id="createContainer">
+        <div id="registerContainer">
         <form name="register" method="post" action="">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Email"><br>
-            <input type="password" name="password" placeholder="password"><br>
-            <input type="password" name="passwordagain" placeholder="password"><br>
+            <input  id="inputMail" type="text" name="username" placeholder="email">
+            <input  id="inputPass" type="password" name="password" placeholder="password">
+            <input  id="inputPassCheck" type="password" name="passwordagain" placeholder="retype password">
             {% if error %}
                 <p>{{ error }}</p>
             {% endif %}

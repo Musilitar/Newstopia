@@ -109,6 +109,10 @@ def profile(request):
             else:
                 return 1
 
+        procentParagraphs = 0
+        procentParagraphLikes = 0
+        procentArticles = 0
+        procentArticleLikes = 0
         if counterParagraphs != 0 and averageParagraphs != 0:
             procentParagraphs = counterParagraphs / averageParagraphs * 100;
             starsParagraphs = calculateStars(procentParagraphs)
@@ -130,12 +134,17 @@ def profile(request):
         else:
             starsArticleLikes = 0
 
+        globalAverage = (procentParagraphs + procentParagraphLikes + procentArticles + procentArticleLikes) /4
+
         return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes,
                                                                   'numberOfArticles': counterArticles, 'numberOfArticleLikes': counterArticleLikes,
                                                                   'averageParagraphs': averageParagraphs, 'averageParagraphLikes': averageParagraphLikes,
                                                                   'averageArticles': averageArticles, 'averageArticleLikes': averageArticleLikes,
                                                                   'starsParagraphs': range(starsParagraphs), 'starsParagraphLikes': range(starsParagraphLikes),
-                                                                  'starsArticles': range(starsArticles), 'starsArticleLikes': range(starsArticleLikes)}, context_instance=RequestContext(request))
+                                                                  'starsArticles': range(starsArticles), 'starsArticleLikes': range(starsArticleLikes),
+                                                                  'starsParagraphsN': range(5 - starsParagraphs), 'starsParagraphLikesN': range(5 - starsParagraphLikes),
+                                                                  'starsArticlesN': range(5 - starsArticles), 'starsArticleLikesN': range(5 - starsArticleLikes),
+                                                                  'globalAverage': globalAverage}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')
 
