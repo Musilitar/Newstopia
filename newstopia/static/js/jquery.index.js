@@ -19,6 +19,9 @@ $(document).ready(function () {
         e.preventDefault()
         $('.container').toggleClass('clickedProfile');
         $('#staticLoginBar').toggleClass('clicked');
+        if( $("#menuText:contains('profile')").length > 0) {
+            $(location).attr('href', '/account/');
+        }
 
         //checken of het menu bovenaan staat
         var distance = $('#staticNav').offset().top,
