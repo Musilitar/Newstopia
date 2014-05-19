@@ -99,16 +99,23 @@
                     </a>
                 </div>
                 <div id="menuProfile" class="menu-btn">
+                    {% if authenticated %}
+                    <a class="first-link" href="">
+                        <i id="ProfileIcon" style="float:left;width:25px;height 32px;margin-left:24px;" class="fa fa-user fa-2x"></i>
+
+                        <h2 style="float:right;width:16px;height 32px;overflow:hidden;margin-top:3px;color: #568a8f;margin-right:24px;">{{ user.email }}</h2>
+                    </a>
+                    <a style="float:left;text-align:center;width:90px;height:32px;margin-left:0px;margin-top:-20px;font-size:17px;" href="">
+                        profile
+                    </a>
+                    {% else %}
                     <a class="first-link" href="">
                         <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
                     </a>
                     <a href="">
-                        {% if not authenticated %}
-                        log-in
-                        {% else %}
-                        profile
-                        {% endif %}
+                        login
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
