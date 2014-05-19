@@ -312,13 +312,13 @@ text-align:center;
 cursor:default;
 }
 
-.btn .btnUp , .btn .btnDown {
+.btn .btnUp , .btn .btnDown , .btn .pbtnUp , .btn .pbtnDown {
 width:28px;
 margin-left:2px;
 float:left;
 color:#568a8f;
 }
 
-.btn .btnUp:hover, .btn .btnDown:hover {
+.btn .btnUp:hover, .btn .btnDown:hover , .btn .pbtnUp:hover , .btn .pbtnDown:hover {
 color:#002828;
 }
