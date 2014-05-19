@@ -17,6 +17,7 @@ def index(request):
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
     searchFound = []
+    amountParagraphs=0
 
     if request.method == 'POST':
         if request.POST['searchString']:
@@ -29,6 +30,7 @@ def index(request):
                                           isAuthor = request.user.is_authenticated() and a.author == request.user,
                                           hasLiked = True,
                                           paragraphs = [],
+                                          article_resize = False,
                                           isBig = False)
                 #Test for authentication, if not disregard likes
                 if request.user.is_authenticated():
@@ -38,6 +40,9 @@ def index(request):
                     except ObjectDoesNotExist:
                         articleData.hasLiked = False
                 paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+                amountParagraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5].count()
+                if amountParagraphs > 1 and amountParagraphs < 5:
+                    articleData.article_resize = True
                 paragraphCounter = 0
                 for p in paragraphs:
                     paragraphCounter += 1
@@ -54,7 +59,7 @@ def index(request):
                             paragraphData.hasLiked = False
 
                     articleData.paragraphs.append(paragraphData)
-                if paragraphCounter > 3:
+                if paragraphCounter > 4:
                     articleData.isBig = True
                 articlesData.append(articleData)
 
@@ -81,6 +86,7 @@ def index(request):
                 isAuthor = request.user.is_authenticated() and a.author == request.user,
                 hasLiked = True,
                 paragraphs = [],
+                article_resize = False,
                 isBig = False)
         #Test for authentication, if not disregard likes
         if request.user.is_authenticated():
@@ -90,6 +96,9 @@ def index(request):
             except ObjectDoesNotExist:
                 articleData.hasLiked = False
         paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
+        amountParagraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5].count()
+        if amountParagraphs > 1 and amountParagraphs < 5:
+            articleData.article_resize = True
         paragraphCount = 0
         for p in paragraphs:
             paragraphCount += 1
@@ -106,7 +115,7 @@ def index(request):
                     paragraphData.hasLiked = False
 
             articleData.paragraphs.append(paragraphData)
-        if paragraphCount > 3:
+        if paragraphCount > 4:
             articleData.isBig = True
         articlesData.append(articleData)
 
