@@ -261,6 +261,9 @@ def create(request):
 def about(request):
     return render(request, 'articles/about.html')
 
+def archive(request):
+    return render(request, 'articles/archive.html')
+
 #to test: multiple likes same article/paragraph
 def vote(request):
     if request.method == 'POST':
