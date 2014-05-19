@@ -10,7 +10,14 @@ $(document).ready(function () {
 
     if($('.btnRead')){
         $('.btnRead').click(function(event){
-            var target = event.target;
+            var target;
+
+            if($(event.target).hasClass("btnRead")){
+                target = event.target;
+            }else {
+                target = event.target.parent();
+                alert("notbtnRead");
+            }
             var itemElem = target.parentNode.parentNode.parentNode.parentNode;
             classie.toggleClass(itemElem, 'is-expanded');
 
