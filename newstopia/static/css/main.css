@@ -227,8 +227,8 @@ display:block;
 -ms-transition: 0.2s;
 -o-transition: 0.2s;
 transition: 0.2s;
-transition-delay: 0.2s;
--webkit-transition-delay: 0.2s; /* Safari */
+transition-delay: 0s;
+-webkit-transition-delay: 0s; /* Safari */
 }
 
 .menu-btn{
