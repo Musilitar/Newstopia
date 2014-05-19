@@ -99,15 +99,26 @@ def profile(request):
             else:
                 return 1
 
-        procentParagraphs = counterParagraphs / averageParagraphs * 100;
-        starsParagraphs = calculateStars(procentParagraphs)
-        procentParagraphLikes = counterParagraphLikes / averageParagraphLikes * 100;
-        starsParagraphLikes = calculateStars(procentParagraphLikes)
-        procentArticles = counterArticles / averageArticles * 100;
-        starsArticles = calculateStars(procentArticles)
-        procentArticleLikes = counterArticleLikes / averageArticleLikes * 100;
-        starsArticleLikes = calculateStars(procentArticleLikes)
-
+        if counterParagraphs != 0 and averageParagraphs != 0:
+            procentParagraphs = counterParagraphs / averageParagraphs * 100;
+            starsParagraphs = calculateStars(procentParagraphs)
+        else:
+            starsParagraphs = 0
+        if counterParagraphLikes != 0 and averageParagraphLikes != 0:
+            procentParagraphLikes = counterParagraphLikes / averageParagraphLikes * 100;
+            starsParagraphLikes = calculateStars(procentParagraphLikes)
+        else:
+            starsParagraphLikes = 0
+        if counterArticles != 0 and averageArticles != 0:
+            procentArticles = counterArticles / averageArticles * 100;
+            starsArticles = calculateStars(procentArticles)
+        else:
+            starsArticles = 0
+        if counterArticleLikes != 0 and averageArticleLikes != 0:
+            procentArticleLikes = counterArticleLikes / averageArticleLikes * 100;
+            starsArticleLikes = calculateStars(procentArticleLikes)
+        else:
+            starsArticleLikes = 0
 
         return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes,
                                                                   'numberOfArticles': counterArticles, 'numberOfArticleLikes': counterArticleLikes,
