@@ -114,7 +114,7 @@
             <p>
             <h1>{{ user.email }}</h1>
             </p>
-
+            <a href="{% url 'account:logout' %}">Logout</a>
             <p class="ratingTopics">
 
             <div id="writtenArticles" class="rating">
@@ -189,7 +189,6 @@
         <p>Average number of likes articles received: {{ averageArticleLikes }}</p>
 
         <p>Last login: {{ user.last_login }}</p>
-        <a href="{% url 'account:logout' %}">Logout</a>
         -->
     </div>
 </div>

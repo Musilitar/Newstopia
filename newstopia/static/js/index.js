@@ -15,6 +15,7 @@ $(document).ready(function () {
             $('#menuNewArticle').addClass("currentMenu");
         }
     }else{
+
         $('#ProfileIcon').addClass("currentMenu");
     }
 
