@@ -61,7 +61,7 @@ $(document).ready(function(){
                 articlenumber = parseInt(article[article.length - 2]);
                 $.post('/articles/vote/', {id: articlenumber, type: "article", difference: -1}, function(data){
                     thisButton = ref;
-                    otherButton = ref.parent().children()[2];
+                    otherButton = ref.parent().children()[0];
                     score = ref.parent().children()[1].innerHTML;
                     var intscore = parseInt(score);
                     intscore--;
@@ -99,7 +99,7 @@ $(document).ready(function(){
                 articlenumber = parseInt(article);
                 $.post('/articles/vote/', {id: articlenumber, type: "paragraph", difference: -1}, function(data){
                     thisButton = ref;
-                    otherButton = ref.parent().children()[2];
+                    otherButton = ref.parent().children()[0];
                     score = ref.parent().children()[1].innerHTML;
                     var intscore = parseInt(score);
                     intscore--;

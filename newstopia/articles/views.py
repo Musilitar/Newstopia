@@ -252,6 +252,7 @@ def create(request):
 def about(request):
     return render(request, 'articles/about.html')
 
+#to test: multiple likes same article/paragraph
 def vote(request):
     if request.method == 'POST':
         if request.user.is_authenticated():
@@ -259,9 +260,10 @@ def vote(request):
             type = request.POST['type']
             difference = int(request.POST['difference'])
             if type == "article":
+                hasvoted = Article_Likes.objects.filter(user=request.user).filter(article=Article.objects.get(pk=id))
                 vote = Article_Likes(user=request.user, article=Article.objects.get(pk=id))
                 article = Article.objects.get(pk=id)
-                if article:
+                if article and not hasvoted:
                     if difference > 0:
                         vote.save()
                         article.rating += 1
@@ -271,9 +273,10 @@ def vote(request):
                         article.rating -= 1
                         article.save()
             elif type == "paragraph":
+                hasvoted = Paragraph_Likes.objects.filter(user=request.user).filter(paragraph=Paragraph.objects.get(pk=id))
                 vote = Paragraph_Likes(user=request.user, paragraph=Paragraph.objects.get(pk=id))
                 paragraph = Paragraph.objects.get(pk=id)
-                if paragraph:
+                if paragraph and not hasvoted:
                     if difference > 0:
                         vote.save()
                         paragraph.rating += 1
