@@ -267,7 +267,12 @@ zoom: 90%;
 }
 
 #menuProfile {
+margin-top:3px;
 zoom: 95%
+}
+
+#menuProfile a {
+font-size:17px;
 }
 
 
