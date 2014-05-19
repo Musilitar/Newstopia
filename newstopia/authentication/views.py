@@ -42,6 +42,7 @@ def profile(request):
     if request.user.is_authenticated():
         paragraphs = Paragraph.objects.filter(author=request.user.email)
         counterParagraphs = 0
+        procentParagraphs = 0
         for p in paragraphs:
             counterParagraphs += 1
         paragraphLikes = Paragraph_Likes.objects.all()
@@ -85,10 +86,35 @@ def profile(request):
         averageArticleLikes = 0
         if(counterArticleLikes != 0 and counterAllArticles != 0):
             averageArticleLikes = counterAllArticles / counterArticleLikes
+
+        def calculateStars(procent):
+            if procent > 80:
+                return 5
+            elif procent > 60:
+                return 4
+            elif procent > 40:
+                return 3
+            elif procent > 20:
+                return 2
+            else:
+                return 1
+
+        procentParagraphs = counterParagraphs / averageParagraphs * 100;
+        starsParagraphs = calculateStars(procentParagraphs)
+        procentParagraphLikes = counterParagraphLikes / averageParagraphLikes * 100;
+        starsParagraphLikes = calculateStars(procentParagraphLikes)
+        procentArticles = counterArticles / averageArticles * 100;
+        starsArticles = calculateStars(procentArticles)
+        procentArticleLikes = counterArticleLikes / averageArticleLikes * 100;
+        starsArticleLikes = calculateStars(procentArticleLikes)
+
+
         return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes,
                                                                   'numberOfArticles': counterArticles, 'numberOfArticleLikes': counterArticleLikes,
                                                                   'averageParagraphs': averageParagraphs, 'averageParagraphLikes': averageParagraphLikes,
-                                                                  'averageArticles': averageArticles, 'averageArticleLikes': averageArticleLikes}, context_instance=RequestContext(request))
+                                                                  'averageArticles': averageArticles, 'averageArticleLikes': averageArticleLikes,
+                                                                  'starsParagraphs': range(starsParagraphs), 'starsParagraphLikes': range(starsParagraphLikes),
+                                                                  'starsArticles': range(starsArticles), 'starsArticleLikes': range(starsArticleLikes)}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')
 
