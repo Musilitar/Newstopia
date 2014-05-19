@@ -307,9 +307,12 @@ margin-right:14px;
 
 .btn .articleScore {
 width:28px;
-float:left;
-text-align:center;
 cursor:default;
+margin:0 auto;
+}
+
+.btn .articleScore {
+text-align:center;
 }
 
 .btn .btnUp , .btn .btnDown , .btn .pbtnUp , .btn .pbtnDown {
@@ -318,6 +321,11 @@ margin-left:2px;
 float:left;
 color:#568a8f;
 }
+
+.btn .btnDown, .btn .pbtnDown {
+float:right;
+}
+
 
 .btn .btnUp:hover, .btn .btnDown:hover , .btn .pbtnUp:hover , .btn .pbtnDown:hover {
 color:#002828;

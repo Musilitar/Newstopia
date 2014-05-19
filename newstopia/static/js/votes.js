@@ -41,11 +41,11 @@ $(document).ready(function(){
                 articlenumber = parseInt(article[article.length - 2]);
                 $.post('/articles/vote/', {id: articlenumber, type: "article", difference: 1}, function(data){
                     thisButton = ref;
-                    otherButton = ref.parent().children()[2];
-                    score = ref.parent().children()[1].innerHTML;
+                    otherButton = ref.parent().children()[1];
+                    score = ref.parent().children()[2].innerHTML;
                     var intscore = parseInt(score);
                     intscore++;
-                    ref.parent().children()[1].innerHTML = "00" + intscore.toString();
+                    ref.parent().children()[2].innerHTML = "" + intscore.toString();
                     thisButton.remove();
                     otherButton.remove();
 
@@ -62,10 +62,10 @@ $(document).ready(function(){
                 $.post('/articles/vote/', {id: articlenumber, type: "article", difference: -1}, function(data){
                     thisButton = ref;
                     otherButton = ref.parent().children()[0];
-                    score = ref.parent().children()[1].innerHTML;
+                    score = ref.parent().children()[2].innerHTML;
                     var intscore = parseInt(score);
                     intscore--;
-                    ref.parent().children()[1].innerHTML = "" + intscore.toString();
+                    ref.parent().children()[2].innerHTML = "" + intscore.toString();
                     thisButton.remove();
                     otherButton.remove();
                 });

@@ -118,67 +118,69 @@
             {% for article in articlesData %}
             {% if article.isBig %}
             <div class="item-big">
-            {% else %}
-            <div class="item">
-            {% endif %}
-                {% if article.isBig %}
-                <div class="item-content-big">
                 {% else %}
-                <div class="item-content">
-                {% endif %}
-                    <b>{{ article.article.title }}</b>
-                    {% for paragraph in article.paragraphs %}
-                    {% if forloop.counter == 1 or article.isBig %}
-                    <p>{{ paragraph.paragraph.text }}</p>
-                    {% else %}
-                    <p class="paragraphRest">{{ paragraph.paragraph.text }}</p>
+                <div class="item">
                     {% endif %}
-                    {% endfor %}
-                    <div class="articleButtonContainer">
-                        <div class="articleButtons">
-                            <div class="btn">
-                                {% if authenticated %}
-                                {% if not article.hasLiked %}
-                                <div class="btnUp" href="#">
-                                    <i class="fa fa-thumbs-up"></i>
-                                </div>
-                                {% endif %}
-                                {% endif %}
-                                <div class="articleScore">{{article.article.rating}}</div>
-                                {% if authenticated %}
-                                {% if not article.hasLiked %}
-                                <div class="btnDown" href="#">
-                                    <i class="fa fa-thumbs-down"></i>
-                                </div>
-                                {% endif %}
-                                {% endif %}
-                            </div>
+                    {% if article.isBig %}
+                    <div class="item-content-big">
+                        {% else %}
+                        <div class="item-content">
+                            {% endif %}
+                            <b>{{ article.article.title }}</b>
+                            {% for paragraph in article.paragraphs %}
+                            {% if forloop.counter == 1 or article.isBig %}
+                            <p>{{ paragraph.paragraph.text }}</p>
+                            {% else %}
+                            <p class="paragraphRest">{{ paragraph.paragraph.text }}</p>
+                            {% endif %}
+                            {% endfor %}
+                            <div class="articleButtonContainer">
+                                <div class="articleButtons">
+                                    <div class="btn">
+                                        {% if authenticated %}
+                                        {% if not article.hasLiked %}
+                                        <div class="btnUp" href="#">
+                                            <i class="fa fa-thumbs-up"></i>
+                                        </div>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% if authenticated %}
+                                        {% if not article.hasLiked %}
+                                        <div class="btnDown" href="#">
+                                            <i class="fa fa-thumbs-down"></i>
+                                        </div>
+                                        {% endif %}
+                                        {% endif %}
+                                        <div class="articleScore">{{article.article.rating}}</div>
 
-                            <a id="btnShare" class="btn" href="#">
-                                <div id="shareContainer">
-                                    <i class="fa fa-share-alt"></i> share
-                                    <i id="fb" class="fa fa-facebook"></i>
-                                    <i id="tw" class="fa fa-twitter"></i>
+                                    </div>
+
+                                    <a id="btnShare" class="btn" href="#">
+                                        <div id="shareContainer">
+                                            <i class="fa fa-share-alt"></i> share
+                                            <i id="fb" class="fa fa-facebook"></i>
+                                            <i id="tw" class="fa fa-twitter"></i>
+                                        </div>
+                                    </a>
+                                    <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
+                                        <i class="fa fa-cog"></i> detail
+                                    </a>
+
+                                    <div class="btn btnRead">
+                                        <i class="fa fa-arrow-circle-down"></i> more
+                                    </div>
                                 </div>
-                            </a>
-                            <a class="btn" href="{% url 'articles:detail' article.article.pk %}">
-                                <i class="fa fa-cog"></i> detail
-                            </a>
-                            <div class="btn btnRead">
-                                <i class="fa fa-arrow-circle-down"></i> more
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
-</div>
 
-<!--masonry scripts-->
-<script type="text/javascript" src="{{STATIC_URL}}js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}js/classie.js"></script>
+        <!--masonry scripts-->
+        <script type="text/javascript" src="{{STATIC_URL}}js/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/classie.js"></script>
 
 </body>
 
