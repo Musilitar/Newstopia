@@ -71,5 +71,43 @@ $(document).ready(function(){
                 });
             });
         }
+
+        if($('.pbtnUp')){
+
+            $('.pbtnUp').click(function(){
+                ref = $(this);
+                article = $(this).parent().parent().parent().children()[0].id;
+                articlenumber = parseInt(article);
+                $.post('/articles/vote/', {id: articlenumber, type: "paragraph", difference: 1}, function(data){
+                    thisButton = ref;
+                    otherButton = ref.parent().children()[2];
+                    score = ref.parent().children()[1].innerHTML;
+                    var intscore = parseInt(score);
+                    intscore++;
+                    ref.parent().children()[1].innerHTML = "" + intscore.toString();
+                    thisButton.remove();
+                    otherButton.remove();
+
+                });
+            });
+        }
+
+        if($('.pbtnDown')){
+            $('.pbtnDown').click(function(){
+                ref = $(this);
+                article = $(this).parent().parent().parent().children()[0].id;
+                articlenumber = parseInt(article);
+                $.post('/articles/vote/', {id: articlenumber, type: "paragraph", difference: -1}, function(data){
+                    thisButton = ref;
+                    otherButton = ref.parent().children()[2];
+                    score = ref.parent().children()[1].innerHTML;
+                    var intscore = parseInt(score);
+                    intscore--;
+                    ref.parent().children()[1].innerHTML = "" + intscore.toString();
+                    thisButton.remove();
+                    otherButton.remove();
+                });
+            });
+        }
     }
 );

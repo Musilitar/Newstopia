@@ -18,6 +18,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/detail.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/votes.js"></script>
 </head>
 
 <body>
@@ -129,17 +130,26 @@
         </div>
         {% for paragraph in articleData.paragraphs %}
         <div class="content">
-            <div class="paragraph">
+            <div class="paragraph" id="{{paragraph.paragraph.pk}}">
                 <p>{{paragraph.paragraph.text}}</p>
             </div>
             <div class="paragraphRating">
                 <div class="btn">
-                    <a class="btnUp" href="#">
-                        <i class="fa fa-thumbs-up"></i></a>
-
+                    {% if authenticated %}
+                    {% if not paragraph.hasLiked %}
+                    <div class="pbtnUp">
+                        <i class="fa fa-thumbs-up"></i>
+                    </div>
+                    {% endif %}
+                    {% endif %}
                     <div class="articleScore">{{paragraph.paragraph.rating}}</div>
-                    <a class="btnDown" href="#">
-                        <i class="fa fa-thumbs-down"></i></a>
+                    {% if authenticated %}
+                    {% if not paragraph.hasLiked %}
+                    <div class="pbtnDown">
+                        <i class="fa fa-thumbs-down"></i>
+                    </div>
+                    {% endif %}
+                    {% endif %}
                 </div>
             </div>
             <div class="clearfix"></div>
