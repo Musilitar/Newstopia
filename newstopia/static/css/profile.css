@@ -1,0 +1,29 @@
+#content {
+width:580px;
+margin:0 auto;
+margin-top:40px;
+}
+
+#scoreImage{
+float:left;
+margin-right:60px;
+}
+
+#scoreImage img{
+height:300px;
+}
+
+#ratingText{
+float:left;
+margin-top:25px;
+}
+
+.ratingTopics h3 {
+float:left;
+}
+
+.rating {
+float:left;
+width:110px;
+        margin-left:10px;
+}

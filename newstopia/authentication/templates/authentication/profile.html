@@ -1,22 +1,193 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile {{ user.email }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Newstopia</title>
+
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profile.css">
+
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
+    <!--<script type="text/javascript" src="{{STATIC_URL}}js/profile.js"></script>-->
 </head>
 <body>
+<div id="staticSearchBar" class="staticBar">
+    <form name="search" method="post">
+        {% csrf_token %}
+        <a href=""><i id="searchCommit" class="fa fa-search"></i></a>
+        <input id="searchInput" class="input" type="text" name="searchString" placeholder="search">
+    </form>
+</div>
+{% if not authenticated %}
+<div id="staticLoginBar" class="staticBar">
+    <form name="login" method="post" action="{% url 'account:login' %}">
+        {% csrf_token %}
+        <div id="emailInput">
+            <i class="fa fa-child"></i>
+            <input class="input" type="text" name="username" placeholder="email">
+        </div>
+        <div id="passwordInput">
+            <i class="fa fa-lock"></i>
+            <input class="input" type="password" name="password" placeholder="password">
+        </div>
+        <a id="submitLogin" class="btn">
+            <i class="fa fa-user"></i>login</a>
+        <a id="goToRegister" href="#">(I'm new here)</a>
+    </form>
+</div>
+{% else %}
+<div id="staticLoginBar" class="staticBar">
+    <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
+</div>
+{% endif %}
+<div class="container">
+    <div id="logo">
+        <img alt="logo" src="{{STATIC_URL}}img/Logo-Newstopia.png"/>
+    </div>
+    <div id="staticNav">
+        <nav>
+            <div class="menuSplits">
+                <div class="menu-btn">
+                    <a class="first-link" href="{% url 'articles:index' %}">
+                        <i id="menuHome" class="fa fa-home fa-2x"></i>
+                    </a>
+                    <a href="{% url 'articles:index' %}">
+                        home
+                    </a>
+                </div>
+                <div class="menu-btn">
+                    <a class="first-link" href="{% url 'articles:about' %}">
+                        <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
+                    </a>
+                    <a href="{% url 'articles:about' %}">
+                        about
+                    </a>
+                </div>
+                <div id="menuSearch" class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="searchIcon" class="fa fa-search fa-2x"></i>
+                    </a>
+                    <a href="">
+                        search
+                    </a>
+                </div>
+            </div>
+            <div class="menuSplits">
+                <div class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="menuArchive" class="fa fa-archive fa-2x"></i>
+                    </a>
+                    <a href="">
+                        archive
+                    </a>
+                </div>
+                <div class="menu-btn">
+                    <a class="first-link" href="{% url 'articles:create' %}">
+                        <i id="menuNewArticle" class="fa fa-pencil fa-2x"></i>
+                    </a>
+                    <a href="{% url 'articles:create' %}">
+                        new article
+                    </a>
+                </div>
+                <div id="menuProfile" class="menu-btn">
+                    <a class="first-link" href="">
+                        <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
+                    </a>
+                    <a href="">
+                        {% if not authenticated %}
+                        log-in
+                        {% else %}
+                        profile
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div id="content">
+        <div id="scoreImage"><img alt="score 60+" src="{{STATIC_URL}}img/score__0003_60plus.png"></div>
+        <div id="ratingText">
+            <p>
+            <h1>{{ user.email }}</h1>
+            </p>
+
+            <p class="ratingTopics">
+
+            <div id="writtenArticles" class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <h3>{{ numberOfArticles }} written articles</h3>
+            </p>
+
+            <p class="ratingTopics">
+
+            <div  id="articleLikes" class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <h3>{{ numberOfArticleLikes }} articles likes</h3>
+            </p>
+
+            <p id="writtenParagraphs" class="ratingTopics">
+            <div class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <h3>{{ numberOfParagraphs }} written paragraphs</h3>
+            </p>
+
+            <p id="paragraphLikes" class="ratingTopics">
+            <div class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <h3>{{ numberOfParagraphLikes }} paragraph likes</h3>
+
+            </p>
+
+        </div>
+        <!--
         <h2>Welcome, {{ user.email }}. Thanks for logging in!</h2>
+
         <p>Points: {{ user.points }}</p>
+
         <p>Number of paragraphs written: {{ numberOfParagraphs }}</p>
+
         <p>Average number of paragraphs written: {{ averageParagraphs }}</p>
+
         <p>Number of likes your paragraphs received: {{ numberOfParagraphLikes }}</p>
+
         <p>Average number of likes paragraphs received: {{ averageParagraphLikes }}</p>
+
         <p>Number of articles written: {{ numberOfArticles }}</p>
+
         <p>Average number of articles written: {{ averageArticles }}</p>
+
         <p>Number of likes you articles received: {{ numberOfArticleLikes }}</p>
+
         <p>Average number of likes articles received: {{ averageArticleLikes }}</p>
+
         <p>Last login: {{ user.last_login }}</p>
         <a href="{% url 'account:logout' %}">Logout</a>
+        -->
     </div>
+</div>
 </body>
 </html>
