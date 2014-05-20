@@ -51,10 +51,6 @@
         <a id="goToRegister" href="{% url 'account:register' %}">(I'm new here)</a>
     </form>
 </div>
-{% else %}
-<div id="staticLoginBar" class="staticBar">
-    <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
-</div>
 {% endif %}
 <div class="container">
     <div id="logo">
@@ -93,7 +89,7 @@
                     <a class="first-link" href="">
                         <i id="menuArchive" class="fa fa-archive fa-2x"></i>
                     </a>
-                    <a href="">
+                    <a href="{% url 'articles:faq' %}">
                         archive
                     </a>
                 </div>
@@ -107,7 +103,7 @@
                 </div>
                 <div id="{% if authenticated %}menuProfileL{% else %}menuProfile{% endif %}" class="menu-btn">
                     {% if authenticated %}
-                    <a class="first-link" href="{% url 'account:profile' %}">
+                    <a class="first-link" href="">
                         <i id="ProfileIcon" style="float:left;width:25px;height 32px;margin-left:24px;margin-top:-2px;" class="fa fa-user fa-2x"></i>
 
                         <h2 style="float:right;width:16px;height 32px;overflow:hidden;margin-top:2px;color:#568a8f;margin-right:24px;">{{ user.email }}</h2>
