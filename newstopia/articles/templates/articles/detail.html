@@ -142,7 +142,7 @@
                     </div>
                     {% endif %}
                     {% endif %}
-                    <div class="articleScore">{{paragraph.paragraph.rating}}</div>
+                    <div class="articleScore">{% if not authenticated %}Rating: {% endif %}{{paragraph.paragraph.rating}}</div>
                     {% if authenticated %}
                     {% if not paragraph.hasLiked %}
                     <div class="pbtnDown">

@@ -76,6 +76,12 @@ margin-top:0px;
 background-color:rgba(86, 138, 143, 0);
 }
 
+.btn .articleScore {
+width:28px;
+cursor:default;
+margin:0 auto;
+}
+
 #submitBtn{
 border:1px solid #568a8f;
 margin-top:20px;
