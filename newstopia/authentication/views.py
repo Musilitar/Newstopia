@@ -43,10 +43,17 @@ def acclogin(request):
             login(request, contributor)
             return HttpResponseRedirect('/articles/')
         else:
-            messages.error(request, "Email or password incorrect")
-            return redirect('/articles/')
+            if not Contributor.objects.filter(email=username):
+                return render_to_response('authentication/login.html', {'error':"User does not exist, please try again."},
+                                          context_instance=RequestContext(request))
+            elif not Contributor.objects.get(email=username).check_password(password):
+                return render_to_response('authentication/login.html', {'error':"Wrong password, please try again."},
+                                          context_instance=RequestContext(request))
+            else:
+                return render_to_response('authentication/login.html', {'error':"Incorrect email and password, please try again."},
+                                          context_instance=RequestContext(request))
     else:
-        return HttpResponseRedirect('/articles/')
+        return render(request, 'authentication/login.html')
 
 
 def profile(request):
