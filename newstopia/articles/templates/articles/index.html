@@ -41,7 +41,7 @@
         </div>
         <a id="submitLogin" class="btn">
             <i class="fa fa-user"></i>login</a>
-        <a id="goToRegister" href="#">(I'm new here)</a>
+        <a id="goToRegister" href="{% url 'account:register' %}">(I'm new here)</a>
     </form>
 </div>
 {% else %}
