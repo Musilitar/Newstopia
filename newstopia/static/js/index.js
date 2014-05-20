@@ -38,7 +38,12 @@ $(document).ready(function () {
                 alert("notbtnRead");
             }
             var itemElem = target.parentNode.parentNode.parentNode.parentNode;
-            classie.toggleClass(itemElem, 'is-expanded');
+            if(jQuery(target).parent().parent().parent().children('.paragraphSingle').length > 0) {
+                classie.toggleClass(itemElem, 'is-expanded-wide');
+            }
+            else {
+                classie.toggleClass(itemElem, 'is-expanded');
+            }
 
             //set text margin
             if (jQuery(target).parent().parent().parent().parent().hasClass('is-expanded')){
@@ -60,7 +65,7 @@ $(document).ready(function () {
             }
 
             //change more button
-            if (jQuery(target).parent().parent().parent().parent().hasClass('is-expanded')){
+            if (jQuery(target).parent().parent().parent().parent().hasClass('is-expanded') || jQuery(target).parent().parent().parent().parent().hasClass('is-expanded-wide')){
             $(target).html('<i class="fa fa-arrow-circle-up"></i> less');
             } else {
             $(target).html('<i class="fa fa-arrow-circle-down"></i> more');

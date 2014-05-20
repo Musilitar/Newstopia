@@ -23,7 +23,7 @@ margin: 15px;
 padding: 15px;
 border-radius: 3px;
 width: 480px;
-height: 720px;
+height: 330px;
 font-size:14px;
 box-shadow: 0px 0px 8px #888888;
 }
@@ -39,7 +39,7 @@ text-align: justify
 .item-content-big {
 padding:0px;
 margin:0px;
-height:685px;
+height:265px;
 overflow:hidden;
 text-align: justify
 }
@@ -47,6 +47,11 @@ text-align: justify
 .item.is-expanded{
 width: 480px;
 height: 720px;
+z-index: 2;
+}
+
+.item.is-expanded-wide{
+width: 480px;
 z-index: 2;
 }
 

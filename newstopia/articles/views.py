@@ -1,5 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 from articles.models import Article, Paragraph, Article_Likes, Paragraph_Likes, Tags, Article_Tags
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
@@ -31,7 +32,8 @@ def index(request):
                                           hasLiked = True,
                                           paragraphs = [],
                                           article_resize = False,
-                                          isBig = False)
+                                          singleParagraph = False,
+                                          )
                 #Test for authentication, if not disregard likes
                 if request.user.is_authenticated():
                     try:
@@ -41,11 +43,11 @@ def index(request):
                         articleData.hasLiked = False
                 paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
                 amountParagraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5].count()
-                if amountParagraphs > 1 and amountParagraphs < 5:
+                if amountParagraphs == 1:
+                    articleData.singleParagraph = True
+                if amountParagraphs > 3:
                     articleData.article_resize = True
-                paragraphCounter = 0
                 for p in paragraphs:
-                    paragraphCounter += 1
                     paragraphData = Paragraphdata(paragraph=p,
                                                   isAuthor=request.user.is_authenticated() and p.author == request.user.email,
                                                   hasLiked=True)
@@ -59,8 +61,6 @@ def index(request):
                             paragraphData.hasLiked = False
 
                     articleData.paragraphs.append(paragraphData)
-                if paragraphCounter > 4:
-                    articleData.isBig = True
                 articlesData.append(articleData)
 
             for a in articlesData:
@@ -87,7 +87,8 @@ def index(request):
                 hasLiked = True,
                 paragraphs = [],
                 article_resize = False,
-                isBig = False)
+                singleParagraph = False
+                )
         #Test for authentication, if not disregard likes
         if request.user.is_authenticated():
             try:
@@ -97,11 +98,11 @@ def index(request):
                 articleData.hasLiked = False
         paragraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5]
         amountParagraphs = Paragraph.objects.filter(article=a).order_by('-rating')[0:5].count()
-        if amountParagraphs > 1 and amountParagraphs < 5:
+        if amountParagraphs == 1:
+            articleData.singleParagraph = True
+        if amountParagraphs > 3:
             articleData.article_resize = True
-        paragraphCount = 0
         for p in paragraphs:
-            paragraphCount += 1
             paragraphData = Paragraphdata(paragraph = p,
                                           isAuthor = request.user.is_authenticated() and p.author == request.user.email,
                                           hasLiked = True)
@@ -115,8 +116,6 @@ def index(request):
                     paragraphData.hasLiked = False
 
             articleData.paragraphs.append(paragraphData)
-        if paragraphCount > 4:
-            articleData.isBig = True
         articlesData.append(articleData)
 
     if searchFound:
