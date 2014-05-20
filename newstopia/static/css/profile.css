@@ -4,12 +4,12 @@ margin:0 auto;
 margin-top:40px;
 }
 
-#scoreImage{
+.scoreImage{
 float:left;
-margin-right:60px;
+margin-right:90px;
 }
 
-#scoreImage img{
+.scoreImage img{
 height:300px;
 }
 
@@ -18,12 +18,35 @@ float:left;
 margin-top:25px;
 }
 
-.ratingTopics h3 {
-float:left;
-}
-
 .rating {
 float:left;
 width:110px;
-        margin-left:10px;
+margin-left:3px;
+}
+
+#email{
+font-size:28px;
+font-weight:800;
+}
+
+#logout{
+text-decoration:none;
+font-size:14px;
+}
+
+#logout:link, #logout:visited, #logout:hover, #logout:active {
+color: #568a8f;
+}
+
+@media screen and (max-width: 650px){
+#content {
+width:300px;
+margin:0 auto;
+}
+
+.scoreImage{
+position:absolute;
+margin-top:270px;
+margin-left:69px;
+}
 }

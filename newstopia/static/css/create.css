@@ -30,3 +30,28 @@ cursor:pointer;
 margin-right:5px;
 
 }
+
+
+@media screen and (max-width: 580px){
+
+#createContainer {
+margin: 0 auto;
+width: 230px;
+padding-top:90px;
+}
+
+textarea, #inputTitle {
+width: 220px;
+}
+
+#inputParagraph {
+height:350px;
+}
+
+#inputTags {
+height:120px;
+}
+
+.btn {
+margin-left: 70px;
+}

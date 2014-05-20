@@ -109,68 +109,77 @@
         </nav>
     </div>
     <div id="content">
-        <div id="scoreImage"><img alt="score 60+" src="{{STATIC_URL}}img/score__0003_60plus.png"></div>
+        {% if globalAverage < 20 %}
+        <div class="scoreImage"><img alt="score 20-" src="{{STATIC_URL}}img/score__0000_00plus.png"></div>
+        {% elif globalAverage < 40 %}
+        <div class="scoreImage"><img alt="score 20+" src="{{STATIC_URL}}img/score__0002_20plus.png"></div>
+        {% elif globalAverage < 60 %}
+        <div class="scoreImage"><img alt="score 40+" src="{{STATIC_URL}}img/score__0003_40plus.png"></div>
+        {% elif globalAverage < 80 %}
+        <div class="scoreImage"><img alt="score 60+" src="{{STATIC_URL}}img/score__0004_60plus.png"></div>
+        {% else %}
+        <div class="scoreImage"><img alt="score 80+" src="{{STATIC_URL}}img/score__0005_80plus.png"></div>
+        {% endif %}
         <div id="ratingText">
             <p>
-            <h1>{{ user.email }}</h1>
+                <span id="email">{{ user.email }}</span></br>
+                <a id="logout" href="{% url 'account:logout' %}">(logout)</a>
             </p>
-            <a href="{% url 'account:logout' %}">Logout</a>
+
             <p class="ratingTopics">
 
             <div id="writtenArticles" class="rating">
-            {% for i in starsArticles %}
+                {% for i in starsArticles %}
                 <i class="fa fa-star"></i>
-            {% endfor %}
-            {% for i in starsArticlesN %}
+                {% endfor %}
+                {% for i in starsArticlesN %}
                 <i class="fa fa-star-o"></i>
-            {% endfor %}
+                {% endfor %}
             </div>
-            <h3>{{ numberOfArticles }} written articles</h3>
+            <p>{{ numberOfArticles }} written articles</p>
             </p>
 
             <p class="ratingTopics">
 
-            <div  id="articleLikes" class="rating">
-            {% for i in starsArticleLikes %}
+            <div id="articleLikes" class="rating">
+                {% for i in starsArticleLikes %}
                 <i class="fa fa-star"></i>
-            {% endfor %}
-            {% for i in starsArticleLikesN %}
+                {% endfor %}
+                {% for i in starsArticleLikesN %}
                 <i class="fa fa-star-o"></i>
-            {% endfor %}
+                {% endfor %}
             </div>
-            <h3>{{ numberOfArticleLikes }} articles likes</h3>
+            <p>{{ numberOfArticleLikes }} articles likes</p>
             </p>
 
             <p id="writtenParagraphs" class="ratingTopics">
+
             <div class="rating">
-            {% for i in starsParagraphs %}
+                {% for i in starsParagraphs %}
                 <i class="fa fa-star"></i>
-            {% endfor %}
-            {% for i in starsParagraphsN %}
+                {% endfor %}
+                {% for i in starsParagraphsN %}
                 <i class="fa fa-star-o"></i>
-            {% endfor %}
+                {% endfor %}
             </div>
-            <h3>{{ numberOfParagraphs }} written paragraphs</h3>
+            <p>{{ numberOfParagraphs }} written paragraphs</p>
             </p>
 
             <p id="paragraphLikes" class="ratingTopics">
-            <div class="rating">
-            {% for i in starsParagraphLikes %}
-                <i class="fa fa-star"></i>
-            {% endfor %}
-            {% for i in starsParagraphLikesN %}
-                <i class="fa fa-star-o"></i>
-            {% endfor %}
-            </div>
-            <h3>{{ numberOfParagraphLikes }} paragraph likes</h3>
 
-            {% if globalAverage < 20 %}
-            {% elif globalAverage < 40 %}
-            {% else %}
-            {% endif %}
+            <div class="rating">
+                {% for i in starsParagraphLikes %}
+                <i class="fa fa-star"></i>
+                {% endfor %}
+                {% for i in starsParagraphLikesN %}
+                <i class="fa fa-star-o"></i>
+                {% endfor %}
+            </div>
+            <p>{{ numberOfParagraphLikes }} paragraph likes</p>
             </p>
 
         </div>
+
         <!--
         <h2>Welcome, {{ user.email }}. Thanks for logging in!</h2>
 

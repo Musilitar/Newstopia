@@ -59,14 +59,14 @@ margin-top:40px;
 }
 
 textarea {
+border-radius:5px;
 padding:6px;
 height:150px;
 width:650px;
-border-radis:5px;
 }
 
 .btn {
-margin-left:275px;
+margin-left:42%;
 border:0px solid #568a8f;
 margin-top:0px;
 
@@ -97,17 +97,25 @@ margin-right:5px;
 
 }
 
-@media screen and (max-width: 580px){
+@media screen and (max-width: 750px){
 #detail {
 width: auto;
 }
 
 .paragraphRating{
-width:100px;
+width:90px;
 margin:0 auto;
 }
 
-.btn {
-margin-left:5px;
+submitBtn {
+width:90px;
+        margin:0 auto;
 }
+
+textarea{
+width: 95%;
+height:250px;
+}
+
+
 }

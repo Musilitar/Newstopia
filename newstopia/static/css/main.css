@@ -148,7 +148,7 @@ margin-left:3px;
 #staticLoginBar form .btn {
 margin-top:5px;
 padding-top:6px;
-width:120px;
+width:100px;
 height:26px;
 }
 
@@ -348,11 +348,6 @@ heigth:48px;
 height:140px;
 }
 
-#staticLoginBar form {
-width: 417px;
-
-}
-
 #staticLoginBar form{
 width:260px;
 }
@@ -363,6 +358,10 @@ float:left;
 
 .container.clickedProfile {
 margin-top:160px;
+}
+
+#staticLoginBar form .btn {
+margin-right:20px;
 }
 
 #searchInput {
