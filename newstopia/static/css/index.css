@@ -16,6 +16,7 @@ font-size:14px;
 box-shadow: 0px 0px 8px #888888;
 }
 
+/*standaard al breed*/
 .item-big{
 float: left;
 background-color: #f9f6ef;
@@ -36,6 +37,7 @@ overflow:hidden;
 text-align: justify
 }
 
+/*standaard al breed*/
 .item-content-big {
 padding:0px;
 margin:0px;
@@ -44,17 +46,20 @@ overflow:hidden;
 text-align: justify
 }
 
+/*maakt breed en groot, indien breed maakt het groot*/
 .item.is-expanded{
 width: 480px;
 height: 720px;
 z-index: 2;
 }
 
+/*maakt diegene met 1 paragraaf breed*/
 .item.is-expanded-wide{
 width: 480px;
 z-index: 2;
 }
 
+/*grote wordt hoger*/
 .item-big.is-expanded{
 width: 480px;
 height: 720px;
