@@ -196,21 +196,6 @@ margin-left: auto;
 margin-right: auto;
 }
 
-@media screen and (max-width: 580px){
-nav {
-width: 270px;
-}
-
-#logo {
-width: 232px;
-}
-
-#logo img {
-width:232px;
-heigth:48px;
-}
-}
-
 .menu-btn a:link, .menu-btn a:visited, .menu-btn a:hover, .menu-btn a:active {
 color: #568a8f;
 }
@@ -342,4 +327,50 @@ float:right;
 
 .btn .btnUp:hover, .btn .btnDown:hover , .btn .pbtnUp:hover , .btn .pbtnDown:hover {
 color:#002828;
+}
+
+
+@media screen and (max-width: 580px){
+nav {
+width: 270px;
+}
+
+#logo {
+width: 232px;
+}
+
+#logo img {
+width:232px;
+heigth:48px;
+}
+
+#staticLoginBar.clicked{
+height:140px;
+}
+
+#staticLoginBar form {
+width: 417px;
+
+}
+
+#staticLoginBar form{
+width:260px;
+}
+
+#emailInput, #passwordInput, #submitLogin, #goToRegister {
+float:left;
+}
+
+.container.clickedProfile {
+margin-top:160px;
+}
+
+#searchInput {
+width:250px;
+}
+
+#staticSearchBar form {
+width:297px;
+}
+
 }

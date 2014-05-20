@@ -16,6 +16,22 @@ font-size:14px;
 box-shadow: 0px 0px 8px #888888;
 }
 
+.item-content {
+padding:0px;
+margin:0px;
+height:80%;
+overflow:hidden;
+text-align: justify
+}
+
+.item-content-big {
+padding:0px;
+margin:0px;
+height:95%;
+overflow:hidden;
+text-align: justify
+}
+
 /*standaard al breed*/
 .item-big{
 float: left;
@@ -27,23 +43,6 @@ width: 480px;
 height: 330px;
 font-size:14px;
 box-shadow: 0px 0px 8px #888888;
-}
-
-.item-content {
-padding:0px;
-margin:0px;
-height:265px;
-overflow:hidden;
-text-align: justify
-}
-
-/*standaard al breed*/
-.item-content-big {
-padding:0px;
-margin:0px;
-height:95%;
-overflow:hidden;
-text-align: justify
 }
 
 /*maakt breed en groot, indien breed maakt het groot*/
@@ -137,3 +136,20 @@ cursor:pointer;
 }
 
 
+/*RESPONSIVE*/
+
+@media screen and (max-width: 580px){
+
+.item-big, .item.is-expanded, .item.is-expanded-wide, .item-big.is-expanded{
+width: 210px;
+}
+
+.item.is-expanded-wide{
+height:400px;
+}
+
+.item-content-big{
+height:80%;
+}
+
+}

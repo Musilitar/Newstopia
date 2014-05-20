@@ -90,3 +90,18 @@ background-color:rgba(86, 138, 143, 0.1);
 margin-right:5px;
 
 }
+
+@media screen and (max-width: 580px){
+#detail {
+width: auto;
+}
+
+.paragraphRating{
+width:100px;
+margin:0 auto;
+}
+
+.btn {
+margin-left:5px;
+}
+}
