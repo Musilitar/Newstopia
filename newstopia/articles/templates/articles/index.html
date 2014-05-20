@@ -156,7 +156,7 @@
                                         </div>
                                         {% endif %}
                                         {% endif %}
-                                        <div class="articleScore">Rating: {{article.article.rating}}</div>
+                                        <div class="articleScore">{% if not authenticated %}Rating:{% endif %} {{article.article.rating}}</div>
 
                                     </div>
 
