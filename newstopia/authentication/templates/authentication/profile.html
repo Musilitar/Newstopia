@@ -164,6 +164,10 @@
             </div>
             <h3>{{ numberOfParagraphLikes }} paragraph likes</h3>
 
+            {% if globalAverage < 20 %}
+            {% elif globalAverage < 40 %}
+            {% else %}
+            {% endif %}
             </p>
 
         </div>
