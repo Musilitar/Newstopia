@@ -110,22 +110,23 @@
     </div>
     <div id="content">
         <div id="registerContainer">
-        <form name="register" method="post" action="">
-            {% csrf_token %}
-            <input  id="inputMail" type="text" name="username" placeholder="email">
-            <input  id="inputPass" type="password" name="password" placeholder="password">
-            <input  id="inputPassCheck" type="password" name="passwordagain" placeholder="retype password">
             {% if error %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endif %}
             {% if message %}
-                <p>{{ message }}</p>
+            <p>{{ message }}</p>
             {% endif %}
-        </form>
-        <div id="submitBtn" class="btn">
-            <i class="fa fa-paper-plane"></i> submit
+            <form name="register" method="post" action="">
+                {% csrf_token %}
+                <input id="inputMail" type="text" name="username" placeholder="email">
+                <input id="inputPass" type="password" name="password" placeholder="password">
+                <input id="inputPassCheck" type="password" name="passwordagain" placeholder="retype password">
+
+            </form>
+            <div id="submitBtn" class="btn">
+                <i class="fa fa-paper-plane"></i> submit
+            </div>
         </div>
-    </div>
     </div>
 </div>
 </body>

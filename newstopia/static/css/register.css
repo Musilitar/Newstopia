@@ -1,8 +1,12 @@
 #registerContainer {
-margin: 70px auto 140px auto;
+margin: 40px auto 140px auto;
 width: 450px;
 height: auto;
-text-align: center;
+text-align:center;
+}
+
+#registerContainer form{
+margin-top:30px;
 }
 
 #inputMail, #inputPass, #inputPassCheck {
@@ -10,15 +14,15 @@ padding:6px;
 width:100%;
 border-radius:5px;
 margin-bottom: 30px;
+margin-left:-10px;
 }
 
 .btn {
-margin-left:275px;
+margin-left:175px;
 margin-top:10px;
 cursor:pointer;
 }
 
 #submitBtn i {
 margin-right:5px;
-
 }

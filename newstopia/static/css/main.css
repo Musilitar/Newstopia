@@ -189,7 +189,7 @@ heigth:198px;
 }
 
 nav {
-width: 550px;
+width: 540px;
 height: 50px;
 margin-top:5px;
 margin-left: auto;
@@ -212,7 +212,7 @@ heigth:48px;
 }
 
 .menu-btn a:link, .menu-btn a:visited, .menu-btn a:hover, .menu-btn a:active {
-color: #002424;
+color: #568a8f;
 }
 
 .menu-btn a{
@@ -251,30 +251,38 @@ height: 32px;
 }
 
 .menu-btn:hover .first-link{
-margin-top: -30px;
+margin-top: -32px;
 }
 
-#menuArchive, #searchIcon {
-zoom: 85%;
+#menuArchive  {
+font-size:28px;
+margin-top:1px
 }
 
-#searchIcon, #menuHome {
-margin-top: -1px;
+#searchIcon {
+font-size:28px;
+margin-top:1px;
+}
+
+#searchIcon{
 }
 
 #menuNewArticle {
-zoom: 90%;
+font-size:32px;
+margin-top:-2px;
 }
 
 #menuProfile {
 margin-top:3px;
-zoom: 95%
 }
 
 #menuProfile a {
 font-size:17px;
 }
 
+.currentMenu {
+color:#002828;
+}
 
 /*GENERAL BUTTONS*/
 
@@ -334,8 +342,4 @@ float:right;
 
 .btn .btnUp:hover, .btn .btnDown:hover , .btn .pbtnUp:hover , .btn .pbtnDown:hover {
 color:#002828;
-}
-
-.currentMenu {
-    color: #568a8f;
 }
