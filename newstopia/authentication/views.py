@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, redirect
 from django.template import RequestContext
-from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from authentication.models import Contributor
 from articles.models import Paragraph, Paragraph_Likes, Article, Article_Likes
@@ -43,9 +43,10 @@ def acclogin(request):
             login(request, contributor)
             return HttpResponseRedirect('/articles/')
         else:
-            return HttpResponseRedirect('/articles/')
+            messages.error(request, "Email or password incorrect")
+            return redirect('/articles/')
     else:
-        return render(request, 'authentication/login.html')
+        return HttpResponseRedirect('/articles/')
 
 
 def profile(request):

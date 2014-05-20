@@ -116,7 +116,7 @@ height: 120px;
 }
 
 #staticLoginBar form {
-width: 660px;
+width: 700px;
 margin: 0 auto;
 margin-top:6px;
 }
@@ -159,6 +159,11 @@ margin-right:15px;
 #goToRegister {
 padding-left:5px;
 font-size:14px;
+}
+
+#staticLoginBar form #loginError {
+margin: 15px 5px 0 0;
+font-size: 18px;
 }
 
 /*NAVIGATION*/
@@ -319,7 +324,7 @@ margin-right:14px;
 
 
 .btn .articleScore {
-width:28px;
+width:80px;
 cursor:default;
 margin:0 auto;
 }

@@ -31,6 +31,13 @@
 <div id="staticLoginBar" class="staticBar">
     <form name="login" method="post" action="{% url 'account:login' %}">
         {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+            {% if 'error' in message.tags %}
+                <i id="loginError" class="fa fa-times-circle"></i>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
         <div id="emailInput">
             <i class="fa fa-child"></i>
             <input class="input" type="text" name="username" placeholder="email">
@@ -160,7 +167,7 @@
                                         </div>
                                         {% endif %}
                                         {% endif %}
-                                        <div class="articleScore">{{article.article.rating}}</div>
+                                        <div class="articleScore">Rating: {{article.article.rating}}</div>
 
                                     </div>
 
