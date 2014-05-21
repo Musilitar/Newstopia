@@ -13,6 +13,8 @@ def registration(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/articles/')
     if request.method == 'POST':
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/articles/')
         userrequest = Contributor.objects.filter(email=request.POST['username'])
         password = request.POST['password']
         passwordagain = request.POST['passwordagain']
