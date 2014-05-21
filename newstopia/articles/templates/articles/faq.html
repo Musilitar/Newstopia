@@ -93,11 +93,14 @@
                 <div id="{% if authenticated %}menuProfileL{% else %}menuProfile{% endif %}" class="menu-btn">
                     {% if authenticated %}
                     <a class="first-link" href="">
-                        <i id="ProfileIcon" style="float:left;width:25px;height 32px;margin-left:24px;margin-top:-2px;" class="fa fa-user fa-2x"></i>
+                        <i id="ProfileIcon" style="float:left;width:25px;height 32px;margin-left:24px;margin-top:-2px;"
+                           class="fa fa-user fa-2x"></i>
 
-                        <h2 style="float:right;width:16px;height 32px;overflow:hidden;margin-top:2px;color:#568a8f;margin-right:24px;">{{ user.email }}</h2>
+                        <h2 style="float:right;width:16px;height 32px;overflow:hidden;margin-top:2px;color:#568a8f;margin-right:24px;">
+                            {{ user.email }}</h2>
                     </a>
-                    <a style="float:left;text-align:center;width:90px;height:32px;margin-left:0px;margin-top:-20px;" href="{% url 'account:profile' %}">
+                    <a style="float:left;text-align:center;width:90px;height:32px;margin-left:0px;margin-top:-20px;"
+                       href="{% url 'account:profile' %}">
                         profile
                     </a>
                     {% else %}
@@ -112,7 +115,65 @@
             </div>
         </nav>
     </div>
-    <!--content-->
+    <div id="faq">
+        <p class="question"><b>Question 1:</b> &nbsp;I can’t write a new article. What do I need to do?</p>
+
+        <p class="answer"><b>Answer:</b> If you haven’t registered an account yet, you can do so by clicking on ‘I’m new here’ when
+            the login form is
+            visible. You can also do this by going to newstopia.pythonanywhere.com/account/register. After you
+            registered your
+            account, you can login by clicking the buddy icon (‘login’). If you click on the pencil icon in the menu
+            (‘create’)
+            now, you will be able to write an article.</p>
+
+        <p class="question"><b>Question 2:</b> &nbsp;What are the numbers displayed in each article?</p>
+
+        <p class="answer"><b>Answer:</b> This is the article’s rating. If you are logged in, you will be able to upvote or downvote
+            every article once,
+            using the thumbs up or down icons. When you are not logged in, you will only see the rating and you won’t be
+            able to
+            change it.</p>
+
+        <p class="question"><b>Question 3:</b> &nbsp; Can I search by tag?</p>
+
+        <p class="answer"><b>Answer:</b> Yes. If you put a ‘#’ in front of your search request, it will look for articles that have
+            that keyword as a tag</p>
+
+        <p class="question"><b>Question 4:</b> &nbsp; I can’t write a new paragraph for an article. What do I need to do?</p>
+
+        <p class="answer"><b>Answer:</b> See 2. Additionally, you will have to click on ‘detail’ of an article on the front page
+            once logged in to write a
+            new paragraph.</p>
+
+        <p class="question"><b>Question 5:</b> &nbsp; What are the numbers displayed below each paragraph when I click on ‘detail’ in an
+            article?</p>
+
+        <p class="answer"><b>Answer:</b> See 4.</p>
+
+        <p class="question"><b>Question 6:</b> &nbsp; Is there a profile page?</p>
+
+        <p class="answer"><b>Answer:</b> Yes. Once you are logged in, the buddy icon’s text will change to profile. If you click the
+            icon, you will be
+            transfered to your profile page. In addition, once logged in the buddy icon will display the first letter of
+            your
+            email address.</p>
+
+        <p class="question"><b>Question 7:</b> &nbsp; Which paragraphs are displayed in an article?</p>
+
+        <p class="answer"><b>Answer:</b> The 5 highest paragraphs are displayed.</p>
+
+        <p class="question"><b>Question 8:</b> &nbsp; How do I use the search bar?</p>
+
+        <p class="answer"><b>Answer:</b> If you click on the ‘?’ icon, the search bar will drop down from the top of the screen.
+            Here, you can input
+            characters to search for. The search will start when you press enter.</p>
+
+        <p class="question"><b>Question 9:</b> &nbsp; What do the stars on my profile page mean?</p>
+
+        <p class="answer"><b>Answer:</b> They’re an indication of how you compare to the other members. If you have 5 stars in a
+            category, it means you
+            are in the top 20% for that category.</p>
     </div>
+</div>
 </body>
 </html>

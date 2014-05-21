@@ -9,6 +9,12 @@ text-align: justify
 font-size: 24px;
 }
 
+#aboutText p a{
+color: #568a8f;
+font-weight:800;
+text-decoration:none;
+}
+
 #aboutSocial {
 width:149px;
 margin:0 auto;
