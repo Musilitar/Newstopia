@@ -38,23 +38,13 @@ $(document).ready(function () {
         }
     });
 
-    $("#staticSearchBar")
-        .stickOnScroll({
-            topOffset: 0,
-            setParentOnStick: true,
-            setWidthOnStick: true
-        });
-    $("#staticLoginBar")
-        .stickOnScroll({
-            topOffset: 0,
-            setParentOnStick: true,
-            setWidthOnStick: true
-        });
-
     $("#staticNav")
         .stickOnScroll({
             topOffset: 0,
             bottomOffset: 0,
+            onStick: function(){
+                $("#staticNav").css("", "");
+            },
             setParentOnStick: true,
             setWidthOnStick: true
         });

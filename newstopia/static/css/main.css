@@ -87,6 +87,15 @@ font-size:16px;
 
 /*SEARCHBAR*/
 
+#staticDiv {
+width: 100%;
+position: relative;
+z-index:5;
+background-color: #b4e8cc;
+-webkit-transition: padding-top 0.3s ease-out;
+
+}
+
 #staticSearchBar.clicked {
 opacity: 1;
 height: 50px;
