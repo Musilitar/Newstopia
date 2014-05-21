@@ -19,7 +19,6 @@ def index(request):
     articles = Article.objects.all().order_by('-pub_date')
     articlesData = []
     searchFound = []
-    amountParagraphs=0
 
     if request.method == 'POST':
         if request.POST['searchString']:
@@ -214,6 +213,7 @@ def create(request):
         tagData = []
         if tags:
             tags = tags.replace(" ", "")
+            tags = tags.replace("#", "")
             tags = tags.split(',')
         for i in tags:
             count = Tags.objects.filter(name=i).count()
@@ -301,26 +301,3 @@ def vote(request):
                         paragraph.rating -= 1
                         paragraph.save()
     return HttpResponse("voted")
-"""
-def vote(request):
-    if request.method == 'POST':
-        if request.user.is_authenticated():
-            id = request.POST['id']
-            type = request.POST['type']
-            difference = request.POST['difference']
-            if type == "article":
-                vote = Article_Likes(user=request.user, article=Article.objects.get(pk=id))
-                article = Article.objects.get(pk=id)
-                if article:
-                        vote.save()
-                        article.rating += 1
-                        article.save()
-            elif type == "paragraph":
-                vote = Paragraph_Likes(user=request.user, paragraph=Paragraph.objects.get(pk=id))
-                paragraph = Paragraph.objects.get(pk=id)
-                if paragraph:
-                        vote.save()
-                        paragraph.rating += 1
-                        paragraph.save()
-    return HttpResponse("voted")
-"""
