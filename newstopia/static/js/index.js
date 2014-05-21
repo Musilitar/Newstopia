@@ -53,10 +53,16 @@ $(document).ready(function () {
             }
 
             //change more button
-            if (jQuery(target).parent().parent().parent().parent().hasClass('is-expanded') || jQuery(target).parent().parent().parent().parent().hasClass('is-expanded-wide')){
+            if (jQuery(target).parent().parent().parent().parent().hasClass('is-expanded') || jQuery(target).parent().parent().parent().parent().hasClass('is-expanded-wide') && (jQuery(target).parent().parent().parent().children('.paragraphSingle').length == 0)){
             $(target).html('<i class="fa fa-arrow-circle-up"></i> less');
             } else {
             $(target).html('<i class="fa fa-arrow-circle-down"></i> more');
+            }
+
+            if(jQuery(target).parent().parent().parent().parent().hasClass('is-expanded-wide') && jQuery(target).parent().parent().parent().children('.paragraphSingle').length > 0) {
+            $(target).html('<i class="fa fa-arrow-circle-left"></i> less');
+            } else if (jQuery(target).parent().parent().parent().children('.paragraphSingle').length > 0) {
+            $(target).html('<i class="fa fa-arrow-circle-right"></i> more');
             }
 
             msnry.layout();
