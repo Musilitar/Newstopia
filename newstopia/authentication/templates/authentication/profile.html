@@ -13,6 +13,9 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
     <!--<script type="text/javascript" src="{{STATIC_URL}}js/profile.js"></script>-->
+    <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/login.js"></script>
 </head>
 <body>
 <div id="staticSearchBar" class="staticBar">
@@ -32,16 +35,12 @@
         </div>
         <div id="passwordInput">
             <i class="fa fa-lock"></i>
-            <input class="input" type="password" name="password" placeholder="password">
+            <input id="passwordField" class="input" type="password" name="password" placeholder="password">
         </div>
         <a id="submitLogin" class="btn">
             <i class="fa fa-user"></i>login</a>
-        <a id="goToRegister" href="#">(I'm new here)</a>
+        <a id="goToRegister" href="{% url 'account:register' %}">(I'm new here)</a>
     </form>
-</div>
-{% else %}
-<div id="staticLoginBar" class="staticBar">
-    <p>welcome {{user.email}} <a href="{% url 'account:logout'%}">logout</a></p>
 </div>
 {% endif %}
 <div class="container">
@@ -61,7 +60,7 @@
                 </div>
                 <div class="menu-btn">
                     <a class="first-link" href="{% url 'articles:about' %}">
-                        <i id="trigger-overlay" class="fa fa-question fa-2x"></i>
+                        <i id="menuAbout" class="fa fa-question fa-2x"></i>
                     </a>
                     <a href="{% url 'articles:about' %}">
                         about
@@ -81,7 +80,7 @@
                     <a class="first-link" href="">
                         <i id="menuArchive" class="fa fa-archive fa-2x"></i>
                     </a>
-                    <a href="">
+                    <a href="{% url 'articles:archive' %}">
                         archive
                     </a>
                 </div>
@@ -93,17 +92,24 @@
                         new article
                     </a>
                 </div>
-                <div id="menuProfile" class="menu-btn">
+                <div id="{% if authenticated %}menuProfileL{% else %}menuProfile{% endif %}" class="menu-btn">
+                    {% if authenticated %}
+                    <a class="first-link" href="">
+                        <i id="ProfileIcon" style="float:left;width:24px;height 32px;margin-left:24px;margin-top:-2px;" class="fa fa-user fa-2x"></i>
+
+                        <h2 style="float:right;width:24px;height 32px;overflow:hidden;margin-top:2px;color:#568a8f;margin-right:15px;">{{ user.email|slice:":1" }}</h2>
+                    </a>
+                    <a style="float:left;text-align:center;width:90px;height:32px;margin-left:0px;margin-top:-20px;" href="{% url 'account:profile' %}">
+                        profile
+                    </a>
+                    {% else %}
                     <a class="first-link" href="">
                         <i id="ProfileIcon" class="fa fa-user fa-2x"></i>
                     </a>
                     <a href="">
-                        {% if not authenticated %}
-                        log-in
-                        {% else %}
-                        profile
-                        {% endif %}
+                        login
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

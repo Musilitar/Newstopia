@@ -194,7 +194,7 @@ def profile(request):
                                                                   'starsArticles': range(articleStars), 'starsArticleLikes': range(articleLikesStars),
                                                                   'starsParagraphsN': range(5 - paragraphStars), 'starsParagraphLikesN': range(5 - paragraphLikesStars),
                                                                   'starsArticlesN': range(5 - articleStars), 'starsArticleLikesN': range(5 - articleLikesStars),
-                                                                  'globalAverage': globalAverage}, context_instance=RequestContext(request))
+                                                                  'globalAverage': globalAverage*100, 'authenticated':request.user.is_authenticated(), 'user':request.user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')
 

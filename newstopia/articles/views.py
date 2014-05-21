@@ -259,13 +259,13 @@ def create(request):
         return render(request, 'articles/create.html', {'valid':valid, 'authenticated':request.user.is_authenticated()})
 
 def about(request):
-    return render(request, 'articles/about.html')
+    return render(request, 'articles/about.html', {'authenticated': request.user.is_authenticated(), 'user':request.user})
 
 def archive(request):
-    return render(request, 'articles/archive.html')
+    return render(request, 'articles/archive.html', {'authenticated': request.user.is_authenticated(), 'user':request.user})
 
 def faq(request):
-    return render(request, 'articles/faq.html')
+    return render(request, 'articles/faq.html', {'authenticated': request.user.is_authenticated(), 'user':request.user})
 
 #to test: multiple likes same article/paragraph
 def vote(request):
