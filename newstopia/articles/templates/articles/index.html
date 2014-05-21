@@ -48,7 +48,7 @@
 {% endif %}
 <div class="container">
     <div id="logo">
-        <img alt="logo" src="{{STATIC_URL}}img/Logo-Newstopia2.png"/>
+        <img alt="logo" src="{{STATIC_URL}}img/logo.png"/>
     </div>
     <div id="staticNav">
         <nav>
@@ -117,7 +117,7 @@
             </div>
         </nav>
     </div>
-    <div>
+    <div id="masonryContainer">
         <div class="masonry js-masonry" data-masonry-options='{ "isFitWidth": true }'>
             {% for article in articlesData %}
             {% if article.article_resize %}
