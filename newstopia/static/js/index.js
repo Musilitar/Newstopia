@@ -3,15 +3,14 @@ $(document).ready(function () {
 
     var page = $(location).attr('href');
     var pageClean = page.split('/');
-
     if(pageClean[pageClean.length - 2] == "articles"){
         $('#menuHome').addClass("currentMenu");
     }else if(pageClean[pageClean.length - 3] == "articles"){
-        if(pageClean[pageClean.length] - 2 == "about"){
+        if(pageClean[pageClean.length - 2] == "about"){
             $('#menuAbout').addClass("currentMenu");
-        }else if(pageClean[pageClean.length - 3] == "archive"){
+        }else if(pageClean[pageClean.length - 2] == "archive"){
             $('#menuArchive').addClass("currentMenu");
-        }else if(pageClean[pageClean.length - 3] == "create"){
+        }else if(pageClean[pageClean.length - 2] == "add"){
             $('#menuNewArticle').addClass("currentMenu");
         }
     }else{

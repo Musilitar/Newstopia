@@ -44,7 +44,6 @@ $(document).ready(function () {
             setParentOnStick: true,
             setWidthOnStick: true
         });
-
     $("#staticLoginBar")
         .stickOnScroll({
             topOffset: 0,
