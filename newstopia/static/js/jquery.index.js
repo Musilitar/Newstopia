@@ -3,6 +3,9 @@ $(document).ready(function () {
     $('#menuSearch').on('click', function (e) {
         //voorkom refresh
         e.preventDefault()
+        if($('#staticLoginBar').hasClass('clicked')){
+            $('#staticLoginBar').toggleClass('clicked');
+        }
         $('.container').toggleClass('clicked');
         $('#staticSearchBar').toggleClass('clicked');
 
@@ -17,6 +20,10 @@ $(document).ready(function () {
     $('#menuProfile').on('click', function (e) {
         //voorkom refresh
         e.preventDefault()
+        if($('#staticSearchBar').hasClass('clicked')){
+            $('#staticSearchBar').toggleClass('clicked');
+        }
+
         $('.container').toggleClass('clickedProfile');
         $('#staticLoginBar').toggleClass('clicked');
         if( $(".first-link:contains('profile')").length > 0) {
@@ -32,6 +39,12 @@ $(document).ready(function () {
     });
 
     $("#staticSearchBar")
+        .stickOnScroll({
+            topOffset: 0,
+            setParentOnStick: true,
+            setWidthOnStick: true
+        });
+    $("#staticLoginBar")
         .stickOnScroll({
             topOffset: 0,
             setParentOnStick: true,
