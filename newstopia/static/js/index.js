@@ -69,10 +69,4 @@ $(document).ready(function () {
             $(window).resize();
         });
     }
-
-    //submit Login
-    $("#submitLogin").click(function (event) {
-        $("form[name='login']").submit();
-    });
-
 });

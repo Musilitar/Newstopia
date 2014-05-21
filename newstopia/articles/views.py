@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from articles.models import Article, Paragraph, Article_Likes, Paragraph_Likes, Tags, Article_Tags
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 def index(request):
     class Articledata(object):
@@ -249,11 +250,11 @@ def create(request):
                 paragraphData.hasLiked = False
 
             articleData.paragraphs.append(paragraphData)
-
-
-        return render_to_response('articles/detail.html', {'articleData': articleData,
+        #url = reverse('detail', args=article.pk)
+        return HttpResponseRedirect('/articles/%i/' % article.pk)
+        """return render_to_response('articles/detail.html', {'articleData': articleData,
                                                     'tagData': tagData, 'valid':valid, 'authenticated':request.user.is_authenticated()},
-                                                    context_instance=RequestContext(request))
+                                                    context_instance=RequestContext(request))"""
     else:
         return render(request, 'articles/create.html', {'valid':valid, 'authenticated':request.user.is_authenticated()})
 

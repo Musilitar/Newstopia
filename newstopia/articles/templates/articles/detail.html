@@ -158,7 +158,7 @@
         {% if authenticated%}
         <form name="newParagraph" class="formparagraph" method="post">
             {% csrf_token %}
-            <textarea name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5"
+            <textarea id="paragraphText" name="new_paragraph" maxlength="400" placeholder="Write a new paragraph." rows="5"
                       cols="35"></textarea>
         </form>
         <div id="submitBtn" class="btn">
