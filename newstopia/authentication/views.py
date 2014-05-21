@@ -58,6 +58,48 @@ def acclogin(request):
 
 def profile(request):
     if request.user.is_authenticated():
+        def calculateStars(coefficient):
+            if coefficient < .20:
+                return 1
+            elif coefficient < .40:
+                return 2
+            elif coefficient < .60:
+                return 3
+            elif coefficient < .80:
+                return 4
+            else:
+                return 5
+
+
+        totalParagraphs = Paragraph.objects.count()
+        totalArticles = Article.objects.count()
+        userParagraphs = Paragraph.objects.filter(author=request.user).count()
+        userArticles = Article.objects.filter(author=request.user).count()
+        totalUsers = Contributor.objects.count()
+
+        paragraphsPerUser = totalParagraphs/totalUsers
+        articlesPerUser = totalArticles/totalUsers
+        paragraphCoefficient = userParagraphs/paragraphsPerUser
+        articleCoefficient = userArticles/articlesPerUser
+
+        totalArticleLikes = Article_Likes.objects.count()
+        totalParagraphLikes = Paragraph_Likes.objects.count()
+        userArticleLikes = Article_Likes.objects.filter(article__in=Article.objects.filter(author=request.user)).count()
+        userParagraphLikes = Paragraph_Likes.objects.filter(paragraph__in=Paragraph.objects.filter(author=request.user)).count()
+
+        articleLikesPerUser = totalArticleLikes/totalUsers
+        paragraphLikesPerUser = totalParagraphLikes/totalUsers
+        articleLikeCoefficient = userArticleLikes/articleLikesPerUser
+        paragraphLikeCoefficient = userParagraphLikes/paragraphLikesPerUser
+
+        paragraphStars = calculateStars(paragraphCoefficient)
+        articleStars = calculateStars(articleCoefficient)
+        paragraphLikesStars = calculateStars(paragraphLikeCoefficient)
+        articleLikesStars = calculateStars(articleLikeCoefficient)
+
+        globalAverage = paragraphCoefficient + articleCoefficient + paragraphLikeCoefficient + articleLikeCoefficient
+
+        """
         paragraphs = Paragraph.objects.filter(author=request.user.email)
         counterParagraphs = 0
         procentParagraphs = 0
@@ -143,15 +185,15 @@ def profile(request):
             starsArticleLikes = 0
 
         globalAverage = (procentParagraphs + procentParagraphLikes + procentArticles + procentArticleLikes) /4
-
-        return render_to_response('authentication/profile.html', {'numberOfParagraphs': counterParagraphs, 'numberOfParagraphLikes': counterParagraphLikes,
-                                                                  'numberOfArticles': counterArticles, 'numberOfArticleLikes': counterArticleLikes,
-                                                                  'averageParagraphs': averageParagraphs, 'averageParagraphLikes': averageParagraphLikes,
-                                                                  'averageArticles': averageArticles, 'averageArticleLikes': averageArticleLikes,
-                                                                  'starsParagraphs': range(starsParagraphs), 'starsParagraphLikes': range(starsParagraphLikes),
-                                                                  'starsArticles': range(starsArticles), 'starsArticleLikes': range(starsArticleLikes),
-                                                                  'starsParagraphsN': range(5 - starsParagraphs), 'starsParagraphLikesN': range(5 - starsParagraphLikes),
-                                                                  'starsArticlesN': range(5 - starsArticles), 'starsArticleLikesN': range(5 - starsArticleLikes),
+        """
+        return render_to_response('authentication/profile.html', {'numberOfParagraphs': userParagraphs, 'numberOfParagraphLikes': userParagraphLikes,
+                                                                  'numberOfArticles': userArticles, 'numberOfArticleLikes': userArticleLikes,
+                                                                  'averageParagraphs': paragraphsPerUser, 'averageParagraphLikes': paragraphLikesPerUser,
+                                                                  'averageArticles': articlesPerUser, 'averageArticleLikes': articleLikesPerUser,
+                                                                  'starsParagraphs': range(paragraphStars), 'starsParagraphLikes': range(paragraphLikesStars),
+                                                                  'starsArticles': range(articleStars), 'starsArticleLikes': range(articleLikesStars),
+                                                                  'starsParagraphsN': range(5 - paragraphStars), 'starsParagraphLikesN': range(5 - paragraphLikesStars),
+                                                                  'starsArticlesN': range(5 - articleStars), 'starsArticleLikesN': range(5 - articleLikesStars),
                                                                   'globalAverage': globalAverage}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/account/login/')

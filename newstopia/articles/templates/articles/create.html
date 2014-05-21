@@ -16,6 +16,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.stickOnScroll.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/create.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 </div>
 {% if not authenticated %}
 <div id="staticLoginBar" class="staticBar">
-    <form name="login" method="post" action="{% url 'account:login' %">
+    <form name="login" method="post" action="{% url 'account:login' %}">
         {% csrf_token %}
         <div id="emailInput">
             <i class="fa fa-child"></i>
