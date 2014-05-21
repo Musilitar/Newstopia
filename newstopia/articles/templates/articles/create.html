@@ -17,6 +17,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.index.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/create.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/login.js"></script>
 </head>
 
 <body>
@@ -37,11 +38,11 @@
         </div>
         <div id="passwordInput">
             <i class="fa fa-lock"></i>
-            <input class="input" type="password" name="password" placeholder="password">
+            <input id="passwordField" class="input" type="password" name="password" placeholder="password">
         </div>
         <a id="submitLogin" class="btn">
             <i class="fa fa-user"></i>login</a>
-        <a id="goToRegister" href="#">(I'm new here)</a>
+        <a id="goToRegister" href="{% url 'account:register' %}">(I'm new here)</a>
     </form>
 </div>
 {% else %}
@@ -53,7 +54,7 @@
     <div id="logo">
         <img alt="logo" src="{{STATIC_URL}}img/Logo-Newstopia.png"/>
     </div>
-<div id="staticNav">
+    <div id="staticNav">
         <nav>
             <div class="menuSplits">
                 <div class="menu-btn">
@@ -115,7 +116,8 @@
                     <a href="">
                         login
                     </a>
-                    {% endif %}
+                        {% endif %}
+                    </a>
                 </div>
             </div>
         </nav>
