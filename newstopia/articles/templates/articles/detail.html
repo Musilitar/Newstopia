@@ -137,21 +137,22 @@
                 <div class="btn">
                     {% if authenticated %}
                     {% if not paragraph.hasLiked %}
-                    <div class="pbtnUp">
+                    <div class="btnUp">
                         <i class="fa fa-thumbs-up"></i>
                     </div>
                     {% endif %}
                     {% endif %}
-                    <div class="articleScore">{% if not authenticated %}Rating: {% endif %}{{paragraph.paragraph.rating}}</div>
                     {% if authenticated %}
                     {% if not paragraph.hasLiked %}
-                    <div class="pbtnDown">
+                    <div class="btnDown">
                         <i class="fa fa-thumbs-down"></i>
                     </div>
                     {% endif %}
                     {% endif %}
+                    <div class="articleScore">{% if not authenticated %}Rating: {% endif %}{{paragraph.paragraph.rating}}
+                    </div>
+
                 </div>
-            </div>
             <div class="clearfix"></div>
         </div>
         {% endfor %}
