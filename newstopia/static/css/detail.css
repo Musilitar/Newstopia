@@ -92,6 +92,34 @@ margin-right:5px;
 
 }
 
+.sbtn{
+border:1px solid #568a8f;
+border-radius:3px;
+text-decoration:none;
+color: #568a8f;
+padding:3px;
+width:90px;
+height:20px;
+margin:3px;
+display: block;
+float:left;
+}
+
+.sbtn:link,
+.sbtn:visited,
+.sbtn:active {
+color: #568a8f;
+}
+
+.sbtn:hover {
+color: #568a8f;
+background-color:rgba(86, 138, 143, 0.1);
+}
+
+#staticLoginBar form .sbtn {
+margin-right:20px;
+}
+
 @media screen and (max-width: 750px){
 #detail {
 width: auto;
