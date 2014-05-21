@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#submitBtn").click(function (event) {
+    $("#submitLogin").click(function (event) {
         $("form[name='login']").submit();
     });
 

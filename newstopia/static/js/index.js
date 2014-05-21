@@ -35,7 +35,6 @@ $(document).ready(function () {
                 target = event.target;
             }else {
                 target = event.target.parent();
-                alert("notbtnRead");
             }
             var itemElem = target.parentNode.parentNode.parentNode.parentNode;
             if(jQuery(target).parent().parent().parent().children('.paragraphSingle').length > 0) {
